@@ -1,0 +1,121 @@
+// FIGHT target sequence — attack bar sweep + target collapse
+// FIGHT 攻击目标序列 — 攻击条扫描 + 目标收缩
+//
+// Flow:
+//   1. Clear UI (stop dialogue, hide buttons, clear text)
+//   2. Init facts + reset elements (BEFORE showing)
+//   3. Show DumbTarget + AttackBar
+//   4. Spawn FightBarBehavior (WASM mod drives bar sweep via facts)
+//   5. Wait for behavior to complete (flash done or bar miss)
+//   6. Bar instant hide + target shrink/fade
+//   7. Hide elements + clean up state
+//
+// Bar speed: 330 px/s by default (configurable via fight:bar_speed fact)
+// Pause duration: ~0.6s (UT slash damagetimer ≈ 18 frames @ 30 fps)
+(chapters: [
+    // Stop any playing dialogue
+    // 停止任何正在播放的对话
+    EmitFactEvent(event_id: "dialogue:stop"),
+
+    // Disable typewriter replay during fight animation
+    // 在战斗动画期间禁用打字机重播
+    SetViewFact(key: "dialogue:replay_on_resume", value: Bool(false)),
+
+    // Clear UI: hide menus, clear dialogue text
+    // 清除 UI：隐藏菜单，清除对话文本
+    SetViewFact(key: "depth", value: Int(0)),
+    SetViewFact(key: "buttons_visible", value: Bool(false)),
+    SetViewFact(key: "dialogue_text", value: String("")),
+
+    // Initialize fight bar facts BEFORE showing elements
+    // 在显示元素前初始化攻击条的 fact 状态
+    ModifyFact(modifications: [
+        Set(key: "fight:bar_done", value: Bool(false)),
+        Set(key: "fight:confirmed", value: Bool(false)),
+        Set(key: "fight:bar_complete", value: Bool(false)),
+        Set(key: "fight:bar_x", value: Float(-274.0)),
+        Set(key: "fight:bar_flash_on", value: Bool(false)),
+        Set(key: "fight:bar_active", value: Bool(true)),
+    ]),
+
+    // Reset from any previous tween state (alpha=0 / scale=0)
+    // 重置之前遗留的 tween 状态（alpha=0 / scale=0）
+    ModifyViewElement(
+        selector: LocalName("AttackBar"),
+        modification: Reset,
+    ),
+    ModifyViewElement(
+        selector: LocalName("DumbTarget"),
+        modification: Reset,
+    ),
+
+    // Show DumbTarget + AttackBar (facts already set, elements already reset)
+    // 显示攻击目标 + 攻击条（fact 已初始化，元素已重置）
+    SetViewFact(key: "fight_target_visible", value: Bool(true)),
+
+    // Spawn FightBarBehavior — WASM mod handles per-frame sweep, input, and flash
+    // 生成 FightBarBehavior — WASM 模组处理逐帧扫描、输入和闪烁
+    SpawnBehavior(behavior_id: "fight_bar", context: Some("battle")),
+
+    // Wait for behavior to complete (flash finishes or bar reaches end)
+    // 等待行为完成（闪烁结束或攻击条到达终点）
+    AwaitFact(condition: "$fight:bar_complete == true", local: false),
+
+    // Deactivate bar immediately
+    // 立即停用攻击条
+    ModifyFact(modifications: [
+        Set(key: "fight:bar_active", value: Bool(false)),
+    ]),
+
+    // Collapse: bar instant hide + target shrink/fade
+    // 收尾：攻击条立即消失 + 目标收缩/渐出
+    Parallel([
+        // Bar instant hide (near-zero duration)
+        // 攻击条立即消失
+        TweenViewElement(
+            selector: LocalName("AttackBar"),
+            target: Alpha(to: 0.0),
+            duration: 0.01,
+            easing: Linear,
+            wait_for_completion: true,
+        ),
+        // DumbTarget horizontal scale collapse
+        // DumbTarget 横向缩放收缩
+        TweenViewElement(
+            selector: LocalName("DumbTarget"),
+            target: Scale(to: (0.0, 1.0, 1.0)),
+            duration: 0.4,
+            easing: Linear,
+            wait_for_completion: true,
+        ),
+        // DumbTarget fade out
+        // DumbTarget 渐出
+        TweenViewElement(
+            selector: LocalName("DumbTarget"),
+            target: Alpha(to: 0.0),
+            duration: 0.4,
+            easing: Linear,
+            wait_for_completion: true,
+        ),
+    ]),
+
+    // Hide elements — no Reset here to avoid rebound flash
+    // 隐藏元素 — 此处不 Reset，避免缩放反弹闪烁
+    SetViewFact(key: "fight_target_visible", value: Bool(false)),
+
+    // Clean up fight bar state
+    // 清理攻击条状态
+    ModifyFact(modifications: [
+        Set(key: "fight:bar_active", value: Bool(false)),
+        Set(key: "fight:bar_done", value: Bool(false)),
+        Set(key: "fight:bar_complete", value: Bool(false)),
+        Set(key: "fight:confirmed", value: Bool(false)),
+        Set(key: "fight:bar_x", value: Float(-274.0)),
+        Set(key: "fight:bar_flash_on", value: Bool(false)),
+    ]),
+
+    // Restore UI state
+    // 恢复 UI 状态
+    SetViewFact(key: "buttons_visible", value: Bool(true)),
+    SetViewFact(key: "dialogue:replay_on_resume", value: Bool(true)),
+])

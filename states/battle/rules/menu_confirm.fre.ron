@@ -1,0 +1,54 @@
+#![enable(implicit_some)]
+// Battle Menu Confirm Rules — confirm key logic
+// 战斗菜单确认规则 — 确认键逻辑
+
+(
+    scope: View,
+
+    enums: {
+        "depth": ["main", "submenu", "options"],
+        "menu_context": ["fight", "act", "item", "mercy"],
+    },
+
+    rules: [
+        // Main menu → submenu
+        (event: ActionEvent(action: "Confirm", kind: JustPressed),
+         conditions: ["$interactable == true", "$depth == 'main'"],
+         actions: [SetLocalFact("menu_context", Expr("$button_selection")), SetLocalFact("depth", Enum("submenu")), SetLocalFact("enemy_selection", Int(0)), SetLocalFact("item_selection", Int(0)), PlaySound("confirm")]),
+
+        // Submenu ACT → ACT options
+        (event: ActionEvent(action: "Confirm", kind: JustPressed),
+         conditions: ["$interactable == true", "$depth == 'submenu'", "$menu_context == 'act'"],
+         actions: [SetLocalFact("current_enemy_id", Expr("$enemy_ids[$enemy_selection]")), SetLocalFact("act_count", Expr("$${current_enemy_id}.act_count")), SetLocalFact("action_labels", Expr("$${current_enemy_id}.action_labels")), SetLocalFact("action_sequences", Expr("$${current_enemy_id}.action_sequences")), SetLocalFact("action_params", Expr("$${current_enemy_id}.action_params")), SetLocalFact("depth", Enum("options")), SetLocalFact("act_selection", Int(0)), PlaySound("confirm")]),
+
+        // Submenu MERCY → MERCY options
+        (event: ActionEvent(action: "Confirm", kind: JustPressed),
+         conditions: ["$interactable == true", "$depth == 'submenu'", "$menu_context == 'mercy'"],
+         actions: [SetLocalFact("current_enemy_id", Expr("$enemy_ids[$enemy_selection]")), SetLocalFact("mercy_count", Expr("$${current_enemy_id}.mercy_count")), SetLocalFact("mercy_labels", Expr("$${current_enemy_id}.mercy_labels")), SetLocalFact("mercy_sequences", Expr("$${current_enemy_id}.mercy_sequences")), SetLocalFact("mercy_params", Expr("$${current_enemy_id}.mercy_params")), SetLocalFact("depth", Enum("options")), SetLocalFact("mercy_selection", Int(0)), PlaySound("confirm")]),
+
+        // Submenu FIGHT → show attack target animation
+        (event: ActionEvent(action: "Confirm", kind: JustPressed),
+         conditions: ["$interactable == true", "$depth == 'submenu'", "$menu_context == 'fight'"],
+         actions: [SetLocalFact("selection_confirmed", Bool(true)), SetLocalFact("interactable", Bool(false)), SetLocalFact("pending_sequence", String("states/battle/common/fight_target.sequence.ron")), PlaySound("confirm"), EmitEvent("battle_action_executed")]),
+
+        // Submenu ITEM → execute with UseItem and show narration
+        (event: ActionEvent(action: "Confirm", kind: JustPressed),
+         conditions: ["$interactable == true", "$depth == 'submenu'", "$menu_context == 'item'"],
+         actions: [UseItem(index_expr: "$item_selection"), SetLocalFact("pending_sequence", String("states/battle/common/narration.sequence.ron")), SetLocalFact("selection_confirmed", Bool(true)), SetLocalFact("interactable", Bool(false)), PlaySound("confirm"), EmitEvent("battle_action_executed")]),
+
+        // ACT options → execute
+        (event: ActionEvent(action: "Confirm", kind: JustPressed),
+         conditions: ["$interactable == true", "$depth == 'options'", "$menu_context == 'act'"],
+         actions: [SetLocalFact("action_param", Expr("$${current_enemy_id}.action_params[$act_selection]")), SetLocalFact("mortar_path", Expr("$${current_enemy_id}.mortar_path")), SetLocalFact("pending_sequence", Expr("$${current_enemy_id}.action_sequences[$act_selection]")), SetLocalFact("selection_confirmed", Bool(true)), SetLocalFact("interactable", Bool(false)), PlaySound("confirm")]),
+
+        // MERCY options → execute
+        (event: ActionEvent(action: "Confirm", kind: JustPressed),
+         conditions: ["$interactable == true", "$depth == 'options'", "$menu_context == 'mercy'"],
+         actions: [SetLocalFact("action_param", Expr("$mercy_params[$mercy_selection]")), SetLocalFact("mortar_path", Expr("$${current_enemy_id}.mortar_path")), SetLocalFact("pending_sequence", Expr("$mercy_sequences[$mercy_selection]")), SetLocalFact("selection_confirmed", Bool(true)), SetLocalFact("interactable", Bool(false)), PlaySound("confirm")]),
+
+        // Narration confirm
+        (event: ActionEvent(action: "Confirm", kind: JustPressed),
+         conditions: ["$narration_visible == true"],
+         actions: [SetLocalFact("confirm_pressed", Bool(true))]),
+    ],
+)
