@@ -1,0 +1,8 @@
+pub const MONSTER_CANDY: String = "Monster Candy"
+pub const TEST_PARENT: String = "Test Parent"
+pub const TOUGH_GLOVE: String = "Tough Glove"
+pub const FADED_RIBBON: String = "Faded Ribbon"
+pub const STICK: String = "Stick"
+pub const BANDAGE: String = "Bandage"
+pub const DRY_NOODLES: String = "Dry Noodles"
+pub const CELL_PHONE: String = "Cell Phone"

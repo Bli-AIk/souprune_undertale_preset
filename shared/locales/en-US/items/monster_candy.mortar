@@ -1,0 +1,28 @@
+// Monster Candy — food item with conditional HP text
+
+pub const battle_name: String = "MnstrCndy"
+
+fn get_player_hp() -> Number
+fn get_player_hp_max() -> Number
+
+node OnUse {
+    if get_player_hp() >= get_player_hp_max() {
+        line: "* You ate the Monster Candy."
+        line: "* Your HP was maxed out."
+    } else {
+        line: "* You ate the Monster Candy."
+        line: $"* You recovered {heal_amount} HP!"
+    }
+}
+
+fn get_item_value() -> Number
+
+node OnCheck {
+    line: $"* \"{item_name}\" - Heals {get_item_value()} HP"
+    line: "* Has a distinct,"
+    line: "  non-licorice flavor."
+}
+
+node OnDrop {
+    text: "* Monster Candy was thrown away."
+}

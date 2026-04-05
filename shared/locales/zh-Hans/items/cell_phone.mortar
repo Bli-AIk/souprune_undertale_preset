@@ -1,0 +1,23 @@
+// 手机 - 关键物品，根据条件显示不同文本
+
+fn is_in_ruins() -> Bool
+fn get_missed_calls() -> Number
+
+node OnUse {
+    if is_in_ruins() {
+        line: "* 你给Toriel打了电话。"
+        line: "* 她没有接..."
+    } else {
+        text: "* 没有信号。"
+    }
+}
+
+node OnCheck {
+    if get_missed_calls() > 0 {
+        text: $"* 一部旧手机。{missed_calls}个未接来电。"
+    } else {
+        text: "* 一部旧手机。"
+    }
+}
+
+// 关键物品没有 OnDrop — 引擎会跳过关键物品的丢弃操作

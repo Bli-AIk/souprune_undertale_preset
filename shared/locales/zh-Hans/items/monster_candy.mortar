@@ -1,0 +1,22 @@
+// 怪物糖果 - 食物物品，根据HP条件显示不同文本
+
+fn get_player_hp() -> Number
+fn get_player_hp_max() -> Number
+
+node OnUse {
+    if get_player_hp() >= get_player_hp_max() {
+        line: "* 你吃掉了怪物糖果。"
+        line: "* 你的HP已满。"
+    } else {
+        line: "* 你吃掉了怪物糖果。"
+        line: $"* 你回复了 {heal_amount} HP！"
+    }
+}
+
+node OnCheck {
+    text: "* 有一种独特的、非甘草的味道。"
+}
+
+node OnDrop {
+    text: "* 怪物糖果被你扔掉了。"
+}

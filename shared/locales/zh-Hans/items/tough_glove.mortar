@@ -1,0 +1,17 @@
+// 坚韧手套 - 武器物品
+
+node OnUse {
+    text: "* 你装备了坚韧手套。"
+}
+
+node OnCheck {
+    line: "* 一副破旧的粉色皮手套。给五指族用的。"
+    line: $"* 武器 AT {get_weapon_damage()}"
+}
+
+node OnDrop {
+    line: "* 坚韧手套被你扔掉了。"
+    line: "* 你感到拳头变弱了。"
+}
+
+fn get_weapon_damage() -> Number

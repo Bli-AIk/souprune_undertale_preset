@@ -1,0 +1,23 @@
+// Cell Phone — key item with conditional text
+
+fn is_in_ruins() -> Bool
+fn get_missed_calls() -> Number
+
+node OnUse {
+    if is_in_ruins() {
+        line: "* You called Toriel."
+        line: "* She didn't pick up..."
+    } else {
+        text: "* No signal."
+    }
+}
+
+node OnCheck {
+    if get_missed_calls() > 0 {
+        text: $"* An old cell phone. {missed_calls} missed calls."
+    } else {
+        text: "* An old cell phone."
+    }
+}
+
+// KeyItem has no OnDrop — engine skips DropItem for KeyItem

@@ -20,3 +20,9 @@ audios = "assets/audios"
 # WASM component file containing RedSoul and FightBar behaviors
 # WASM 组件文件，包含红魂和攻击条行为
 wasm = "undertale_preset.wasm"
+
+[game]
+global_rules = "global.fre.ron"
+player_behavior_path = "states/overworld/players/player_behavior.ron"
+input_config_path = "config/input.ron"
+states_config = "config/states.ron"
