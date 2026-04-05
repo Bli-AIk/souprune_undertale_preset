@@ -12,6 +12,7 @@ entry_point = false
 [resources]
 textures = "assets/textures"
 audios = "assets/audios"
+fonts = "assets/fonts"
 
 [dependencies]
 # No dependencies — this is the base library.
