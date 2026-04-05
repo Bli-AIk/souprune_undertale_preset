@@ -39,7 +39,7 @@
                 (
                     id: "DialogueText",
                     content: "{{dialogue_text}}",
-                    font: DeterminationMono,
+                    font: "DTM-Mono",
                     world_scale: (13.25, 13.25),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (

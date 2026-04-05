@@ -45,7 +45,7 @@
                 (
                     id: "MenuTextItem",
                     content: "{{overworld/ui:ITEM}}",
-                    font: DeterminationSans,
+                    font: "DTM-Sans",
                     world_scale: (13.25, 13.25),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
@@ -60,7 +60,7 @@
                 (
                     id: "MenuTextStat",
                     content: "{{overworld/ui:STAT}}",
-                    font: DeterminationSans,
+                    font: "DTM-Sans",
                     world_scale: (13.25, 13.25),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
@@ -102,7 +102,7 @@
                 (
                     id: "NameText",
                     content: "{$player:name}",
-                    font: DeterminationSans,
+                    font: "DTM-Sans",
                     world_scale: (13.0, 13.0),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
@@ -115,7 +115,7 @@
                 (
                     id: "HUDInfoText",
                     content: "{{overworld/ui:LV}}  {$player:lv}\n{{overworld/ui:HP}}  {$player:hp}/{$player:hp_max}",
-                    font: Hud,
+                    font: "hud",
                     world_scale: (8.0, 8.0),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
@@ -128,7 +128,7 @@
                 (
                     id: "HUDGoldText",
                     content: "g   {$player:gold}",
-                    font: Hud,
+                    font: "hud",
                     world_scale: (8.0, 8.0),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
@@ -157,7 +157,7 @@
                 (
                     id: "ItemLayerList",
                     content: "{{data:player.inventory}}",
-                    font: DeterminationSans,
+                    font: "DTM-Sans",
                     world_scale: (13.25, 13.25),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
@@ -168,7 +168,7 @@
                 (
                     id: "ItemLayerOptionUse",
                     content: "{{overworld/ui:USE}}",
-                    font: DeterminationSans,
+                    font: "DTM-Sans",
                     world_scale: (13.25, 13.25),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
@@ -180,7 +180,7 @@
                 (
                     id: "ItemLayerOptionInfo",
                     content: "{{overworld/ui:INFO}}",
-                    font: DeterminationSans,
+                    font: "DTM-Sans",
                     world_scale: (13.25, 13.25),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
@@ -192,7 +192,7 @@
                 (
                     id: "ItemLayerOptionDrop",
                     content: "{{overworld/ui:DROP}}",
-                    font: DeterminationSans,
+                    font: "DTM-Sans",
                     world_scale: (13.25, 13.25),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
@@ -246,7 +246,7 @@
                 (
                     id: "StatusLayerName",
                     content: "\"{$player:name}\"",
-                    font: DeterminationSans,
+                    font: "DTM-Sans",
                     world_scale: (13.5, 13.5),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
@@ -259,7 +259,7 @@
                 (
                     id: "StatusLayerLv",
                     content: "{{overworld/ui:LV}}   {$player:lv}",
-                    font: DeterminationSans,
+                    font: "DTM-Sans",
                     world_scale: (13.5, 13.5),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
@@ -272,7 +272,7 @@
                 (
                     id: "StatusLayerHp",
                     content: "{{overworld/ui:HP}}  {$player:hp} / {$player:hp_max}",
-                    font: DeterminationSans,
+                    font: "DTM-Sans",
                     world_scale: (13.5, 13.5),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
@@ -285,7 +285,7 @@
                 (
                     id: "StatusLayerCombatLeft",
                     content: "{{overworld/ui:ATK}}  {{data:player.total_attack}} ({{data:player.weapon_atk}})\n{{overworld/ui:DEF}}  {{data:player.total_defense}} ({{data:player.armor_def}})",
-                    font: DeterminationSans,
+                    font: "DTM-Sans",
                     world_scale: (13.5, 13.5),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
@@ -298,7 +298,7 @@
                 (
                     id: "StatusLayerCombatRight",
                     content: "{{overworld/ui:EXP}}: {$player:exp}\n{{overworld/ui:NEXT}}: {$player:next_exp}",
-                    font: DeterminationSans,
+                    font: "DTM-Sans",
                     world_scale: (13.5, 13.5),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
@@ -311,7 +311,7 @@
                 (
                     id: "StatusLayerEquipment",
                     content: "{{overworld/ui:WEAPON}}: {{data:player.weapon}}\n{{overworld/ui:ARMOR}}: {{data:player.armor}}",
-                    font: DeterminationSans,
+                    font: "DTM-Sans",
                     world_scale: (13.5, 13.5),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
@@ -324,7 +324,7 @@
                 (
                     id: "StatusLayerGold",
                     content: "{{overworld/ui:GOLD}}: {$player:gold}",
-                    font: DeterminationSans,
+                    font: "DTM-Sans",
                     world_scale: (13.5, 13.5),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (

@@ -16,7 +16,7 @@
                 (
                     id: "PlayerName",
                     content: "{$player:name}",
-                    font: BattleHud,
+                    font: "battlehud",
                     world_scale: (24.0, 24.0),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
@@ -26,7 +26,7 @@
                 (
                     id: "PlayerLevelLabel",
                     content: "{{battle/ui:LV}}",
-                    font: BattleHud,
+                    font: "battlehud",
                     world_scale: (24.0, 24.0),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
@@ -36,7 +36,7 @@
                 (
                     id: "PlayerLevelValue",
                     content: "{$player:lv}",
-                    font: BattleHud,
+                    font: "battlehud",
                     world_scale: (24.0, 24.0),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
@@ -46,7 +46,7 @@
                 (
                     id: "HPValueCurrent",
                     content: "{$player:hp}",
-                    font: BattleHud,
+                    font: "battlehud",
                     world_scale: (24.0, 24.0),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
@@ -56,7 +56,7 @@
                 (
                     id: "HPSeparator",
                     content: "/",
-                    font: BattleHud,
+                    font: "battlehud",
                     world_scale: (24.0, 24.0),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
@@ -66,7 +66,7 @@
                 (
                     id: "HPValueMax",
                     content: "{$player:hp_max}",
-                    font: BattleHud,
+                    font: "battlehud",
                     world_scale: (24.0, 24.0),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
