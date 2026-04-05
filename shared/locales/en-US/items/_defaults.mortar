@@ -1,0 +1,58 @@
+// Default item text templates
+// Mod authors can override by providing per-item mortar scripts
+
+fn get_heal_amount() -> Number
+fn get_player_hp() -> Number
+fn get_player_hp_max() -> Number
+fn get_item_value() -> Number
+
+// --- Food ---
+node OnUseFoodDefault {
+    line: $"* You ate the {item_name}."
+    if get_player_hp() >= get_player_hp_max() {
+        line: "* Your HP was maxed out."
+    } else {
+        line: $"* You recovered {heal_amount} HP!"
+    }
+}
+
+// --- Weapon ---
+node OnUseWeaponDefault {
+    text: $"* You equipped the {item_name}."
+}
+
+// --- Armor ---
+node OnUseArmorDefault {
+    text: $"* You equipped the {item_name}."
+}
+
+// --- Key Item ---
+node OnUseKeyItemDefault {
+    line: $"* You used the {item_name}."
+    line: "* But nothing happened."
+}
+
+// --- Check ---
+node OnCheckFoodDefault {
+    line: $"* \"{item_name}\" - Heals {get_item_value()} HP"
+    line: $"* {item_description}"
+}
+
+node OnCheckWeaponDefault {
+    line: $"* \"{item_name}\" - Weapon AT {get_item_value()}"
+    line: $"* {item_description}"
+}
+
+node OnCheckArmorDefault {
+    line: $"* \"{item_name}\" - Armor DF {get_item_value()}"
+    line: $"* {item_description}"
+}
+
+node OnCheckDefault {
+    text: $"* {item_description}"
+}
+
+// --- Drop ---
+node OnDropDefault {
+    text: $"* {item_name} was thrown away."
+}

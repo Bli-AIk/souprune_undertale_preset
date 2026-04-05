@@ -1,0 +1,58 @@
+// 物品默认文本模板
+// Mod 作者可以通过提供单独的 mortar 脚本来覆盖
+
+fn get_heal_amount() -> Number
+fn get_player_hp() -> Number
+fn get_player_hp_max() -> Number
+fn get_item_value() -> Number
+
+// --- 食物 ---
+node OnUseFoodDefault {
+    line: $"* 你吃掉了{item_name}。"
+    if get_player_hp() >= get_player_hp_max() {
+        line: "* 你的HP已满。"
+    } else {
+        line: $"* 你回复了 {heal_amount} HP！"
+    }
+}
+
+// --- 武器 ---
+node OnUseWeaponDefault {
+    text: $"* 你装备了{item_name}。"
+}
+
+// --- 防具 ---
+node OnUseArmorDefault {
+    text: $"* 你装备了{item_name}。"
+}
+
+// --- 关键物品 ---
+node OnUseKeyItemDefault {
+    line: $"* 你使用了{item_name}。"
+    line: "* 但是什么也没有发生。"
+}
+
+// --- 调查 ---
+node OnCheckFoodDefault {
+    line: $"* \"{item_name}\" - 治愈 {get_item_value()} HP"
+    line: $"* {item_description}"
+}
+
+node OnCheckWeaponDefault {
+    line: $"* \"{item_name}\" - 武器 AT {get_item_value()}"
+    line: $"* {item_description}"
+}
+
+node OnCheckArmorDefault {
+    line: $"* \"{item_name}\" - 防具 DF {get_item_value()}"
+    line: $"* {item_description}"
+}
+
+node OnCheckDefault {
+    text: $"* {item_description}"
+}
+
+// --- 丢弃 ---
+node OnDropDefault {
+    text: $"* {item_name}被你扔掉了。"
+}

@@ -39,12 +39,12 @@
         // ACT options → execute
         (event: ActionEvent(action: "Confirm", kind: JustPressed),
          conditions: ["$interactable == true", "$depth == 'options'", "$menu_context == 'act'"],
-         actions: [SetLocalFact("action_param", Expr("$${current_enemy_id}.action_params[$act_selection]")), SetLocalFact("mortar_path", Expr("$${current_enemy_id}.mortar_path")), SetLocalFact("pending_sequence", Expr("$${current_enemy_id}.action_sequences[$act_selection]")), SetLocalFact("selection_confirmed", Bool(true)), SetLocalFact("interactable", Bool(false)), PlaySound("confirm")]),
+         actions: [SetLocalFact("action_param", Expr("$${current_enemy_id}.action_params[$act_selection]")), SetLocalFact("mortar_path", Expr("$${current_enemy_id}.mortar_path")), SetLocalFact("pending_sequence", Expr("$${current_enemy_id}.action_sequences[$act_selection]")), SetLocalFact("selection_confirmed", Bool(true)), SetLocalFact("interactable", Bool(false)), PlaySound("confirm"), EmitEvent("battle_action_executed")]),
 
         // MERCY options → execute
         (event: ActionEvent(action: "Confirm", kind: JustPressed),
          conditions: ["$interactable == true", "$depth == 'options'", "$menu_context == 'mercy'"],
-         actions: [SetLocalFact("action_param", Expr("$mercy_params[$mercy_selection]")), SetLocalFact("mortar_path", Expr("$${current_enemy_id}.mortar_path")), SetLocalFact("pending_sequence", Expr("$mercy_sequences[$mercy_selection]")), SetLocalFact("selection_confirmed", Bool(true)), SetLocalFact("interactable", Bool(false)), PlaySound("confirm")]),
+         actions: [SetLocalFact("action_param", Expr("$mercy_params[$mercy_selection]")), SetLocalFact("mortar_path", Expr("$${current_enemy_id}.mortar_path")), SetLocalFact("pending_sequence", Expr("$mercy_sequences[$mercy_selection]")), SetLocalFact("selection_confirmed", Bool(true)), SetLocalFact("interactable", Bool(false)), PlaySound("confirm"), EmitEvent("battle_action_executed")]),
 
         // Narration confirm
         (event: ActionEvent(action: "Confirm", kind: JustPressed),
