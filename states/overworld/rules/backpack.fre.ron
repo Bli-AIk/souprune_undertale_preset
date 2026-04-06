@@ -71,15 +71,15 @@
         // Item options -> execute & close backpack (dialogue will start via pending facts)
         (event: ActionEvent(action: "Confirm", kind: JustPressed),
          conditions: ["$depth == 'item_options'", "$selection == 0"],
-         actions: [UseItem(index_expr: "$item_list_selection", start_dialogue: true), SwitchState("Normal"), PlaySound("confirm")]),
+         actions: [Custom(action_type: "UseItem", params: {"index_expr": "$item_list_selection", "start_dialogue": "true"}), SwitchState("Normal"), PlaySound("confirm")]),
 
         (event: ActionEvent(action: "Confirm", kind: JustPressed),
          conditions: ["$depth == 'item_options'", "$selection == 1"],
-         actions: [CheckItem(index_expr: "$item_list_selection"), SwitchState("Normal"), PlaySound("confirm")]),
+         actions: [Custom(action_type: "CheckItem", params: {"index_expr": "$item_list_selection"}), SwitchState("Normal"), PlaySound("confirm")]),
 
         (event: ActionEvent(action: "Confirm", kind: JustPressed),
          conditions: ["$depth == 'item_options'", "$selection == 2"],
-         actions: [DropItem(index_expr: "$item_list_selection"), SwitchState("Normal"), PlaySound("confirm")]),
+         actions: [Custom(action_type: "DropItem", params: {"index_expr": "$item_list_selection"}), SwitchState("Normal"), PlaySound("confirm")]),
 
         // --- Cancel ---
 
