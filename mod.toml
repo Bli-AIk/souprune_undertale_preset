@@ -27,3 +27,4 @@ global_rules = "global.fre.ron"
 player_behavior_path = "states/overworld/players/player_behavior.ron"
 input_config_path = "config/input.ron"
 states_config = "config/states.ron"
+overworld_rules = ["states/overworld/rules/interaction.fre.ron"]
