@@ -1,0 +1,53 @@
+#![enable(implicit_some)]
+// Preset template: Standard Undertale Battle Skeleton
+// 预设模板：标准 Undertale 战斗骨架
+//
+// Provides the complete battle loop after initialization. Mod authors call
+// this template after setting up camera, BGM, loading enemies, spawning views,
+// and emitting any intro events.
+//
+// 提供初始化之后的完整战斗循环。Mod 作者在设置相机、BGM、加载敌人、
+// 生成视图和发出开场事件之后调用此模板。
+//
+// Parameters (injected via RunSequence params → local facts):
+//   _param_enemy_id  — enemy id for turn selection (required)
+//
+// 参数（通过 RunSequence params 注入 → 本地事实）：
+//   _param_enemy_id  — 用于回合选择的敌人 id（必需）
+//
+// Usage / 使用方式:
+//   RunSequence(
+//       path: "states/battle/templates/undertale_battle.sequence.ron",
+//       params: { "enemy_id": String("mad_dummy") },
+//   )
+(chapters: [
+    // === Battle Loop ===
+    // === 战斗循环 ===
+    Loop(body: [
+        // Player turn: menu interaction → execute action → end interaction
+        // 玩家回合：菜单交互 → 执行行动 → 结束交互
+        RunSequence(path: "states/battle/common/player_turn.sequence.ron"),
+
+        // Check if battle should end (e.g., enemy defeated)
+        // 检查战斗是否应结束（如敌人被击败）
+        Conditional(
+            condition: IsTrue("battle:should_end"),
+            then_branch: Break,
+        ),
+
+        // Enemy turn: spawn player, shrink box, danmaku, restore
+        // 敌人回合：生成玩家、缩小框、弹幕、恢复
+        RunSequence(
+            path: "states/battle/common/enemy_turn.sequence.ron",
+            params: {
+                "enemy_id": Expr("$_param_enemy_id"),
+            },
+        ),
+
+        // Increment turn counter
+        // 回合计数 +1
+        ModifyFact(modifications: [
+            Increment(key: "battle_turn_count", amount: 1),
+        ]),
+    ]),
+])

@@ -1,0 +1,87 @@
+#![enable(implicit_some)]
+// Preset template: Enemy Turn Phase
+// プリセットテンプレート：エネミーターンフェーズ
+//
+// Handles one enemy turn cycle:
+//   1. Spawn the battle player
+//   2. Shrink the battle box to danmaku size and reposition
+//   3. Pick and run the enemy's turn sequence via PickEnemyTurn
+//   4. Wait for the danmaku duration
+//   5. Despawn the player and restore the battle box
+//
+// 处理一个敌人回合周期：
+//   1. 生成战斗玩家
+//   2. 缩小战斗框到弹幕尺寸并重新定位
+//   3. 通过 PickEnemyTurn 选择并运行敌人的回合序列
+//   4. 等待弹幕持续时间
+//   5. 移除玩家并恢复战斗框
+//
+// Parameters (injected via RunSequence params → local facts):
+//   _param_enemy_id       — enemy id for turn selection
+//   _param_player_config  — path to .battle_player.ron (optional, has default)
+//   _param_player_x       — player spawn x (default: 0.0)
+//   _param_player_y       — player spawn y (default: -80.0)
+//   _param_box_width      — danmaku box width (default: 130)
+//   _param_danmaku_wait   — seconds to wait after danmaku starts (default: 10.0)
+//
+// Usage / 使用方式:
+//   RunSequence(
+//       path: "states/battle/common/enemy_turn.sequence.ron",
+//       params: {
+//           "enemy_id": String("mad_dummy"),
+//       },
+//   )
+(chapters: [
+    // Spawn battle player
+    // 生成战斗玩家
+    SetPlayer(Spawn(
+        config_path: "states/battle/players/player.battle_player.ron",
+        position: (0.0, -80.0),
+    )),
+
+    // Shrink battle box to danmaku size
+    // 缩小战斗框到弹幕尺寸
+    TweenViewElement(
+        selector: LocalName("BattleBox"),
+        target: BoxSize(to: (130, "@current")),
+        duration: 0.85,
+        easing: QuadInOut,
+        wait_for_completion: false,
+    ),
+    Wait(0.15),
+
+    // Reposition battle box for danmaku phase
+    // 重新定位战斗框用于弹幕阶段
+    TweenViewElement(
+        selector: LocalName("BattleBox"),
+        target: Position(to: ("@current", "@current + 80", "@current")),
+        duration: 1.0,
+        easing: CubicOut,
+        wait_for_completion: true,
+    ),
+
+    // Pick and run the enemy's turn sequence
+    // 选择并运行敌人的回合序列
+    PickEnemyTurn(enemy_id_fact: "_param_enemy_id"),
+
+    // Wait for danmaku duration
+    // 等待弹幕持续时间
+    Wait(10.0),
+
+    // Despawn player after danmaku
+    // 弹幕结束后移除玩家
+    Sequence([
+        Wait(0.5),
+        SetPlayer(Despawn),
+    ]),
+
+    // Restore battle box to full size
+    // 恢复战斗框到完整尺寸
+    TweenViewElement(
+        selector: LocalName("BattleBox"),
+        target: BoxSize(from: (300.0, 100.0), to: (566.0, 130.0)),
+        duration: 0.8,
+        easing: ElasticOut,
+        wait_for_completion: true,
+    ),
+])

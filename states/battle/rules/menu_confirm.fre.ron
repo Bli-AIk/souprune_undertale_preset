@@ -46,9 +46,9 @@
          conditions: ["$interactable == true", "$depth == 'options'", "$menu_context == 'mercy'"],
          actions: [SetLocalFact("action_param", Expr("$mercy_params[$mercy_selection]")), SetLocalFact("mortar_path", Expr("$${current_enemy_id}.mortar_path")), SetLocalFact("pending_sequence", Expr("$mercy_sequences[$mercy_selection]")), SetLocalFact("selection_confirmed", Bool(true)), SetLocalFact("interactable", Bool(false)), PlaySound("confirm"), EmitEvent("battle_action_executed")]),
 
-        // Narration confirm
+        // Narration confirm — only when menu is NOT interactive (pure narration mode)
         (event: ActionEvent(action: "Confirm", kind: JustPressed),
-         conditions: ["$narration_visible == true"],
+         conditions: ["$narration_visible == true", "$interactable == false"],
          actions: [SetLocalFact("confirm_pressed", Bool(true))]),
     ],
 )
