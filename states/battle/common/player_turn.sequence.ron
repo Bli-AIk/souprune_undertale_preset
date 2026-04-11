@@ -17,6 +17,10 @@
 // Usage / 使用方式:
 //   RunSequence(path: "states/battle/common/player_turn.sequence.ron")
 (chapters: [
+    // Restore button visibility (cleared by end_view_interaction between turns)
+    // 恢复按钮可见性（回合间被 end_view_interaction 清除）
+    SetViewFact(key: "buttons_visible", value: Bool(true)),
+
     // Enable menu interaction
     // 启用菜单交互
     SetViewFact(key: "interactable", value: Bool(true)),

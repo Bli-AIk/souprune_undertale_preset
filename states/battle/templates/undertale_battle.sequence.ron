@@ -2,28 +2,48 @@
 // Preset template: Standard Undertale Battle Skeleton
 // 预设模板：标准 Undertale 战斗骨架
 //
-// Provides the complete battle loop after initialization. Mod authors call
-// this template after setting up camera, BGM, loading enemies, spawning views,
-// and emitting any intro events.
+// Provides the battle loop: player turn → check end → enemy turn → repeat.
+// Mod authors handle initialization (camera, BGM, enemies, views, narration)
+// BEFORE calling this template; the template only encapsulates the loop.
 //
-// 提供初始化之后的完整战斗循环。Mod 作者在设置相机、BGM、加载敌人、
-// 生成视图和发出开场事件之后调用此模板。
+// 提供战斗循环：玩家回合 → 检查结束 → 敌人回合 → 重复。
+// Mod 作者在调用此模板之前处理初始化（相机、BGM、敌人、视图、旁白）；
+// 模板仅封装循环部分。
 //
 // Parameters (injected via RunSequence params → local facts):
-//   _param_enemy_id  — enemy id for turn selection (required)
+//   _param_enemy_id       — enemy id for turn selection (required)
+//   _param_turn_narration — path to per-turn narration sequence (optional)
 //
 // 参数（通过 RunSequence params 注入 → 本地事实）：
-//   _param_enemy_id  — 用于回合选择的敌人 id（必需）
+//   _param_enemy_id       — 用于回合选择的敌人 id（必需）
+//   _param_turn_narration — 每回合旁白序列路径（可选）
 //
 // Usage / 使用方式:
 //   RunSequence(
 //       path: "states/battle/templates/undertale_battle.sequence.ron",
-//       params: { "enemy_id": String("mad_dummy") },
+//       params: {
+//           "enemy_id": String("mad_dummy"),
+//           "turn_narration": String("states/battle/chapters/my_narration.sequence.ron"),
+//       },
 //   )
 (chapters: [
+    // Initialize turn counter so Conditional(Equals(battle_turn_count, 0)) works on turn 0
+    // 初始化回合计数器，使 Conditional(Equals(battle_turn_count, 0)) 在第0回合正确工作
+    ModifyFact(modifications: [
+        Set(key: "battle_turn_count", value: Int(0)),
+    ]),
+
     // === Battle Loop ===
     // === 战斗循环 ===
     Loop(body: [
+        // Emit turn-start event for FRE hooks
+        // 发出回合开始事件，供 FRE 规则响应
+        EmitFactEvent(event_id: "battle:turn_start"),
+
+        // Per-turn narration (optional — gracefully skips if param not provided)
+        // 每回合旁白（可选——未传参数时自动跳过）
+        RunSequence(path_fact: "_param_turn_narration"),
+
         // Player turn: menu interaction → execute action → end interaction
         // 玩家回合：菜单交互 → 执行行动 → 结束交互
         RunSequence(path: "states/battle/common/player_turn.sequence.ron"),
