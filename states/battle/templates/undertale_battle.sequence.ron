@@ -55,8 +55,8 @@
             then_branch: Break,
         ),
 
-        // Enemy turn: spawn player, shrink box, danmaku, restore
-        // 敌人回合：生成玩家、缩小框、弹幕、恢复
+        // Enemy turn: spawn player → run turn sequence (with box scaling) → despawn
+        // 敌人回合：生成玩家 → 运行回合序列（含框缩放） → 移除玩家
         RunSequence(
             path: "states/battle/common/enemy_turn.sequence.ron",
             params: {
