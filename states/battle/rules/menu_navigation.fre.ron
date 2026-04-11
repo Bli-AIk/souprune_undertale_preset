@@ -17,9 +17,17 @@
          conditions: ["$interactable == true", "$depth == 'main'", "$button_selection > 0"],
          actions: [SetLocalFact("button_selection", Expr("$button_selection - 1")), PlaySound("choice")]),
 
+        (event: ActionEvent(action: "Left", kind: JustPressed),
+         conditions: ["$interactable == true", "$depth == 'main'", "$button_selection == 0"],
+         actions: [SetLocalFact("button_selection", Int(3)), PlaySound("choice")]),
+
         (event: ActionEvent(action: "Right", kind: JustPressed),
          conditions: ["$interactable == true", "$depth == 'main'", "$button_selection < 3"],
          actions: [SetLocalFact("button_selection", Expr("$button_selection + 1")), PlaySound("choice")]),
+
+        (event: ActionEvent(action: "Right", kind: JustPressed),
+         conditions: ["$interactable == true", "$depth == 'main'", "$button_selection == 3"],
+         actions: [SetLocalFact("button_selection", Int(0)), PlaySound("choice")]),
 
         // === Submenu (depth: submenu) — enemy list navigation (non-ITEM) ===
 
