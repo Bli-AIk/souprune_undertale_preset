@@ -112,7 +112,7 @@
                 width: 566.0,
                 height: 130.0,
                 border_width: 5.0,
-                offset: (0.0, -80.0, 0.0),
+                offset: (0.0, "fact_or('_bb_oy', -80)", 0.0),
                 structure_file: "shared/view_structures/view_box.sdf.ron",
             ),
             texts: [
