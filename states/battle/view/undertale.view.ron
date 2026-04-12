@@ -114,7 +114,6 @@
                 border_width: 5.0,
                 offset: (0.0, -80.0, 0.0),
                 structure_file: "shared/view_structures/view_box.sdf.ron",
-                anchor: (0.0, -1.0),
             ),
             texts: [
                 (

@@ -72,7 +72,7 @@
     Parallel([
         // Bar instant hide (near-zero duration)
         // 攻击条立即消失
-        TweenViewElement(
+        SetViewElement(
             selector: LocalName("AttackBar"),
             target: Alpha(to: 0.0),
             duration: 0.01,
@@ -81,7 +81,7 @@
         ),
         // DumbTarget horizontal scale collapse
         // DumbTarget 横向缩放收缩
-        TweenViewElement(
+        SetViewElement(
             selector: LocalName("DumbTarget"),
             target: Scale(to: (0.0, 1.0, 1.0)),
             duration: 0.4,
@@ -90,7 +90,7 @@
         ),
         // DumbTarget fade out
         // DumbTarget 渐出
-        TweenViewElement(
+        SetViewElement(
             selector: LocalName("DumbTarget"),
             target: Alpha(to: 0.0),
             duration: 0.4,
