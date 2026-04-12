@@ -16,14 +16,19 @@
 //
 // Parameters (injected via RunSequence params → local facts):
 //   _param_enemy_id       — enemy id for turn selection (required)
+//   _param_turn_group     — turn group name for PickEnemyTurn (optional, defaults to first group)
 //
 // 参数：
 //   _param_enemy_id       — 用于回合选择的敌人 id（必需）
+//   _param_turn_group     — PickEnemyTurn 使用的回合组名（可选，默认使用第一个组）
 //
 // Usage / 使用方式:
 //   RunSequence(
 //       path: "states/battle/common/enemy_turn.sequence.ron",
-//       params: { "enemy_id": String("mad_dummy") },
+//       params: {
+//           "enemy_id": String("mad_dummy"),
+//           "turn_group": String("type2"),
+//       },
 //   )
 (chapters: [
     // Spawn battle player
@@ -35,7 +40,7 @@
 
     // Pick and run the enemy's turn sequence
     // 选择并运行敌人的回合序列
-    PickEnemyTurn(enemy_id_fact: "_param_enemy_id"),
+    PickEnemyTurn(enemy_id_fact: "_param_enemy_id", group_fact: "_param_turn_group"),
 
     // Despawn player after turn
     // 回合结束后移除玩家

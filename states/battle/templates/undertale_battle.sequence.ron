@@ -12,10 +12,12 @@
 //
 // Parameters (injected via RunSequence params → local facts):
 //   _param_enemy_id       — enemy id for turn selection (required)
+//   _param_turn_group     — turn group name for PickEnemyTurn (optional, defaults to first group)
 //   _param_turn_narration — path to per-turn narration sequence (optional)
 //
 // 参数（通过 RunSequence params 注入 → 本地事实）：
 //   _param_enemy_id       — 用于回合选择的敌人 id（必需）
+//   _param_turn_group     — PickEnemyTurn 使用的回合组名（可选，默认使用第一个组）
 //   _param_turn_narration — 每回合旁白序列路径（可选）
 //
 // Usage / 使用方式:
@@ -61,6 +63,7 @@
             path: "states/battle/common/enemy_turn.sequence.ron",
             params: {
                 "enemy_id": Expr("$_param_enemy_id"),
+                "turn_group": Expr("$_param_turn_group"),
             },
         ),
 
