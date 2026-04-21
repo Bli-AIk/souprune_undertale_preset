@@ -20,11 +20,18 @@ fonts = "assets/fonts"
 [mod_library]
 # WASM component file containing RedSoul and FightBar behaviors
 # WASM 组件文件，包含红魂和攻击条行为
-wasm = "undertale_preset.wasm"
+wasm = ".build/runtime.wasm"
+
+[content_library]
+wasm = ".build/content.wasm"
+managed_paths = []
 
 [game]
-global_rules = "global.fre.ron"
-player_behavior_path = "states/overworld/players/player_behavior.ron"
-input_config_path = "config/input.ron"
-states_config = "config/states.ron"
-overworld_rules = ["states/overworld/rules/interaction.fre.ron"]
+global_rules = "app/global.fre.ron"
+player_behavior_path = "overworld/players/player_behavior.ron"
+input_config_path = "app/input.ron"
+flow_config_path = "app/flow.ron"
+dialogue_config_path = "narrative/dialogue.ron"
+item_directory = "actors/items"
+locales_directory = "assets/locales"
+overworld_rules = ["overworld/rules/interaction.fre.ron"]

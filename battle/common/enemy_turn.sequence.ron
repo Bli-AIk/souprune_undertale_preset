@@ -1,0 +1,51 @@
+#![enable(implicit_some)]
+// Preset template: Enemy Turn Phase
+// 预设模板：敌方回合阶段
+//
+// Handles one enemy turn cycle:
+//   1. Spawn the battle player
+//   2. Pick and run the enemy's turn sequence via PickEnemyTurn
+//      (turn sequences are responsible for battle box sizing, danmaku, and timing)
+//   3. Despawn the player
+//
+// 处理一个敌人回合周期：
+//   1. 生成战斗玩家
+//   2. 通过 PickEnemyTurn 选择并运行敌人的回合序列
+//     （回合序列负责战斗框缩放、弹幕和计时）
+//   3. 移除玩家
+//
+// Parameters (injected via RunSequence params → local facts):
+//   _param_enemy_id       — enemy id for turn selection (required)
+//   _param_turn_group     — turn group name for PickEnemyTurn (optional, defaults to first group)
+//
+// 参数：
+//   _param_enemy_id       — 用于回合选择的敌人 id（必需）
+//   _param_turn_group     — PickEnemyTurn 使用的回合组名（可选，默认使用第一个组）
+//
+// Usage / 使用方式:
+//   RunSequence(
+//       path: "battle/common/enemy_turn.sequence.ron",
+//       params: {
+//           "enemy_id": String("mad_dummy"),
+//           "turn_group": String("type2"),
+//       },
+//   )
+(chapters: [
+    // Spawn battle player
+    // 生成战斗玩家
+    SetPlayer(Spawn(
+        config_path: "battle/players/player.battle_player.ron",
+        position: (0.0, -80.0),
+    )),
+
+    // Pick and run the enemy's turn sequence
+    // 选择并运行敌人的回合序列
+    PickEnemyTurn(enemy_id_fact: "_param_enemy_id", group_fact: "_param_turn_group"),
+
+    // Despawn player after turn
+    // 回合结束后移除玩家
+    Sequence([
+        Wait(0.5),
+        SetPlayer(Despawn),
+    ]),
+])

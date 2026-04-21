@@ -1,0 +1,13 @@
+[package]
+name = "content"
+version = "0.1.0"
+edition = "2024"
+
+[workspace]
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+anyhow = "1"
+souprune_vessel = { path = "../../../crates/souprune_vessel" }
