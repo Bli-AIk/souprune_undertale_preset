@@ -18,6 +18,27 @@
 
 (
     actions: {
+        "Menu": [
+            Key("KeyC"),
+            Key("ControlLeft"),
+            Key("ControlRight"),
+            Gamepad("North"),
+        ],
+        "Right": [
+            Key("ArrowRight"),
+            Key("KeyD"),
+            Gamepad("DPadRight"),
+        ],
+        "Confirm": [
+            Key("KeyZ"),
+            Key("Enter"),
+            Gamepad("South"),
+        ],
+        "Up": [
+            Key("ArrowUp"),
+            Key("KeyW"),
+            Gamepad("DPadUp"),
+        ],
         "Down": [
             Key("ArrowDown"),
             Key("KeyS"),
@@ -33,27 +54,6 @@
             Key("ShiftLeft"),
             Key("ShiftRight"),
             Gamepad("East"),
-        ],
-        "Menu": [
-            Key("KeyC"),
-            Key("ControlLeft"),
-            Key("ControlRight"),
-            Gamepad("North"),
-        ],
-        "Up": [
-            Key("ArrowUp"),
-            Key("KeyW"),
-            Gamepad("DPadUp"),
-        ],
-        "Confirm": [
-            Key("KeyZ"),
-            Key("Enter"),
-            Gamepad("South"),
-        ],
-        "Right": [
-            Key("ArrowRight"),
-            Key("KeyD"),
-            Gamepad("DPadRight"),
         ],
     },
     navigation: (

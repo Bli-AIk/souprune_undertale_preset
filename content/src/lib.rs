@@ -5,11 +5,11 @@
 use anyhow::Result;
 use souprune_vessel::prelude::*;
 
-mod static_assets;
+mod support;
+include!(concat!(env!("OUT_DIR"), "/vessel_content_registry.rs"));
 
 vessel_guest! {
     fn build(reg: &mut Registry) -> Result<()> {
-        static_assets::emit_all(&mut reg)?;
-        Ok(())
+        emit_all(&mut reg)
     }
 }

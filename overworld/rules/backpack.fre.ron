@@ -28,9 +28,9 @@
     },
     facts: {
         "depth": Enum("menu"),
-        "interactable": Bool(true),
         "selection": Int(0),
         "item_list_selection": Int(0),
+        "interactable": Bool(true),
     },
     rules: [
         (
@@ -209,8 +209,8 @@
                 Custom(
                     action_type: "UseItem",
                     params: {
-                        "index_expr": "$item_list_selection",
                         "start_dialogue": "true",
+                        "index_expr": "$item_list_selection",
                     },
                 ),
                 SwitchState("Normal"),
