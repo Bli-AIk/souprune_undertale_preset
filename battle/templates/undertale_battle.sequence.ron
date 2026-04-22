@@ -54,8 +54,8 @@
                     path: Some("battle/common/enemy_turn.sequence.ron"),
                     path_fact: None,
                     params: {
-                        "turn_group": Expr("$_param_turn_group"),
                         "enemy_id": Expr("$_param_enemy_id"),
+                        "turn_group": Expr("$_param_turn_group"),
                     },
                 ),
                 ModifyFact(

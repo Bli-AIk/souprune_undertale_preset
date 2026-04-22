@@ -19,16 +19,16 @@
 (
     scope: View,
     enums: {
-        "depth": [
-            "main",
-            "submenu",
-            "options",
-        ],
         "menu_context": [
             "fight",
             "act",
             "item",
             "mercy",
+        ],
+        "depth": [
+            "main",
+            "submenu",
+            "options",
         ],
     },
     facts: {},

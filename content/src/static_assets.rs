@@ -1,151 +1,122 @@
-//! Canonical static RON assets emitted by the content guest.
+//! Bootstrapped static asset emitters for this content guest.
 //!
-//! 由 content guest 发射的 canonical 静态 RON 资产。
+//! 当前内容 guest 的 bootstrap 静态资产发射模块。
 
 use anyhow::Result;
 use souprune_vessel::prelude::*;
 
-/// Emit all static canonical RON assets owned by this mod.
+#[path = "static_assets/actors_items_basic_items_ron.rs"]
+mod actors_items_basic_items_ron;
+#[path = "static_assets/app_flow_ron.rs"]
+mod app_flow_ron;
+#[path = "static_assets/app_global_fre_ron.rs"]
+mod app_global_fre_ron;
+#[path = "static_assets/app_input_ron.rs"]
+mod app_input_ron;
+#[path = "static_assets/battle_common_end_view_interaction_sequence_ron.rs"]
+mod battle_common_end_view_interaction_sequence_ron;
+#[path = "static_assets/battle_common_enemy_turn_sequence_ron.rs"]
+mod battle_common_enemy_turn_sequence_ron;
+#[path = "static_assets/battle_common_fight_target_sequence_ron.rs"]
+mod battle_common_fight_target_sequence_ron;
+#[path = "static_assets/battle_common_narration_sequence_ron.rs"]
+mod battle_common_narration_sequence_ron;
+#[path = "static_assets/battle_common_player_turn_sequence_ron.rs"]
+mod battle_common_player_turn_sequence_ron;
+#[path = "static_assets/battle_common_show_narration_sequence_ron.rs"]
+mod battle_common_show_narration_sequence_ron;
+#[path = "static_assets/battle_mercy_end_sequence_ron.rs"]
+mod battle_mercy_end_sequence_ron;
+#[path = "static_assets/battle_mercy_spare_sequence_ron.rs"]
+mod battle_mercy_spare_sequence_ron;
+#[path = "static_assets/battle_players_player_battle_player_ron.rs"]
+mod battle_players_player_battle_player_ron;
+#[path = "static_assets/battle_rules_dialogue_stop_fre_ron.rs"]
+mod battle_rules_dialogue_stop_fre_ron;
+#[path = "static_assets/battle_rules_dialogue_test_fre_ron.rs"]
+mod battle_rules_dialogue_test_fre_ron;
+#[path = "static_assets/battle_rules_fight_hit_fre_ron.rs"]
+mod battle_rules_fight_hit_fre_ron;
+#[path = "static_assets/battle_rules_menu_cancel_fre_ron.rs"]
+mod battle_rules_menu_cancel_fre_ron;
+#[path = "static_assets/battle_rules_menu_confirm_fre_ron.rs"]
+mod battle_rules_menu_confirm_fre_ron;
+#[path = "static_assets/battle_rules_menu_navigation_fre_ron.rs"]
+mod battle_rules_menu_navigation_fre_ron;
+#[path = "static_assets/battle_templates_undertale_battle_sequence_ron.rs"]
+mod battle_templates_undertale_battle_sequence_ron;
+#[path = "static_assets/battle_view_undertale_view_ron.rs"]
+mod battle_view_undertale_view_ron;
+#[path = "static_assets/narrative_dialogue_fre_ron.rs"]
+mod narrative_dialogue_fre_ron;
+#[path = "static_assets/narrative_dialogue_ron.rs"]
+mod narrative_dialogue_ron;
+#[path = "static_assets/overworld_characters_frisk_animations_animation_config_ron.rs"]
+mod overworld_characters_frisk_animations_animation_config_ron;
+#[path = "static_assets/overworld_characters_frisk_character_ron.rs"]
+mod overworld_characters_frisk_character_ron;
+#[path = "static_assets/overworld_chase_config_ron.rs"]
+mod overworld_chase_config_ron;
+#[path = "static_assets/overworld_players_player_behavior_ron.rs"]
+mod overworld_players_player_behavior_ron;
+#[path = "static_assets/overworld_rules_backpack_fre_ron.rs"]
+mod overworld_rules_backpack_fre_ron;
+#[path = "static_assets/overworld_rules_interaction_fre_ron.rs"]
+mod overworld_rules_interaction_fre_ron;
+#[path = "static_assets/overworld_view_damage_flash_view_ron.rs"]
+mod overworld_view_damage_flash_view_ron;
+#[path = "static_assets/overworld_view_dialogue_view_ron.rs"]
+mod overworld_view_dialogue_view_ron;
+#[path = "static_assets/overworld_view_undertale_backpack_view_ron.rs"]
+mod overworld_view_undertale_backpack_view_ron;
+#[path = "static_assets/view_structures_attack_bar_sdf_ron.rs"]
+mod view_structures_attack_bar_sdf_ron;
+#[path = "static_assets/view_structures_hp_bar_sdf_ron.rs"]
+mod view_structures_hp_bar_sdf_ron;
+#[path = "static_assets/view_structures_view_box_sdf_ron.rs"]
+mod view_structures_view_box_sdf_ron;
+#[path = "static_assets/view_touch_layout_ron.rs"]
+mod view_touch_layout_ron;
+
+/// Emit all bootstrapped static assets for this mod.
 ///
-/// 发射当前 mod 拥有的全部静态 canonical RON 资产。
+/// 发射当前 mod 的全部 bootstrap 静态资产。
 pub fn emit_all(reg: &mut Registry) -> Result<()> {
-    reg.emit_canonical_source(
-        "actors/items/basic.items.ron",
-        include_str!("../ron/actors/items/basic.items.ron"),
-    )?;
-    reg.emit_canonical_source("app/flow.ron", include_str!("../ron/app/flow.ron"))?;
-    reg.emit_canonical_source(
-        "app/global.fre.ron",
-        include_str!("../ron/app/global.fre.ron"),
-    )?;
-    reg.emit_canonical_source("app/input.ron", include_str!("../ron/app/input.ron"))?;
-    reg.emit_canonical_source(
-        "battle/common/end_view_interaction.sequence.ron",
-        include_str!("../ron/battle/common/end_view_interaction.sequence.ron"),
-    )?;
-    reg.emit_canonical_source(
-        "battle/common/enemy_turn.sequence.ron",
-        include_str!("../ron/battle/common/enemy_turn.sequence.ron"),
-    )?;
-    reg.emit_canonical_source(
-        "battle/common/fight_target.sequence.ron",
-        include_str!("../ron/battle/common/fight_target.sequence.ron"),
-    )?;
-    reg.emit_canonical_source(
-        "battle/common/narration.sequence.ron",
-        include_str!("../ron/battle/common/narration.sequence.ron"),
-    )?;
-    reg.emit_canonical_source(
-        "battle/common/player_turn.sequence.ron",
-        include_str!("../ron/battle/common/player_turn.sequence.ron"),
-    )?;
-    reg.emit_canonical_source(
-        "battle/common/show_narration.sequence.ron",
-        include_str!("../ron/battle/common/show_narration.sequence.ron"),
-    )?;
-    reg.emit_canonical_source(
-        "battle/mercy/end.sequence.ron",
-        include_str!("../ron/battle/mercy/end.sequence.ron"),
-    )?;
-    reg.emit_canonical_source(
-        "battle/mercy/spare.sequence.ron",
-        include_str!("../ron/battle/mercy/spare.sequence.ron"),
-    )?;
-    reg.emit_canonical_source(
-        "battle/players/player.battle_player.ron",
-        include_str!("../ron/battle/players/player.battle_player.ron"),
-    )?;
-    reg.emit_canonical_source(
-        "battle/rules/dialogue_stop.fre.ron",
-        include_str!("../ron/battle/rules/dialogue_stop.fre.ron"),
-    )?;
-    reg.emit_canonical_source(
-        "battle/rules/dialogue_test.fre.ron",
-        include_str!("../ron/battle/rules/dialogue_test.fre.ron"),
-    )?;
-    reg.emit_canonical_source(
-        "battle/rules/fight_hit.fre.ron",
-        include_str!("../ron/battle/rules/fight_hit.fre.ron"),
-    )?;
-    reg.emit_canonical_source(
-        "battle/rules/menu_cancel.fre.ron",
-        include_str!("../ron/battle/rules/menu_cancel.fre.ron"),
-    )?;
-    reg.emit_canonical_source(
-        "battle/rules/menu_confirm.fre.ron",
-        include_str!("../ron/battle/rules/menu_confirm.fre.ron"),
-    )?;
-    reg.emit_canonical_source(
-        "battle/rules/menu_navigation.fre.ron",
-        include_str!("../ron/battle/rules/menu_navigation.fre.ron"),
-    )?;
-    reg.emit_canonical_source(
-        "battle/templates/undertale_battle.sequence.ron",
-        include_str!("../ron/battle/templates/undertale_battle.sequence.ron"),
-    )?;
-    reg.emit_canonical_source(
-        "battle/view/undertale.view.ron",
-        include_str!("../ron/battle/view/undertale.view.ron"),
-    )?;
-    reg.emit_canonical_source(
-        "narrative/dialogue.fre.ron",
-        include_str!("../ron/narrative/dialogue.fre.ron"),
-    )?;
-    reg.emit_canonical_source(
-        "narrative/dialogue.ron",
-        include_str!("../ron/narrative/dialogue.ron"),
-    )?;
-    reg.emit_canonical_source(
-        "overworld/characters/frisk/animations.animation_config.ron",
-        include_str!("../ron/overworld/characters/frisk/animations.animation_config.ron"),
-    )?;
-    reg.emit_canonical_source(
-        "overworld/characters/frisk.character.ron",
-        include_str!("../ron/overworld/characters/frisk.character.ron"),
-    )?;
-    reg.emit_canonical_source(
-        "overworld/chase_config.ron",
-        include_str!("../ron/overworld/chase_config.ron"),
-    )?;
-    reg.emit_canonical_source(
-        "overworld/players/player_behavior.ron",
-        include_str!("../ron/overworld/players/player_behavior.ron"),
-    )?;
-    reg.emit_canonical_source(
-        "overworld/rules/backpack.fre.ron",
-        include_str!("../ron/overworld/rules/backpack.fre.ron"),
-    )?;
-    reg.emit_canonical_source(
-        "overworld/rules/interaction.fre.ron",
-        include_str!("../ron/overworld/rules/interaction.fre.ron"),
-    )?;
-    reg.emit_canonical_source(
-        "overworld/view/damage_flash.view.ron",
-        include_str!("../ron/overworld/view/damage_flash.view.ron"),
-    )?;
-    reg.emit_canonical_source(
-        "overworld/view/dialogue.view.ron",
-        include_str!("../ron/overworld/view/dialogue.view.ron"),
-    )?;
-    reg.emit_canonical_source(
-        "overworld/view/undertale_backpack.view.ron",
-        include_str!("../ron/overworld/view/undertale_backpack.view.ron"),
-    )?;
-    reg.emit_canonical_source(
-        "view/structures/attack_bar.sdf.ron",
-        include_str!("../ron/view/structures/attack_bar.sdf.ron"),
-    )?;
-    reg.emit_canonical_source(
-        "view/structures/hp_bar.sdf.ron",
-        include_str!("../ron/view/structures/hp_bar.sdf.ron"),
-    )?;
-    reg.emit_canonical_source(
-        "view/structures/view_box.sdf.ron",
-        include_str!("../ron/view/structures/view_box.sdf.ron"),
-    )?;
-    reg.emit_canonical_source(
-        "view/touch_layout.ron",
-        include_str!("../ron/view/touch_layout.ron"),
-    )?;
+    actors_items_basic_items_ron::emit(reg)?;
+    app_flow_ron::emit(reg)?;
+    app_global_fre_ron::emit(reg)?;
+    app_input_ron::emit(reg)?;
+    battle_common_end_view_interaction_sequence_ron::emit(reg)?;
+    battle_common_enemy_turn_sequence_ron::emit(reg)?;
+    battle_common_fight_target_sequence_ron::emit(reg)?;
+    battle_common_narration_sequence_ron::emit(reg)?;
+    battle_common_player_turn_sequence_ron::emit(reg)?;
+    battle_common_show_narration_sequence_ron::emit(reg)?;
+    battle_mercy_end_sequence_ron::emit(reg)?;
+    battle_mercy_spare_sequence_ron::emit(reg)?;
+    battle_players_player_battle_player_ron::emit(reg)?;
+    battle_rules_dialogue_stop_fre_ron::emit(reg)?;
+    battle_rules_dialogue_test_fre_ron::emit(reg)?;
+    battle_rules_fight_hit_fre_ron::emit(reg)?;
+    battle_rules_menu_cancel_fre_ron::emit(reg)?;
+    battle_rules_menu_confirm_fre_ron::emit(reg)?;
+    battle_rules_menu_navigation_fre_ron::emit(reg)?;
+    battle_templates_undertale_battle_sequence_ron::emit(reg)?;
+    battle_view_undertale_view_ron::emit(reg)?;
+    narrative_dialogue_fre_ron::emit(reg)?;
+    narrative_dialogue_ron::emit(reg)?;
+    overworld_characters_frisk_character_ron::emit(reg)?;
+    overworld_characters_frisk_animations_animation_config_ron::emit(reg)?;
+    overworld_chase_config_ron::emit(reg)?;
+    overworld_players_player_behavior_ron::emit(reg)?;
+    overworld_rules_backpack_fre_ron::emit(reg)?;
+    overworld_rules_interaction_fre_ron::emit(reg)?;
+    overworld_view_damage_flash_view_ron::emit(reg)?;
+    overworld_view_dialogue_view_ron::emit(reg)?;
+    overworld_view_undertale_backpack_view_ron::emit(reg)?;
+    view_structures_attack_bar_sdf_ron::emit(reg)?;
+    view_structures_hp_bar_sdf_ron::emit(reg)?;
+    view_structures_view_box_sdf_ron::emit(reg)?;
+    view_touch_layout_ron::emit(reg)?;
     Ok(())
 }

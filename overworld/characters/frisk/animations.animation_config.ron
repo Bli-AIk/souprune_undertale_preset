@@ -21,12 +21,12 @@
     default_frame_duration: 0.15,
     default_looping: true,
     states: {
-        "Run": Directional(
-            up: "characters/frisk/run/up",
-            down: "characters/frisk/run/down",
-            left: "characters/frisk/run/side",
+        "Walk": Directional(
+            up: "characters/frisk/walk/up",
+            down: "characters/frisk/walk/down",
+            left: "characters/frisk/walk/side",
             right: (
-                path: "characters/frisk/run/side",
+                path: "characters/frisk/walk/side",
                 flip_x: true,
                 flip_y: false,
                 frame_duration: None,
@@ -45,12 +45,12 @@
                 looping: None,
             ),
         ),
-        "Walk": Directional(
-            up: "characters/frisk/walk/up",
-            down: "characters/frisk/walk/down",
-            left: "characters/frisk/walk/side",
+        "Run": Directional(
+            up: "characters/frisk/run/up",
+            down: "characters/frisk/run/down",
+            left: "characters/frisk/run/side",
             right: (
-                path: "characters/frisk/walk/side",
+                path: "characters/frisk/run/side",
                 flip_x: true,
                 flip_y: false,
                 frame_duration: None,

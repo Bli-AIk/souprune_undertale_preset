@@ -24,44 +24,6 @@ wasm = ".build/runtime.wasm"
 
 [content_library]
 wasm = ".build/content.wasm"
-managed_paths = [
-    "actors/items/basic.items.ron",
-    "app/flow.ron",
-    "app/global.fre.ron",
-    "app/input.ron",
-    "battle/common/end_view_interaction.sequence.ron",
-    "battle/common/enemy_turn.sequence.ron",
-    "battle/common/fight_target.sequence.ron",
-    "battle/common/narration.sequence.ron",
-    "battle/common/player_turn.sequence.ron",
-    "battle/common/show_narration.sequence.ron",
-    "battle/mercy/end.sequence.ron",
-    "battle/mercy/spare.sequence.ron",
-    "battle/players/player.battle_player.ron",
-    "battle/rules/dialogue_stop.fre.ron",
-    "battle/rules/dialogue_test.fre.ron",
-    "battle/rules/fight_hit.fre.ron",
-    "battle/rules/menu_cancel.fre.ron",
-    "battle/rules/menu_confirm.fre.ron",
-    "battle/rules/menu_navigation.fre.ron",
-    "battle/templates/undertale_battle.sequence.ron",
-    "battle/view/undertale.view.ron",
-    "narrative/dialogue.fre.ron",
-    "narrative/dialogue.ron",
-    "overworld/characters/frisk.character.ron",
-    "overworld/characters/frisk/animations.animation_config.ron",
-    "overworld/chase_config.ron",
-    "overworld/players/player_behavior.ron",
-    "overworld/rules/backpack.fre.ron",
-    "overworld/rules/interaction.fre.ron",
-    "overworld/view/damage_flash.view.ron",
-    "overworld/view/dialogue.view.ron",
-    "overworld/view/undertale_backpack.view.ron",
-    "view/structures/attack_bar.sdf.ron",
-    "view/structures/hp_bar.sdf.ron",
-    "view/structures/view_box.sdf.ron",
-    "view/touch_layout.ron",
-]
 
 [game]
 global_rules = "app/global.fre.ron"

@@ -19,3 +19,5 @@ Thumbs.db
 assets/debug/**/*.png
 
 target/
+
+.build/

@@ -27,10 +27,10 @@
         ],
     },
     facts: {
+        "depth": Enum("menu"),
         "interactable": Bool(true),
         "selection": Int(0),
         "item_list_selection": Int(0),
-        "depth": Enum("menu"),
     },
     rules: [
         (

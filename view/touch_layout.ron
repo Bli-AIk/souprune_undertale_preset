@@ -28,9 +28,9 @@
         base_texture: "assets/textures/common/touch/xbox/controller.png",
         overlays: {
             "Down": "assets/textures/common/touch/xbox/controller_down.png",
-            "Right": "assets/textures/common/touch/xbox/controller_right.png",
-            "Up": "assets/textures/common/touch/xbox/controller_up.png",
             "Left": "assets/textures/common/touch/xbox/controller_left.png",
+            "Up": "assets/textures/common/touch/xbox/controller_up.png",
+            "Right": "assets/textures/common/touch/xbox/controller_right.png",
         },
     )),
     buttons: [
