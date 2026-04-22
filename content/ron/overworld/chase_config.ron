@@ -1,0 +1,34 @@
+#![enable(implicit_some)]
+// Chase state visual effect configuration
+// 追逐战状态视觉效果配置
+(
+    heart_marker: (
+        texture_path: "assets/textures/common/view/dr_heart.png",
+        offset: (x: 0.0, y: -5.0),
+        z_offset: 101.0,
+        scale: 0.5,
+        color: (r: 1.0, g: 0.0, b: 0.0, a: 1.0),
+        fade_duration: 0.5,
+    ),
+
+    outline: (
+        color: (r: 1.0, g: 0.0, b: 0.0),
+        fade_duration: 0.5,
+    ),
+
+    dark_overlay: (
+        target_alpha: 0.5,
+        fade_duration: 0.5,
+    ),
+
+    hitbox: (
+        shape: Circle(radius: 4.0),
+        offset: (x: 0.0, y: -5.0),
+    ),
+
+    damage_ui: (
+        layout_path: "overworld/view/damage_flash.view.ron",
+        display_duration: 2.5,
+        damage_sound: "assets/audios/sfx/hurtsound.wav",
+    ),
+)

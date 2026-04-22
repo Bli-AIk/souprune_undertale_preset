@@ -1,0 +1,39 @@
+#![enable(implicit_some)]
+// Overworld Interaction Lifecycle Rules (Preset)
+// Overworld 交互生命周期规则（Preset 层）
+//
+// Shared rules that manage overworld interaction state transitions:
+// - Backpack: open/close via Menu action
+// - Dialogue: started → Dialogue sub-state, ended → Normal sub-state + cleanup
+//
+// 管理 overworld 交互状态切换的共享规则：
+// - 背包：通过 Menu 动作打开/关闭
+// - 对话：开始 → Dialogue 子状态，结束 → Normal 子状态 + 清理
+
+(
+    scope: Local,
+
+    rules: [
+        // Open backpack (only when in Normal state and no dialogue)
+        // 打开背包（仅在 Normal 状态且无对话时）
+        (id: "overworld_open_backpack", event: ActionEvent(action: "Menu", kind: JustPressed),
+         conditions: ["$state:sequence_sub_state == 'Normal'", "$dialogue:active != true"],
+         actions: [Log(message: "Opening Backpack"), Custom(action_type: "SetSubState", params: { "state": "Backpack" })],
+         priority: 0),
+
+        // Dialogue started → switch to Dialogue sub-state
+        // 对话开始 → 切换到 Dialogue 子状态
+        (id: "overworld_dialogue_started", event: Event("dialogue:started"),
+         actions: [Custom(action_type: "SetSubState", params: { "state": "Dialogue" })],
+         priority: 100),
+
+        // Dialogue ended → cleanup focus, switch to Normal, despawn view
+        // 对话结束 → 清理焦点、切换到 Normal、销毁视图
+        (id: "overworld_dialogue_ended", event: Event("dialogue:ended"),
+         modifications: [
+             Set(key: "dialogue:has_focus", value: Bool(false)),
+         ],
+         actions: [Custom(action_type: "SetSubState", params: { "state": "Normal" }), Custom(action_type: "DespawnView", params: {})],
+         priority: 100),
+    ],
+)

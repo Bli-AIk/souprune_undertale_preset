@@ -5,9 +5,11 @@
 use anyhow::Result;
 use souprune_vessel::prelude::*;
 
+mod static_assets;
+
 vessel_guest! {
     fn build(reg: &mut Registry) -> Result<()> {
-        let _ = reg;
+        static_assets::emit_all(&mut reg)?;
         Ok(())
     }
 }
