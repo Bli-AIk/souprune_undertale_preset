@@ -18,11 +18,21 @@
 
 (
     actions: {
+        "Down": [
+            Key("ArrowDown"),
+            Key("KeyS"),
+            Gamepad("DPadDown"),
+        ],
         "Cancel": [
             Key("KeyX"),
             Key("ShiftLeft"),
             Key("ShiftRight"),
             Gamepad("East"),
+        ],
+        "Confirm": [
+            Key("KeyZ"),
+            Key("Enter"),
+            Gamepad("South"),
         ],
         "Right": [
             Key("ArrowRight"),
@@ -34,26 +44,16 @@
             Key("KeyA"),
             Gamepad("DPadLeft"),
         ],
-        "Down": [
-            Key("ArrowDown"),
-            Key("KeyS"),
-            Gamepad("DPadDown"),
-        ],
-        "Confirm": [
-            Key("KeyZ"),
-            Key("Enter"),
-            Gamepad("South"),
+        "Up": [
+            Key("ArrowUp"),
+            Key("KeyW"),
+            Gamepad("DPadUp"),
         ],
         "Menu": [
             Key("KeyC"),
             Key("ControlLeft"),
             Key("ControlRight"),
             Gamepad("North"),
-        ],
-        "Up": [
-            Key("ArrowUp"),
-            Key("KeyW"),
-            Gamepad("DPadUp"),
         ],
     },
     navigation: (

@@ -3,7 +3,6 @@
 //! `view/structures/attack_bar.sdf.ron` 的代码表示。
 
 use anyhow::Result;
-use souprune_schema::val::*;
 use souprune_schema::view::*;
 use souprune_vessel::prelude::*;
 
@@ -20,18 +19,8 @@ pub fn asset() -> SdfStructureAsset {
             sdf_type: SdfShapeKind::Outer,
             color_source: SdfColorSource::FactToggle {
                 key: "fight:bar_flash_on".into(),
-                on: (
-                    Val::Static(1.0),
-                    Val::Static(1.0),
-                    Val::Static(1.0),
-                    Val::Static(1.0),
-                ),
-                off: (
-                    Val::Static(0.0),
-                    Val::Static(0.0),
-                    Val::Static(0.0),
-                    Val::Static(1.0),
-                ),
+                on: white(),
+                off: color(0.0, 0.0, 0.0, 1.0),
             },
             z_offset: 0.0,
             is_filler: false,
@@ -40,18 +29,8 @@ pub fn asset() -> SdfStructureAsset {
                 sdf_type: SdfShapeKind::Inner,
                 color_source: SdfColorSource::FactToggle {
                     key: "fight:bar_flash_on".into(),
-                    on: (
-                        Val::Static(0.0),
-                        Val::Static(0.0),
-                        Val::Static(0.0),
-                        Val::Static(1.0),
-                    ),
-                    off: (
-                        Val::Static(1.0),
-                        Val::Static(1.0),
-                        Val::Static(1.0),
-                        Val::Static(1.0),
-                    ),
+                    on: color(0.0, 0.0, 0.0, 1.0),
+                    off: white(),
                 },
                 z_offset: 1.0,
                 is_filler: true,

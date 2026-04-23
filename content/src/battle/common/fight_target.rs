@@ -67,11 +67,11 @@ pub fn asset() -> SequenceAsset {
                 ],
             },
             Chapter::ModifyViewElement {
-                selector: ElementSelector::LocalName("AttackBar".into()),
+                selector: ElementSelector::local("AttackBar"),
                 modification: ElementModification::Reset,
             },
             Chapter::ModifyViewElement {
-                selector: ElementSelector::LocalName("DumbTarget".into()),
+                selector: ElementSelector::local("DumbTarget"),
                 modification: ElementModification::Reset,
             },
             Chapter::SetViewFact {
@@ -94,35 +94,22 @@ pub fn asset() -> SequenceAsset {
             },
             Chapter::Parallel(vec![
                 Chapter::SetViewElement {
-                    selector: ElementSelector::LocalName("AttackBar".into()),
-                    target: TweenTarget::Alpha {
-                        from: None,
-                        to: Val::Static(0.0),
-                    },
+                    selector: ElementSelector::local("AttackBar"),
+                    target: TweenTarget::alpha(0.0),
                     duration: Some(0.01),
                     easing: EaseKindRepr::Linear,
                     wait_for_completion: true,
                 },
                 Chapter::SetViewElement {
-                    selector: ElementSelector::LocalName("DumbTarget".into()),
-                    target: TweenTarget::Scale {
-                        from: None,
-                        to: Vec3Tuple::Positional(
-                            Val::Static(0.0),
-                            Val::Static(1.0),
-                            Val::Static(1.0),
-                        ),
-                    },
+                    selector: ElementSelector::local("DumbTarget"),
+                    target: TweenTarget::scale(Vec3Tuple::positional(0.0, 1.0, 1.0)),
                     duration: Some(0.4),
                     easing: EaseKindRepr::Linear,
                     wait_for_completion: true,
                 },
                 Chapter::SetViewElement {
-                    selector: ElementSelector::LocalName("DumbTarget".into()),
-                    target: TweenTarget::Alpha {
-                        from: None,
-                        to: Val::Static(0.0),
-                    },
+                    selector: ElementSelector::local("DumbTarget"),
+                    target: TweenTarget::alpha(0.0),
                     duration: Some(0.4),
                     easing: EaseKindRepr::Linear,
                     wait_for_completion: true,

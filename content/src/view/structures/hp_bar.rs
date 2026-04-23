@@ -3,7 +3,6 @@
 //! `view/structures/hp_bar.sdf.ron` 的代码表示。
 
 use anyhow::Result;
-use souprune_schema::val::*;
 use souprune_schema::view::*;
 use souprune_vessel::prelude::*;
 
@@ -18,23 +17,13 @@ pub fn asset() -> SdfStructureAsset {
         root: SdfLayerDef {
             name: "HPBarBackground".into(),
             sdf_type: SdfShapeKind::Inner,
-            color_source: SdfColorSource::Custom((
-                Val::Static(1.0),
-                Val::Static(0.0),
-                Val::Static(0.0),
-                Val::Static(1.0),
-            )),
+            color_source: SdfColorSource::Custom(red()),
             z_offset: 0.0,
             is_filler: false,
             children: vec![SdfLayerDef {
                 name: "HPBarForeground".into(),
                 sdf_type: SdfShapeKind::Inner,
-                color_source: SdfColorSource::Custom((
-                    Val::Static(1.0),
-                    Val::Static(1.0),
-                    Val::Static(0.0),
-                    Val::Static(1.0),
-                )),
+                color_source: SdfColorSource::Custom(color(1.0, 1.0, 0.0, 1.0)),
                 z_offset: 0.1,
                 is_filler: true,
                 children: vec![],
