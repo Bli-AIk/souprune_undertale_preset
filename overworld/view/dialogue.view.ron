@@ -77,9 +77,9 @@
         File("narrative/dialogue.fre.ron"),
     ],
     facts: Some({
+        "depth": 0,
         "dialogue_active": true,
         "dialogue_text": "",
-        "depth": 0,
     }),
     world_space: false,
     coordinate_system: Standard,

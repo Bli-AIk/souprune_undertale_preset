@@ -18,16 +18,16 @@
 
 (
     states: {
-        "Backpack": (
-            view_interactive: true,
-            player_movable: false,
-            player_can_interact: None,
+        "Chase": (
+            view_interactive: false,
+            player_movable: true,
+            player_can_interact: Some(false),
             camera_follow_player: true,
-            view_layout: Some("overworld/view/undertale_backpack.view.ron"),
+            view_layout: None,
             initial_layer: None,
-            on_enter_sound: Some("assets/audios/sfx/confirm.wav"),
+            on_enter_sound: None,
             on_exit_sound: None,
-            chase_config: None,
+            chase_config: Some("overworld/chase_config.ron"),
         ),
         "Cutscene": (
             view_interactive: false,
@@ -39,17 +39,6 @@
             on_enter_sound: None,
             on_exit_sound: None,
             chase_config: None,
-        ),
-        "Chase": (
-            view_interactive: false,
-            player_movable: true,
-            player_can_interact: Some(false),
-            camera_follow_player: true,
-            view_layout: None,
-            initial_layer: None,
-            on_enter_sound: None,
-            on_exit_sound: None,
-            chase_config: Some("overworld/chase_config.ron"),
         ),
         "Normal": (
             view_interactive: false,
@@ -70,6 +59,17 @@
             view_layout: None,
             initial_layer: None,
             on_enter_sound: None,
+            on_exit_sound: None,
+            chase_config: None,
+        ),
+        "Backpack": (
+            view_interactive: true,
+            player_movable: false,
+            player_can_interact: None,
+            camera_follow_player: true,
+            view_layout: Some("overworld/view/undertale_backpack.view.ron"),
+            initial_layer: None,
+            on_enter_sound: Some("assets/audios/sfx/confirm.wav"),
             on_exit_sound: None,
             chase_config: None,
         ),

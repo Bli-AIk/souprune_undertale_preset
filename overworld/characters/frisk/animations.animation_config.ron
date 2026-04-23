@@ -21,6 +21,18 @@
     default_frame_duration: 0.15,
     default_looping: true,
     states: {
+        "Idle": Directional(
+            up: "characters/frisk/walk/up/0.png",
+            down: "characters/frisk/walk/down/0.png",
+            left: "characters/frisk/walk/side/0.png",
+            right: (
+                path: "characters/frisk/walk/side/0.png",
+                flip_x: true,
+                flip_y: false,
+                frame_duration: None,
+                looping: None,
+            ),
+        ),
         "Run": Directional(
             up: "characters/frisk/run/up",
             down: "characters/frisk/run/down",
@@ -39,18 +51,6 @@
             left: "characters/frisk/walk/side",
             right: (
                 path: "characters/frisk/walk/side",
-                flip_x: true,
-                flip_y: false,
-                frame_duration: None,
-                looping: None,
-            ),
-        ),
-        "Idle": Directional(
-            up: "characters/frisk/walk/up/0.png",
-            down: "characters/frisk/walk/down/0.png",
-            left: "characters/frisk/walk/side/0.png",
-            right: (
-                path: "characters/frisk/walk/side/0.png",
                 flip_x: true,
                 flip_y: false,
                 frame_duration: None,

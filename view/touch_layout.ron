@@ -27,10 +27,10 @@
         size: 360.0,
         base_texture: "assets/textures/common/touch/xbox/controller.png",
         overlays: {
+            "Right": "assets/textures/common/touch/xbox/controller_right.png",
+            "Left": "assets/textures/common/touch/xbox/controller_left.png",
             "Down": "assets/textures/common/touch/xbox/controller_down.png",
             "Up": "assets/textures/common/touch/xbox/controller_up.png",
-            "Left": "assets/textures/common/touch/xbox/controller_left.png",
-            "Right": "assets/textures/common/touch/xbox/controller_right.png",
         },
     )),
     buttons: [
