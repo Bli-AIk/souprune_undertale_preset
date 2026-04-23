@@ -10,13 +10,11 @@ use souprune_sdk::prelude::*;
 /// - "gravity": gravity acceleration (default: 200.0)
 /// - "bounce_damping": velocity retained after bounce 0-1 (default: 0.7)
 pub struct GravityDropDanmaku {
-    // Configuration
     initial_velocity_x: f32,
     gravity: f32,
     bounce_y: f32,
     bounce_damping: f32,
 
-    // State
     velocity_y: f32,
     pos_x: f32,
     pos_y: f32,
@@ -46,7 +44,6 @@ impl Default for GravityDropDanmaku {
 
 impl DanmakuBehavior for GravityDropDanmaku {
     fn on_enter(&mut self, ctx: &BulletContext) {
-        // Read config from props
         self.gravity = ctx.get_float("gravity").unwrap_or(200.0);
         self.bounce_damping = ctx.get_float("bounce_damping").unwrap_or(0.7);
 
@@ -63,7 +60,6 @@ impl DanmakuBehavior for GravityDropDanmaku {
         // Apply gravity to Y velocity
         self.velocity_y += self.gravity * ctx.delta_time;
 
-        // Update positions
         self.pos_x += self.initial_velocity_x * ctx.delta_time;
         self.pos_y += self.velocity_y * ctx.delta_time;
 

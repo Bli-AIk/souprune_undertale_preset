@@ -89,12 +89,10 @@ impl Behavior for FightBarBehavior {
             return;
         }
 
-        // Read configurable parameters from facts
         let speed = ctx.get_fact_float("fight:bar_speed").unwrap_or(330.0) as f32;
         let right_edge = ctx.get_fact_float("fight:bar_right_edge").unwrap_or(272.0) as f32;
         let start_x = ctx.get_fact_float("fight:bar_start_x").unwrap_or(-274.0) as f32;
 
-        // Initialize sweep position on first active frame
         if self.sweep_x < start_x + 0.01 {
             self.sweep_x = start_x;
         }

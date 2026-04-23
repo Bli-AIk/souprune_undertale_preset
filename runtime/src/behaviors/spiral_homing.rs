@@ -12,16 +12,13 @@ use souprune_sdk::prelude::*;
 /// - "homing_strength": how strongly it tracks player 0-1 (default: 0.5)
 /// - "homing_delay": delay before homing starts in seconds (default: 0.5)
 pub struct SpiralHomingDanmaku {
-    // Configuration
     spiral_speed: f32,
     angular_velocity: f32,
     homing_strength: f32,
     homing_delay: f32,
 
-    // Cached state from OnEnter
     captured_direction: Vec2,
 
-    // Runtime state
     current_angle: f32,
     accumulated_radius: f32,
 }
@@ -52,7 +49,6 @@ impl Default for SpiralHomingDanmaku {
 
 impl DanmakuBehavior for SpiralHomingDanmaku {
     fn on_enter(&mut self, ctx: &BulletContext) {
-        // Read config from props
         self.spiral_speed = ctx.get_float("spiral_speed").unwrap_or(80.0);
         self.angular_velocity = ctx.get_float("angular_velocity").unwrap_or(3.0);
         self.homing_strength = ctx.get_float("homing_strength").unwrap_or(0.5);
@@ -66,13 +62,11 @@ impl DanmakuBehavior for SpiralHomingDanmaku {
             Vec2::new(0.0, -1.0)
         };
 
-        // Initialize angle from spawn angle
         self.current_angle = ctx.initial_angle;
         self.accumulated_radius = ctx.initial_radius;
     }
 
     fn on_update(&mut self, ctx: &BulletContext) -> BulletOutput {
-        // Update spiral angle
         self.current_angle += self.angular_velocity * ctx.delta_time;
 
         // Increase radius over time (spiral outward)

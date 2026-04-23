@@ -78,8 +78,8 @@
     ],
     facts: Some({
         "dialogue_active": true,
-        "depth": 0,
         "dialogue_text": "",
+        "depth": 0,
     }),
     world_space: false,
     coordinate_system: Standard,

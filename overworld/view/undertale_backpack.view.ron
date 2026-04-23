@@ -179,7 +179,7 @@
                 ),
                 (
                     id: "HUDInfoText",
-                    content: Some("{{overworld/ui:LV}}  {$player:lv}\n{{overworld/ui:HP}}  {$player:hp}/{$player:hp_max}"),
+                    content: Some("{{overworld/ui:LV}}  {$player:lv}\\n{{overworld/ui:HP}}  {$player:hp}/{$player:hp_max}"),
                     font: "hud",
                     align: None,
                     anchor: None,
@@ -503,7 +503,7 @@
                 ),
                 (
                     id: "StatusLayerCombatLeft",
-                    content: Some("{{overworld/ui:ATK}}  {{data:player.total_attack}} ({{data:player.weapon_atk}})\n{{overworld/ui:DEF}}  {{data:player.total_defense}} ({{data:player.armor_def}})"),
+                    content: Some("{{overworld/ui:ATK}}  {{data:player.total_attack}} ({{data:player.weapon_atk}})\\n{{overworld/ui:DEF}}  {{data:player.total_defense}} ({{data:player.armor_def}})"),
                     font: "DTM-Sans",
                     align: None,
                     anchor: None,
@@ -522,7 +522,7 @@
                 ),
                 (
                     id: "StatusLayerCombatRight",
-                    content: Some("{{overworld/ui:EXP}}: {$player:exp}\n{{overworld/ui:NEXT}}: {$player:next_exp}"),
+                    content: Some("{{overworld/ui:EXP}}: {$player:exp}\\n{{overworld/ui:NEXT}}: {$player:next_exp}"),
                     font: "DTM-Sans",
                     align: None,
                     anchor: None,
@@ -541,7 +541,7 @@
                 ),
                 (
                     id: "StatusLayerEquipment",
-                    content: Some("{{overworld/ui:WEAPON}}: {{data:player.weapon}}\n{{overworld/ui:ARMOR}}: {{data:player.armor}}"),
+                    content: Some("{{overworld/ui:WEAPON}}: {{data:player.weapon}}\\n{{overworld/ui:ARMOR}}: {{data:player.armor}}"),
                     font: "DTM-Sans",
                     align: None,
                     anchor: None,
@@ -595,9 +595,9 @@
         File("overworld/rules/backpack.fre.ron"),
     ],
     facts: Some({
-        "interactable": true,
         "depth": 0,
         "selection": 0,
+        "interactable": true,
     }),
     world_space: false,
     coordinate_system: Standard,

@@ -1,23 +1,17 @@
-//! Bootstrapped code asset for `battle/players/player.battle_player.ron`.
+//! Code representation of `battle/players/player.battle_player.ron`.
 //!
-//! `battle/players/player.battle_player.ron` 的 bootstrap 代码资源。
+//! `battle/players/player.battle_player.ron` 的代码表示。
 
 use anyhow::Result;
 use souprune_schema::battle::*;
 use souprune_schema::bevy_types::*;
 use souprune_vessel::prelude::*;
 
-/// Emit this bootstrapped asset.
-///
-/// 生成当前 bootstrap 资源。
 pub fn emit(reg: &mut Registry) -> Result<()> {
     reg.emit_auto(file!(), &asset())?;
     Ok(())
 }
 
-/// Build the typed asset value.
-///
-/// 构建该资源的类型化值。
 pub fn asset() -> BattlePlayerConfig {
     BattlePlayerConfig {
         sprite_path: "assets/textures/common/view/heart.png".into(),

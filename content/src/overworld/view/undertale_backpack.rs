@@ -1,15 +1,14 @@
-//! Bootstrapped code asset for `overworld/view/undertale_backpack.view.ron`.
+//! View asset for `overworld/view/undertale_backpack.view.ron`.
 //!
-//! `overworld/view/undertale_backpack.view.ron` 的 bootstrap 代码资源。
+//! `overworld/view/undertale_backpack.view.ron` 的 view 资源。
 
 use anyhow::Result;
-use souprune_schema::val::*;
 use souprune_schema::view::*;
 use souprune_vessel::prelude::*;
 
-/// Emit this bootstrapped asset.
+/// Emit this asset.
 ///
-/// 生成当前 bootstrap 资源。
+/// 生成当前资源。
 pub fn emit(reg: &mut Registry) -> Result<()> {
     reg.emit_auto(file!(), &asset())?;
     Ok(())
@@ -19,5 +18,219 @@ pub fn emit(reg: &mut Registry) -> Result<()> {
 ///
 /// 构建该资源的类型化值。
 pub fn asset() -> ViewLayoutAsset {
-    ViewLayout { roots: vec![ViewNodeDef { name: "MenuBox".into(), tags: vec![], style: StyleDef { width: None, height: None, left: None, right: None, top: None, bottom: None, position_type: None, flex_direction: None, justify_content: None, align_items: None }, visible_when: Some("true".into()), background_color: None, border_color: None, image: None, sprite: None, state_sprite: None, texts: vec![TextDef { id: "MenuTextItem".into(), content: Some("{{overworld/ui:ITEM}}".into()), font: "DTM-Sans".into(), align: None, anchor: None, world_scale: (Val::Static(13.25), Val::Static(13.25)), color: (Val::Static(1.0), Val::Static(1.0), Val::Static(1.0), Val::Static(1.0)), transform: SerializableTransform { translation: Some((Val::Static(-9.5), Val::Static(27.075), Val::Static(1.0))), rotation: None, scale: None }, line_height: Some(1.125), char_spacing: None, word_spacing: None, conditional_style: Some(ConditionalStyleDef { condition: "player.inventory.is_empty".into(), color: (Val::Static(0.5), Val::Static(0.5), Val::Static(0.5), Val::Static(1.0)) }), visible_when: None }, TextDef { id: "MenuTextStat".into(), content: Some("{{overworld/ui:STAT}}".into()), font: "DTM-Sans".into(), align: None, anchor: None, world_scale: (Val::Static(13.25), Val::Static(13.25)), color: (Val::Static(1.0), Val::Static(1.0), Val::Static(1.0), Val::Static(1.0)), transform: SerializableTransform { translation: Some((Val::Static(-9.5), Val::Static(9.25), Val::Static(1.0))), rotation: None, scale: None }, line_height: Some(0.0), char_spacing: None, word_spacing: None, conditional_style: None, visible_when: None }], view_box: Some(ViewBoxLogicDef { width: 65.0, height: 68.0, border_width: 3.0, offset: (Val::Static(-108.5), Val::Static(-1.0), Val::Static(0.0)), fill_shader: None, structure_file: Some("view/structures/view_box.sdf.ron".into()), fill_color: None }), children: vec![ViewNodeDef { name: "MenuCursor".into(), tags: vec![], style: StyleDef { width: None, height: None, left: None, right: None, top: None, bottom: None, position_type: None, flex_direction: None, justify_content: None, align_items: None }, visible_when: Some("$depth == 0".into()), background_color: None, border_color: None, image: None, sprite: Some(SpriteDef { visual: Visual("common/view/heartsmall".into()), initial_state: None, color: Some((Val::Static(1.0), Val::Static(0.0), Val::Static(0.0), Val::Static(1.0))), flip_x: false, flip_y: false, transform: Some(SerializableTransform { translation: Some((Val::Expr("-19.0".into()), Val::Expr("18.5 + (-18.0 * $selection)".into()), Val::Expr("6.0".into()))), rotation: None, scale: None }), pivot: None, frame_duration: None, visible_when: None, material: None }), state_sprite: None, texts: vec![], view_box: None, children: vec![], repeat: None }], repeat: None }, ViewNodeDef { name: "InfoBox".into(), tags: vec![], style: StyleDef { width: None, height: None, left: None, right: None, top: None, bottom: None, position_type: None, flex_direction: None, justify_content: None, align_items: None }, visible_when: Some("true".into()), background_color: None, border_color: None, image: None, sprite: None, state_sprite: None, texts: vec![TextDef { id: "NameText".into(), content: Some("{$player:name}".into()), font: "DTM-Sans".into(), align: None, anchor: None, world_scale: (Val::Static(13.0), Val::Static(13.0)), color: (Val::Static(1.0), Val::Static(1.0), Val::Static(1.0), Val::Static(1.0)), transform: SerializableTransform { translation: Some((Val::Static(-28.5), Val::Static(23.25), Val::Static(1.0))), rotation: None, scale: None }, line_height: Some(1.0), char_spacing: Some(2.25), word_spacing: Some(0.0), conditional_style: None, visible_when: None }, TextDef { id: "HUDInfoText".into(), content: Some("{{overworld/ui:LV}}  {$player:lv}\n{{overworld/ui:HP}}  {$player:hp}/{$player:hp_max}".into()), font: "hud".into(), align: None, anchor: None, world_scale: (Val::Static(8.0), Val::Static(8.0)), color: (Val::Static(1.0), Val::Static(1.0), Val::Static(1.0), Val::Static(1.0)), transform: SerializableTransform { translation: Some((Val::Static(-28.5), Val::Static(3.5), Val::Static(1.0))), rotation: None, scale: None }, line_height: Some(2.925), char_spacing: Some(0.015), word_spacing: Some(0.065), conditional_style: None, visible_when: None }, TextDef { id: "HUDGoldText".into(), content: Some("g   {$player:gold}".into()), font: "hud".into(), align: None, anchor: None, world_scale: (Val::Static(8.0), Val::Static(8.0)), color: (Val::Static(1.0), Val::Static(1.0), Val::Static(1.0), Val::Static(1.0)), transform: SerializableTransform { translation: Some((Val::Static(-28.75), Val::Static(-14.55), Val::Static(1.0))), rotation: None, scale: None }, line_height: Some(0.0), char_spacing: None, word_spacing: None, conditional_style: None, visible_when: None }], view_box: Some(ViewBoxLogicDef { width: 65.0, height: 49.0, border_width: 3.0, offset: (Val::Static(-108.5), Val::Static(-68.5), Val::Static(0.0)), fill_shader: None, structure_file: Some("view/structures/view_box.sdf.ron".into()), fill_color: None }), children: vec![], repeat: None }, ViewNodeDef { name: "ItemBox".into(), tags: vec![], style: StyleDef { width: None, height: None, left: None, right: None, top: None, bottom: None, position_type: None, flex_direction: None, justify_content: None, align_items: None }, visible_when: Some("$depth == 1 || $depth == 2".into()), background_color: None, border_color: None, image: None, sprite: None, state_sprite: None, texts: vec![TextDef { id: "ItemLayerList".into(), content: Some("{{data:player.inventory}}".into()), font: "DTM-Sans".into(), align: None, anchor: None, world_scale: (Val::Static(13.25), Val::Static(13.25)), color: (Val::Static(1.0), Val::Static(1.0), Val::Static(1.0), Val::Static(1.0)), transform: SerializableTransform { translation: Some((Val::Static(-64.25), Val::Static(76.5), Val::Static(1.0))), rotation: None, scale: None }, line_height: Some(1.0), char_spacing: None, word_spacing: None, conditional_style: None, visible_when: None }, TextDef { id: "ItemLayerOptionUse".into(), content: Some("{{overworld/ui:USE}}".into()), font: "DTM-Sans".into(), align: None, anchor: None, world_scale: (Val::Static(13.25), Val::Static(13.25)), color: (Val::Static(1.0), Val::Static(1.0), Val::Static(1.0), Val::Static(1.0)), transform: SerializableTransform { translation: Some((Val::Static(-64.25), Val::Static(-63.5), Val::Static(1.0))), rotation: None, scale: None }, line_height: Some(1.2), char_spacing: None, word_spacing: None, conditional_style: None, visible_when: Some("$depth == 1 || $depth == 2".into()) }, TextDef { id: "ItemLayerOptionInfo".into(), content: Some("{{overworld/ui:INFO}}".into()), font: "DTM-Sans".into(), align: None, anchor: None, world_scale: (Val::Static(13.25), Val::Static(13.25)), color: (Val::Static(1.0), Val::Static(1.0), Val::Static(1.0), Val::Static(1.0)), transform: SerializableTransform { translation: Some((Val::Static(-16.25), Val::Static(-63.5), Val::Static(1.0))), rotation: None, scale: None }, line_height: Some(1.2), char_spacing: None, word_spacing: None, conditional_style: None, visible_when: Some("$depth == 1 || $depth == 2".into()) }, TextDef { id: "ItemLayerOptionDrop".into(), content: Some("{{overworld/ui:DROP}}".into()), font: "DTM-Sans".into(), align: None, anchor: None, world_scale: (Val::Static(13.25), Val::Static(13.25)), color: (Val::Static(1.0), Val::Static(1.0), Val::Static(1.0), Val::Static(1.0)), transform: SerializableTransform { translation: Some((Val::Static(40.75), Val::Static(-63.5), Val::Static(1.0))), rotation: None, scale: None }, line_height: Some(1.2), char_spacing: None, word_spacing: None, conditional_style: None, visible_when: Some("$depth == 1 || $depth == 2".into()) }], view_box: Some(ViewBoxLogicDef { width: 167.0, height: 175.0, border_width: 3.0, offset: (Val::Static(20.5), Val::Static(3.5), Val::Static(0.0)), fill_shader: None, structure_file: Some("view/structures/view_box.sdf.ron".into()), fill_color: None }), children: vec![ViewNodeDef { name: "ItemCursor".into(), tags: vec![], style: StyleDef { width: None, height: None, left: None, right: None, top: None, bottom: None, position_type: None, flex_direction: None, justify_content: None, align_items: None }, visible_when: Some("$depth == 1".into()), background_color: None, border_color: None, image: None, sprite: Some(SpriteDef { visual: Visual("common/view/heartsmall".into()), initial_state: None, color: Some((Val::Static(1.0), Val::Static(0.0), Val::Static(0.0), Val::Static(1.0))), flip_x: false, flip_y: false, transform: Some(SerializableTransform { translation: Some((Val::Expr("-72.0".into()), Val::Expr("68 + (-16.0 * $selection)".into()), Val::Expr("6.0".into()))), rotation: None, scale: None }), pivot: None, frame_duration: None, visible_when: None, material: None }), state_sprite: None, texts: vec![], view_box: None, children: vec![], repeat: None }, ViewNodeDef { name: "OptionsCursor".into(), tags: vec![], style: StyleDef { width: None, height: None, left: None, right: None, top: None, bottom: None, position_type: None, flex_direction: None, justify_content: None, align_items: None }, visible_when: Some("$depth == 2".into()), background_color: None, border_color: None, image: None, sprite: Some(SpriteDef { visual: Visual("common/view/heartsmall".into()), initial_state: None, color: Some((Val::Static(1.0), Val::Static(0.0), Val::Static(0.0), Val::Static(1.0))), flip_x: false, flip_y: false, transform: Some(SerializableTransform { translation: Some((Val::Expr("if($selection == 0, -72.0, if($selection == 1, -24.25, 33.0))".into()), Val::Expr("-72.0".into()), Val::Expr("6.0".into()))), rotation: None, scale: None }), pivot: None, frame_duration: None, visible_when: None, material: None }), state_sprite: None, texts: vec![], view_box: None, children: vec![], repeat: None }], repeat: None }, ViewNodeDef { name: "StatusBox".into(), tags: vec![], style: StyleDef { width: None, height: None, left: None, right: None, top: None, bottom: None, position_type: None, flex_direction: None, justify_content: None, align_items: None }, visible_when: Some("$depth == 3".into()), background_color: None, border_color: None, image: None, sprite: None, state_sprite: None, texts: vec![TextDef { id: "StatusLayerName".into(), content: Some("\"{$player:name}\"".into()), font: "DTM-Sans".into(), align: None, anchor: None, world_scale: (Val::Static(13.5), Val::Static(13.5)), color: (Val::Static(1.0), Val::Static(1.0), Val::Static(1.0), Val::Static(1.0)), transform: SerializableTransform { translation: Some((Val::Static(-72.5), Val::Static(88.4), Val::Static(1.0))), rotation: None, scale: None }, line_height: Some(1.15), char_spacing: Some(-1.25), word_spacing: Some(-21.585), conditional_style: None, visible_when: None }, TextDef { id: "StatusLayerLv".into(), content: Some("{{overworld/ui:LV}}   {$player:lv}".into()), font: "DTM-Sans".into(), align: None, anchor: None, world_scale: (Val::Static(13.5), Val::Static(13.5)), color: (Val::Static(1.0), Val::Static(1.0), Val::Static(1.0), Val::Static(1.0)), transform: SerializableTransform { translation: Some((Val::Static(-72.5), Val::Static(58.5), Val::Static(1.0))), rotation: None, scale: None }, line_height: Some(0.975), char_spacing: Some(-2.385), word_spacing: Some(-6.5), conditional_style: None, visible_when: None }, TextDef { id: "StatusLayerHp".into(), content: Some("{{overworld/ui:HP}}  {$player:hp} / {$player:hp_max}".into()), font: "DTM-Sans".into(), align: None, anchor: None, world_scale: (Val::Static(13.5), Val::Static(13.5)), color: (Val::Static(1.0), Val::Static(1.0), Val::Static(1.0), Val::Static(1.0)), transform: SerializableTransform { translation: Some((Val::Static(-72.5), Val::Static(42.5), Val::Static(1.0))), rotation: None, scale: None }, line_height: Some(0.975), char_spacing: Some(-2.385), word_spacing: Some(4.7), conditional_style: None, visible_when: None }, TextDef { id: "StatusLayerCombatLeft".into(), content: Some("{{overworld/ui:ATK}}  {{data:player.total_attack}} ({{data:player.weapon_atk}})\n{{overworld/ui:DEF}}  {{data:player.total_defense}} ({{data:player.armor_def}})".into()), font: "DTM-Sans".into(), align: None, anchor: None, world_scale: (Val::Static(13.5), Val::Static(13.5)), color: (Val::Static(1.0), Val::Static(1.0), Val::Static(1.0), Val::Static(1.0)), transform: SerializableTransform { translation: Some((Val::Static(-72.626), Val::Static(10.42), Val::Static(1.0))), rotation: None, scale: None }, line_height: Some(0.98), char_spacing: Some(-2.825), word_spacing: Some(6.21), conditional_style: None, visible_when: None }, TextDef { id: "StatusLayerCombatRight".into(), content: Some("{{overworld/ui:EXP}}: {$player:exp}\n{{overworld/ui:NEXT}}: {$player:next_exp}".into()), font: "DTM-Sans".into(), align: None, anchor: None, world_scale: (Val::Static(13.5), Val::Static(13.5)), color: (Val::Static(1.0), Val::Static(1.0), Val::Static(1.0), Val::Static(1.0)), transform: SerializableTransform { translation: Some((Val::Static(11.485), Val::Static(10.66), Val::Static(1.0))), rotation: None, scale: None }, line_height: Some(0.975), char_spacing: Some(-4.137), word_spacing: Some(15.79), conditional_style: None, visible_when: None }, TextDef { id: "StatusLayerEquipment".into(), content: Some("{{overworld/ui:WEAPON}}: {{data:player.weapon}}\n{{overworld/ui:ARMOR}}: {{data:player.armor}}".into()), font: "DTM-Sans".into(), align: None, anchor: None, world_scale: (Val::Static(13.5), Val::Static(13.5)), color: (Val::Static(1.0), Val::Static(1.0), Val::Static(1.0), Val::Static(1.0)), transform: SerializableTransform { translation: Some((Val::Static(-72.387), Val::Static(-35.895), Val::Static(1.0))), rotation: None, scale: None }, line_height: Some(0.945), char_spacing: Some(-1.062), word_spacing: Some(2.573), conditional_style: None, visible_when: None }, TextDef { id: "StatusLayerGold".into(), content: Some("{{overworld/ui:GOLD}}: {$player:gold}".into()), font: "DTM-Sans".into(), align: None, anchor: None, world_scale: (Val::Static(13.5), Val::Static(13.5)), color: (Val::Static(1.0), Val::Static(1.0), Val::Static(1.0), Val::Static(1.0)), transform: SerializableTransform { translation: Some((Val::Static(-72.377), Val::Static(-71.352), Val::Static(1.0))), rotation: None, scale: None }, line_height: Some(1.15), char_spacing: Some(-0.632), word_spacing: Some(0.0), conditional_style: None, visible_when: None }], view_box: Some(ViewBoxLogicDef { width: 167.0, height: 202.5, border_width: 3.0, offset: (Val::Static(20.5), Val::Static(-10.5), Val::Static(0.0)), fill_shader: None, structure_file: Some("view/structures/view_box.sdf.ron".into()), fill_color: None }), children: vec![], repeat: None }], requires: vec![DataRequirement::File("overworld/rules/backpack.fre.ron".into())], facts: Some(vec![("interactable".into(), InitialFactValue::Bool(true)), ("depth".into(), InitialFactValue::Int(0)), ("selection".into(), InitialFactValue::Int(0))].into_iter().collect()), world_space: false, coordinate_system: CoordinateSystem::Standard }
+    view_layout(vec![
+        view_node("MenuBox")
+            .visible_when("true")
+            .texts(vec![
+                view_text("MenuTextItem", "{{overworld/ui:ITEM}}", "DTM-Sans")
+                    .world_scale(vector2(13.25, 13.25))
+                    .translation(vector3(-9.5, 27.075, 1.0))
+                    .line_height(1.125)
+                    .conditional_color("player.inventory.is_empty", color(0.5, 0.5, 0.5, 1.0)),
+                view_text("MenuTextStat", "{{overworld/ui:STAT}}", "DTM-Sans")
+                    .world_scale(vector2(13.25, 13.25))
+                    .translation(vector3(-9.5, 9.25, 1.0))
+                    .line_height(0.0),
+            ])
+            .view_box(
+                view_box(65.0, 68.0)
+                    .border_width(3.0)
+                    .offset(vector3(-108.5, -1.0, 0.0))
+                    .structure_file("view/structures/view_box.sdf.ron"),
+            )
+            .children(vec![view_node("MenuCursor")
+                .visible_when("$depth == 0")
+                .sprite(
+                    view_sprite("common/view/heartsmall")
+                        .color(red())
+                        .translation(vector3(
+                            expression("-19.0"),
+                            expression("18.5 + (-18.0 * $selection)"),
+                            expression("6.0"),
+                        )),
+                )]),
+        view_node("InfoBox")
+            .visible_when("true")
+            .texts(vec![
+                view_text("NameText", "{$player:name}", "DTM-Sans")
+                    .world_scale(vector2(13.0, 13.0))
+                    .translation(vector3(-28.5, 23.25, 1.0))
+                    .line_height(1.0)
+                    .character_spacing(2.25)
+                    .word_spacing(0.0),
+                view_text(
+                    "HUDInfoText",
+                    concat!(
+                        "{{overworld/ui:LV}}  {$player:lv}",
+                        "\\n",
+                        "{{overworld/ui:HP}}  {$player:hp}/{$player:hp_max}",
+                    ),
+                    "hud",
+                )
+                .world_scale(vector2(8.0, 8.0))
+                .translation(vector3(-28.5, 3.5, 1.0))
+                .line_height(2.925)
+                .character_spacing(0.015)
+                .word_spacing(0.065),
+                view_text("HUDGoldText", "g   {$player:gold}", "hud")
+                    .world_scale(vector2(8.0, 8.0))
+                    .translation(vector3(-28.75, -14.55, 1.0))
+                    .line_height(0.0),
+            ])
+            .view_box(
+                view_box(65.0, 49.0)
+                    .border_width(3.0)
+                    .offset(vector3(-108.5, -68.5, 0.0))
+                    .structure_file("view/structures/view_box.sdf.ron"),
+            ),
+        view_node("ItemBox")
+            .visible_when("$depth == 1 || $depth == 2")
+            .texts(vec![
+                view_text("ItemLayerList", "{{data:player.inventory}}", "DTM-Sans")
+                    .world_scale(vector2(13.25, 13.25))
+                    .translation(vector3(-64.25, 76.5, 1.0))
+                    .line_height(1.0),
+                view_text("ItemLayerOptionUse", "{{overworld/ui:USE}}", "DTM-Sans")
+                    .world_scale(vector2(13.25, 13.25))
+                    .translation(vector3(-64.25, -63.5, 1.0))
+                    .line_height(1.2)
+                    .visible_when("$depth == 1 || $depth == 2"),
+                view_text("ItemLayerOptionInfo", "{{overworld/ui:INFO}}", "DTM-Sans")
+                    .world_scale(vector2(13.25, 13.25))
+                    .translation(vector3(-16.25, -63.5, 1.0))
+                    .line_height(1.2)
+                    .visible_when("$depth == 1 || $depth == 2"),
+                view_text("ItemLayerOptionDrop", "{{overworld/ui:DROP}}", "DTM-Sans")
+                    .world_scale(vector2(13.25, 13.25))
+                    .translation(vector3(40.75, -63.5, 1.0))
+                    .line_height(1.2)
+                    .visible_when("$depth == 1 || $depth == 2"),
+            ])
+            .view_box(
+                view_box(167.0, 175.0)
+                    .border_width(3.0)
+                    .offset(vector3(20.5, 3.5, 0.0))
+                    .structure_file("view/structures/view_box.sdf.ron"),
+            )
+            .children(vec![
+                view_node("ItemCursor").visible_when("$depth == 1").sprite(
+                    view_sprite("common/view/heartsmall")
+                        .color(red())
+                        .translation(vector3(
+                            expression("-72.0"),
+                            expression("68 + (-16.0 * $selection)"),
+                            expression("6.0"),
+                        )),
+                ),
+                view_node("OptionsCursor")
+                    .visible_when("$depth == 2")
+                    .sprite(
+                        view_sprite("common/view/heartsmall")
+                            .color(red())
+                            .translation(vector3(
+                                expression(
+                                    "if($selection == 0, -72.0, if($selection == 1, -24.25, 33.0))",
+                                ),
+                                expression("-72.0"),
+                                expression("6.0"),
+                            )),
+                    ),
+            ]),
+        view_node("StatusBox")
+            .visible_when("$depth == 3")
+            .texts(vec![
+                view_text("StatusLayerName", "\"{$player:name}\"", "DTM-Sans")
+                    .world_scale(vector2(13.5, 13.5))
+                    .translation(vector3(-72.5, 88.4, 1.0))
+                    .line_height(1.15)
+                    .character_spacing(-1.25)
+                    .word_spacing(-21.585),
+                view_text(
+                    "StatusLayerLv",
+                    "{{overworld/ui:LV}}   {$player:lv}",
+                    "DTM-Sans",
+                )
+                .world_scale(vector2(13.5, 13.5))
+                .translation(vector3(-72.5, 58.5, 1.0))
+                .line_height(0.975)
+                .character_spacing(-2.385)
+                .word_spacing(-6.5),
+                view_text(
+                    "StatusLayerHp",
+                    "{{overworld/ui:HP}}  {$player:hp} / {$player:hp_max}",
+                    "DTM-Sans",
+                )
+                .world_scale(vector2(13.5, 13.5))
+                .translation(vector3(-72.5, 42.5, 1.0))
+                .line_height(0.975)
+                .character_spacing(-2.385)
+                .word_spacing(4.7),
+                view_text(
+                    "StatusLayerCombatLeft",
+                    concat!(
+                        "{{overworld/ui:ATK}}  {{data:player.total_attack}} ({{data:player.weapon",
+                        "_atk}})",
+                        "\\n",
+                        "{{overworld/ui:DEF}}  {{data:player.total_defense}} ({{data:player.armor",
+                        "_def}})",
+                    ),
+                    "DTM-Sans",
+                )
+                .world_scale(vector2(13.5, 13.5))
+                .translation(vector3(-72.626, 10.42, 1.0))
+                .line_height(0.98)
+                .character_spacing(-2.825)
+                .word_spacing(6.21),
+                view_text(
+                    "StatusLayerCombatRight",
+                    concat!(
+                        "{{overworld/ui:EXP}}: {$player:exp}",
+                        "\\n",
+                        "{{overworld/ui:NEXT}}: {$player:next_exp}",
+                    ),
+                    "DTM-Sans",
+                )
+                .world_scale(vector2(13.5, 13.5))
+                .translation(vector3(11.485, 10.66, 1.0))
+                .line_height(0.975)
+                .character_spacing(-4.137)
+                .word_spacing(15.79),
+                view_text(
+                    "StatusLayerEquipment",
+                    concat!(
+                        "{{overworld/ui:WEAPON}}: {{data:player.weapon}}",
+                        "\\n",
+                        "{{overworld/ui:ARMOR}}: {{data:player.armor}}",
+                    ),
+                    "DTM-Sans",
+                )
+                .world_scale(vector2(13.5, 13.5))
+                .translation(vector3(-72.387, -35.895, 1.0))
+                .line_height(0.945)
+                .character_spacing(-1.062)
+                .word_spacing(2.573),
+                view_text(
+                    "StatusLayerGold",
+                    "{{overworld/ui:GOLD}}: {$player:gold}",
+                    "DTM-Sans",
+                )
+                .world_scale(vector2(13.5, 13.5))
+                .translation(vector3(-72.377, -71.352, 1.0))
+                .line_height(1.15)
+                .character_spacing(-0.632)
+                .word_spacing(0.0),
+            ])
+            .view_box(
+                view_box(167.0, 202.5)
+                    .border_width(3.0)
+                    .offset(vector3(20.5, -10.5, 0.0))
+                    .structure_file("view/structures/view_box.sdf.ron"),
+            ),
+    ])
+    .require_file("overworld/rules/backpack.fre.ron")
+    .initial_facts(vec![
+        ("depth", InitialFactValue::Int(0)),
+        ("interactable", InitialFactValue::Bool(true)),
+        ("selection", InitialFactValue::Int(0)),
+    ])
 }

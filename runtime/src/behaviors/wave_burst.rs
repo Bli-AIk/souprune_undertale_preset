@@ -13,14 +13,12 @@ use souprune_sdk::prelude::*;
 /// - "burst_time": burst duration in seconds (default: 0.8)
 /// - "burst_multiplier": initial speed multiplier (default: 2.5)
 pub struct WaveBurstDanmaku {
-    // Configuration
     base_speed: f32,
     wave_amplitude: f32,
     wave_frequency: f32,
     burst_time: f32,
     burst_multiplier: f32,
 
-    // State
     direction: Vec2,
     perpendicular: Vec2,
 }
@@ -47,7 +45,6 @@ impl Default for WaveBurstDanmaku {
 
 impl DanmakuBehavior for WaveBurstDanmaku {
     fn on_enter(&mut self, ctx: &BulletContext) {
-        // Read config from props
         self.base_speed = ctx.get_float("base_speed").unwrap_or(120.0);
         self.wave_amplitude = ctx.get_float("wave_amplitude").unwrap_or(30.0);
         self.wave_frequency = ctx.get_float("wave_frequency").unwrap_or(4.0);
