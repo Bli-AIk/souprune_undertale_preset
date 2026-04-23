@@ -72,8 +72,8 @@ impl DanmakuBehavior for WaveBurstDanmaku {
         let linear_dist = self.base_speed * ctx.elapsed * speed_multiplier;
 
         // Calculate wave offset
-        let wave = (ctx.elapsed * self.wave_frequency * std::f32::consts::TAU).sin()
-            * self.wave_amplitude;
+        let wave =
+            (ctx.elapsed * self.wave_frequency * std::f32::consts::TAU).sin() * self.wave_amplitude;
 
         // Combine movements
         let offset_x = self.direction.x * linear_dist + self.perpendicular.x * wave;

@@ -1,6 +1,6 @@
 //! Bootstrapped code asset for `narrative/dialogue.fre.ron`.
 //!
-//! `narrative/dialogue.fre.ron` 的 bootstrap 代码资产。
+//! `narrative/dialogue.fre.ron` 的 bootstrap 代码资源。
 
 use anyhow::Result;
 use souprune_schema::fre::*;
@@ -8,7 +8,7 @@ use souprune_vessel::prelude::*;
 
 /// Emit this bootstrapped asset.
 ///
-/// 发射当前 bootstrap 资产。
+/// 生成当前 bootstrap 资源。
 pub fn emit(reg: &mut Registry) -> Result<()> {
     reg.emit_auto_with(file!(), &asset(), EmitPathConfig::new().output_path("narrative/dialogue.fre.ron"))?;
     Ok(())
@@ -16,7 +16,7 @@ pub fn emit(reg: &mut Registry) -> Result<()> {
 
 /// Build the typed asset value.
 ///
-/// 构建该资产的类型化值。
+/// 构建该资源的类型化值。
 pub fn asset() -> FreAsset {
     FreAsset {
         scope: RuleScopeDef::Local,

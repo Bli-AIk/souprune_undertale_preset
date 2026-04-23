@@ -46,9 +46,7 @@ impl FightBarBehavior {
 
 impl Behavior for FightBarBehavior {
     fn on_enter(&mut self, ctx: &mut Context) {
-        let start_x = ctx
-            .get_fact_float("fight:bar_start_x")
-            .unwrap_or(-274.0) as f32;
+        let start_x = ctx.get_fact_float("fight:bar_start_x").unwrap_or(-274.0) as f32;
         self.sweep_x = start_x;
         self.flash_elapsed = 0.0;
         self.flash_active = false;
@@ -71,9 +69,7 @@ impl Behavior for FightBarBehavior {
                 return;
             }
 
-            let flash_interval = ctx
-                .get_fact_float("fight:flash_interval")
-                .unwrap_or(0.083) as f32;
+            let flash_interval = ctx.get_fact_float("fight:flash_interval").unwrap_or(0.083) as f32;
             self.flash_elapsed += dt;
 
             if self.flash_elapsed >= FLASH_DURATION {
@@ -95,12 +91,8 @@ impl Behavior for FightBarBehavior {
 
         // Read configurable parameters from facts
         let speed = ctx.get_fact_float("fight:bar_speed").unwrap_or(330.0) as f32;
-        let right_edge = ctx
-            .get_fact_float("fight:bar_right_edge")
-            .unwrap_or(272.0) as f32;
-        let start_x = ctx
-            .get_fact_float("fight:bar_start_x")
-            .unwrap_or(-274.0) as f32;
+        let right_edge = ctx.get_fact_float("fight:bar_right_edge").unwrap_or(272.0) as f32;
+        let start_x = ctx.get_fact_float("fight:bar_start_x").unwrap_or(-274.0) as f32;
 
         // Initialize sweep position on first active frame
         if self.sweep_x < start_x + 0.01 {
