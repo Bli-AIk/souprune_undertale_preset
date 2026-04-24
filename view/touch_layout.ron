@@ -15,6 +15,7 @@
 //    structure globally, please edit the Vessel source schema/configuration
 //    instead of modifying this file directly.
 // =============================================================================
+// Generated at: 2026-04-24 07:06:05 +08:00
 
 (
     opacity: 0.9,
@@ -27,9 +28,9 @@
         size: 360.0,
         base_texture: "assets/textures/common/touch/xbox/controller.png",
         overlays: {
-            "Right": "assets/textures/common/touch/xbox/controller_right.png",
-            "Left": "assets/textures/common/touch/xbox/controller_left.png",
             "Down": "assets/textures/common/touch/xbox/controller_down.png",
+            "Left": "assets/textures/common/touch/xbox/controller_left.png",
+            "Right": "assets/textures/common/touch/xbox/controller_right.png",
             "Up": "assets/textures/common/touch/xbox/controller_up.png",
         },
     )),

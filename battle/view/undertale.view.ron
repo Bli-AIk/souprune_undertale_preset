@@ -15,6 +15,7 @@
 //    structure globally, please edit the Vessel source schema/configuration
 //    instead of modifying this file directly.
 // =============================================================================
+// Generated at: 2026-04-24 07:06:05 +08:00
 
 (
     roots: [
@@ -260,10 +261,10 @@
                         material: Some((
                             shader: "assets/shaders/enemy_hp_bar_sprite.wgsl",
                             params: {
-                                "hp_ratio": Expr("$enemy_hps[@i] / $enemy_hp_maxs[@i]"),
                                 "alpha": Static(1.0),
-                                "lag_ratio": Static(1.0),
                                 "half_width": Static(50.0),
+                                "hp_ratio": Expr("$enemy_hps[@i] / $enemy_hp_maxs[@i]"),
+                                "lag_ratio": Static(1.0),
                             },
                             animations: Some((
                                 lag: Some((
@@ -1115,10 +1116,10 @@
                         material: Some((
                             shader: "assets/shaders/hp_bar_sprite.wgsl",
                             params: {
-                                "lag_ratio": Static(1.0),
-                                "hp_ratio": Expr("$player:hp / $player:hp_max"),
                                 "alpha": Static(1.0),
                                 "half_width": Expr("40.0 + ($player:hp_max - 20) * 95.0 / 79 / 2"),
+                                "hp_ratio": Expr("$player:hp / $player:hp_max"),
+                                "lag_ratio": Static(1.0),
                             },
                             animations: Some((
                                 lag: Some((
@@ -1169,28 +1170,28 @@
         ),
     ],
     facts: Some({
-        "narration_visible": false,
+        "act_count": 0,
         "act_selection": 0,
-        "selection_confirmed": false,
-        "confirm_pressed": false,
-        "mercy_count": 0,
-        "menu_context": 0,
+        "action_param": "",
+        "button_selection": 0,
         "buttons_visible": true,
+        "confirm_pressed": false,
+        "depth": 0,
+        "dialogue:replay_on_resume": true,
         "dialogue_text": "",
         "dialogue_visible": false,
-        "dialogue:replay_on_resume": true,
-        "enemy_selection": 0,
-        "fight_target_visible": false,
-        "view_rules_loaded": false,
-        "interactable": false,
-        "depth": 0,
-        "mercy_selection": 0,
-        "act_count": 0,
-        "button_selection": 0,
-        "action_param": "",
-        "enemy_view_offset": 0,
         "enemy_display_limit": 3,
+        "enemy_selection": 0,
+        "enemy_view_offset": 0,
+        "fight_target_visible": false,
+        "interactable": false,
         "item_selection": 0,
+        "menu_context": 0,
+        "mercy_count": 0,
+        "mercy_selection": 0,
+        "narration_visible": false,
+        "selection_confirmed": false,
+        "view_rules_loaded": false,
     }),
     world_space: true,
     coordinate_system: Standard,

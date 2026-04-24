@@ -15,45 +15,46 @@
 //    structure globally, please edit the Vessel source schema/configuration
 //    instead of modifying this file directly.
 // =============================================================================
+// Generated at: 2026-04-24 07:06:05 +08:00
 
 (
     actions: {
-        "Down": [
-            Key("ArrowDown"),
-            Key("KeyS"),
-            Gamepad("DPadDown"),
-        ],
-        "Up": [
-            Key("ArrowUp"),
-            Key("KeyW"),
-            Gamepad("DPadUp"),
-        ],
-        "Right": [
-            Key("ArrowRight"),
-            Key("KeyD"),
-            Gamepad("DPadRight"),
-        ],
-        "Left": [
-            Key("ArrowLeft"),
-            Key("KeyA"),
-            Gamepad("DPadLeft"),
-        ],
-        "Confirm": [
-            Key("KeyZ"),
-            Key("Enter"),
-            Gamepad("South"),
-        ],
         "Cancel": [
             Key("KeyX"),
             Key("ShiftLeft"),
             Key("ShiftRight"),
             Gamepad("East"),
         ],
+        "Confirm": [
+            Key("KeyZ"),
+            Key("Enter"),
+            Gamepad("South"),
+        ],
+        "Down": [
+            Key("ArrowDown"),
+            Key("KeyS"),
+            Gamepad("DPadDown"),
+        ],
+        "Left": [
+            Key("ArrowLeft"),
+            Key("KeyA"),
+            Gamepad("DPadLeft"),
+        ],
         "Menu": [
             Key("KeyC"),
             Key("ControlLeft"),
             Key("ControlRight"),
             Gamepad("North"),
+        ],
+        "Right": [
+            Key("ArrowRight"),
+            Key("KeyD"),
+            Gamepad("DPadRight"),
+        ],
+        "Up": [
+            Key("ArrowUp"),
+            Key("KeyW"),
+            Gamepad("DPadUp"),
         ],
     },
     navigation: (

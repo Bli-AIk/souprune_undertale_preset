@@ -15,6 +15,7 @@
 //    structure globally, please edit the Vessel source schema/configuration
 //    instead of modifying this file directly.
 // =============================================================================
+// Generated at: 2026-04-24 07:06:05 +08:00
 
 (
     scope: View,
@@ -27,10 +28,10 @@
         ],
     },
     facts: {
-        "selection": Int(0),
-        "item_list_selection": Int(0),
-        "interactable": Bool(true),
         "depth": Enum("menu"),
+        "interactable": Bool(true),
+        "item_list_selection": Int(0),
+        "selection": Int(0),
     },
     rules: [
         (
@@ -209,8 +210,8 @@
                 Custom(
                     action_type: "UseItem",
                     params: {
-                        "start_dialogue": "true",
                         "index_expr": "$item_list_selection",
+                        "start_dialogue": "true",
                     },
                 ),
                 SwitchState("Normal"),

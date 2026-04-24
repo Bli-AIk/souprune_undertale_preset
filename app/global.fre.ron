@@ -15,22 +15,19 @@
 //    structure globally, please edit the Vessel source schema/configuration
 //    instead of modifying this file directly.
 // =============================================================================
+// Generated at: 2026-04-24 07:06:05 +08:00
 
 (
     scope: Global,
     enums: {},
     facts: {
-        "player:hp_max": Int(20),
-        "player:def": Int(0),
-        "player:atk": Int(0),
-        "player:lv": Int(1),
-        "player:name": String("Chara"),
-        "player:gold": Int(42),
-        "player:next_exp": Int(10),
-        "player:hp": Int(20),
-        "player:weapon": String("stick"),
         "player:armor": String("bandage"),
-        "player:inventory_capacity": Int(8),
+        "player:atk": Int(0),
+        "player:def": Int(0),
+        "player:exp": Int(0),
+        "player:gold": Int(42),
+        "player:hp": Int(20),
+        "player:hp_max": Int(20),
         "player:inventory": StringList([
             "monster_candy",
             "monster_candy",
@@ -39,7 +36,11 @@
             "monster_candy",
             "UNDEFITEM",
         ]),
-        "player:exp": Int(0),
+        "player:inventory_capacity": Int(8),
+        "player:lv": Int(1),
+        "player:name": String("Chara"),
+        "player:next_exp": Int(10),
+        "player:weapon": String("stick"),
     },
     rules: [],
 )
