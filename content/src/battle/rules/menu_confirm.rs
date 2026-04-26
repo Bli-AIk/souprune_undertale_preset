@@ -11,6 +11,22 @@ pub fn emit(reg: &mut Registry) -> Result<()> {
     Ok(())
 }
 
+fn fact_value(name: &str) -> LocalFactValue {
+    LocalFactValue::Expr(expr::fact(name).into_string())
+}
+
+fn fact_element(name: &str, index: expr::Expression) -> LocalFactValue {
+    LocalFactValue::Expr(expr::fact_at(name, index).into_string())
+}
+
+fn current_enemy_field(field: &str) -> LocalFactValue {
+    LocalFactValue::Expr(expr::dynamic_fact("current_enemy_id", field).into_string())
+}
+
+fn current_enemy_field_at(field: &str, index: expr::Expression) -> LocalFactValue {
+    LocalFactValue::Expr(expr::dynamic_fact_at("current_enemy_id", field, index).into_string())
+}
+
 pub fn asset() -> FreAsset {
     FreAsset {
         scope: RuleScopeDef::View,
@@ -38,7 +54,7 @@ pub fn asset() -> FreAsset {
                 actions: vec![
                     RuleActionDef::SetLocalFact(
                         "menu_context".into(),
-                        LocalFactValue::Expr("$button_selection".into()),
+                        fact_value("button_selection"),
                     ),
                     RuleActionDef::SetLocalFact(
                         "depth".into(),
@@ -68,23 +84,20 @@ pub fn asset() -> FreAsset {
                 actions: vec![
                     RuleActionDef::SetLocalFact(
                         "current_enemy_id".into(),
-                        LocalFactValue::Expr("$enemy_ids[$enemy_selection]".into()),
+                        fact_element("enemy_ids", expr::fact("enemy_selection")),
                     ),
-                    RuleActionDef::SetLocalFact(
-                        "act_count".into(),
-                        LocalFactValue::Expr("$${current_enemy_id}.act_count".into()),
-                    ),
+                    RuleActionDef::SetLocalFact("act_count".into(), current_enemy_field("act_count")),
                     RuleActionDef::SetLocalFact(
                         "action_labels".into(),
-                        LocalFactValue::Expr("$${current_enemy_id}.action_labels".into()),
+                        current_enemy_field("action_labels"),
                     ),
                     RuleActionDef::SetLocalFact(
                         "action_sequences".into(),
-                        LocalFactValue::Expr("$${current_enemy_id}.action_sequences".into()),
+                        current_enemy_field("action_sequences"),
                     ),
                     RuleActionDef::SetLocalFact(
                         "action_params".into(),
-                        LocalFactValue::Expr("$${current_enemy_id}.action_params".into()),
+                        current_enemy_field("action_params"),
                     ),
                     RuleActionDef::SetLocalFact(
                         "depth".into(),
@@ -113,23 +126,20 @@ pub fn asset() -> FreAsset {
                 actions: vec![
                     RuleActionDef::SetLocalFact(
                         "current_enemy_id".into(),
-                        LocalFactValue::Expr("$enemy_ids[$enemy_selection]".into()),
+                        fact_element("enemy_ids", expr::fact("enemy_selection")),
                     ),
-                    RuleActionDef::SetLocalFact(
-                        "mercy_count".into(),
-                        LocalFactValue::Expr("$${current_enemy_id}.mercy_count".into()),
-                    ),
+                    RuleActionDef::SetLocalFact("mercy_count".into(), current_enemy_field("mercy_count")),
                     RuleActionDef::SetLocalFact(
                         "mercy_labels".into(),
-                        LocalFactValue::Expr("$${current_enemy_id}.mercy_labels".into()),
+                        current_enemy_field("mercy_labels"),
                     ),
                     RuleActionDef::SetLocalFact(
                         "mercy_sequences".into(),
-                        LocalFactValue::Expr("$${current_enemy_id}.mercy_sequences".into()),
+                        current_enemy_field("mercy_sequences"),
                     ),
                     RuleActionDef::SetLocalFact(
                         "mercy_params".into(),
-                        LocalFactValue::Expr("$${current_enemy_id}.mercy_params".into()),
+                        current_enemy_field("mercy_params"),
                     ),
                     RuleActionDef::SetLocalFact(
                         "depth".into(),
@@ -188,7 +198,7 @@ pub fn asset() -> FreAsset {
                 actions: vec![
                     RuleActionDef::Custom {
                         action_type: "UseItem".into(),
-                        params: vec![("index_expr".into(), "$item_selection".into())]
+                        params: vec![("index_expr".into(), expr::fact("item_selection").into_string())]
                             .into_iter()
                             .collect(),
                     },
@@ -224,19 +234,15 @@ pub fn asset() -> FreAsset {
                 actions: vec![
                     RuleActionDef::SetLocalFact(
                         "action_param".into(),
-                        LocalFactValue::Expr(
-                            "$${current_enemy_id}.action_params[$act_selection]".into(),
-                        ),
+                        current_enemy_field_at("action_params", expr::fact("act_selection")),
                     ),
                     RuleActionDef::SetLocalFact(
                         "mortar_path".into(),
-                        LocalFactValue::Expr("$${current_enemy_id}.mortar_path".into()),
+                        current_enemy_field("mortar_path"),
                     ),
                     RuleActionDef::SetLocalFact(
                         "pending_sequence".into(),
-                        LocalFactValue::Expr(
-                            "$${current_enemy_id}.action_sequences[$act_selection]".into(),
-                        ),
+                        current_enemy_field_at("action_sequences", expr::fact("act_selection")),
                     ),
                     RuleActionDef::SetLocalFact(
                         "selection_confirmed".into(),
@@ -266,15 +272,15 @@ pub fn asset() -> FreAsset {
                 actions: vec![
                     RuleActionDef::SetLocalFact(
                         "action_param".into(),
-                        LocalFactValue::Expr("$mercy_params[$mercy_selection]".into()),
+                        fact_element("mercy_params", expr::fact("mercy_selection")),
                     ),
                     RuleActionDef::SetLocalFact(
                         "mortar_path".into(),
-                        LocalFactValue::Expr("$${current_enemy_id}.mortar_path".into()),
+                        current_enemy_field("mortar_path"),
                     ),
                     RuleActionDef::SetLocalFact(
                         "pending_sequence".into(),
-                        LocalFactValue::Expr("$mercy_sequences[$mercy_selection]".into()),
+                        fact_element("mercy_sequences", expr::fact("mercy_selection")),
                     ),
                     RuleActionDef::SetLocalFact(
                         "selection_confirmed".into(),

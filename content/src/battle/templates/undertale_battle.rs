@@ -50,11 +50,11 @@ pub fn asset() -> SequenceAsset {
                         params: vec![
                             (
                                 "turn_group".into(),
-                                FactValueMatch::Expr("$_param_turn_group".into()),
+                                FactValueMatch::Expr(expr::fact("_param_turn_group").into_string()),
                             ),
                             (
                                 "enemy_id".into(),
-                                FactValueMatch::Expr("$_param_enemy_id".into()),
+                                FactValueMatch::Expr(expr::fact("_param_enemy_id").into_string()),
                             ),
                         ]
                         .into_iter()

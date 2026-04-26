@@ -14,6 +14,95 @@ pub fn emit(reg: &mut Registry) -> Result<()> {
     Ok(())
 }
 
+fn player_hp_max_delta(width: f64) -> expr::Expression {
+    (expr::fact("player:hp_max") - 20) * width / 79
+}
+
+fn battle_hud_hp_x(base: f64) -> FloatOrExpr {
+    (expr::literal(base) + player_hp_max_delta(94.5)).into_schema()
+}
+
+fn battle_hp_bar_width() -> FloatOrExpr {
+    (expr::literal(25.0) + player_hp_max_delta(95.0)).into_schema()
+}
+
+fn battle_hp_bar_half_width() -> MaterialParamValue {
+    (expr::literal(40.0) + player_hp_max_delta(95.0) / 2).into_material_param()
+}
+
+fn player_hp_ratio_param() -> MaterialParamValue {
+    (expr::fact("player:hp") / expr::fact("player:hp_max")).into_material_param()
+}
+
+fn enemy_hp_bar_x() -> FloatOrExpr {
+    (expr::literal(15) * expr::max_strlen(expr::fact("enemy_names")) - 125).into_schema()
+}
+
+fn enemy_hp_bar_y() -> FloatOrExpr {
+    (expr::literal(31.25) - (expr::repeat_index() - expr::fact("enemy_view_offset")) * 32.0)
+        .into_schema()
+}
+
+fn enemy_hp_ratio_param() -> MaterialParamValue {
+    (expr::fact_at("enemy_hps", expr::repeat_index())
+        / expr::fact_at("enemy_hp_maxs", expr::repeat_index()))
+    .into_material_param()
+}
+
+fn menu_cursor_x() -> FloatOrExpr {
+    expr::if_else(
+        expr::fact("button_selection").equal_to(0),
+        -272.0,
+        expr::if_else(
+            expr::fact("button_selection").equal_to(1),
+            -119.0,
+            expr::if_else(expr::fact("button_selection").equal_to(2), 41.0, 196.0),
+        ),
+    )
+    .into_schema()
+}
+
+fn enemy_selection_cursor_y() -> FloatOrExpr {
+    (expr::literal(-45.5)
+        - (expr::fact("enemy_selection") - expr::fact("enemy_view_offset")) * 32.0)
+        .into_schema()
+}
+
+fn act_selection_cursor_x() -> FloatOrExpr {
+    expr::if_else(
+        (expr::fact("act_selection") % 2).equal_to(0),
+        -248.0,
+        11.5,
+    )
+    .into_schema()
+}
+
+fn act_selection_cursor_y() -> FloatOrExpr {
+    (expr::literal(-45.5) - expr::floor(expr::fact("act_selection") / 2) * 32.0).into_schema()
+}
+
+fn mercy_selection_cursor_y() -> FloatOrExpr {
+    (expr::literal(-45.5) - expr::fact("mercy_selection") * 32.0).into_schema()
+}
+
+fn item_selection_cursor_x() -> FloatOrExpr {
+    expr::if_else(
+        (expr::fact("item_selection") % 2).equal_to(0),
+        -248.0,
+        0.0,
+    )
+    .into_schema()
+}
+
+fn item_selection_cursor_y() -> FloatOrExpr {
+    (expr::literal(-45.5) - expr::floor(expr::fact("item_selection") % 4 / 2) * 32.0)
+        .into_schema()
+}
+
+fn attack_bar_x() -> FloatOrExpr {
+    expr::fact("fight:bar_x").into_schema()
+}
+
 /// Build the typed asset value.
 ///
 /// 构建该资源的类型化值。
@@ -223,8 +312,8 @@ pub fn asset() -> ViewLayoutAsset {
                             transform: Some(SerializableTransform {
                                 translation: Some(
                                     vector3_value(
-                                        expression("15 * max_strlen($enemy_names) - 125"),
-                                        expression("31.25 - (@i - $enemy_view_offset) * 32.0"),
+                                        enemy_hp_bar_x(),
+                                        enemy_hp_bar_y(),
                                         static_float(10.0),
                                     ),
                                 ),
@@ -237,12 +326,7 @@ pub fn asset() -> ViewLayoutAsset {
                                 params: Vec::from([
                                         ("alpha".into(), MaterialParamValue::Static(1.0)),
                                         ("half_width".into(), MaterialParamValue::Static(50.0)),
-                                        (
-                                            "hp_ratio".into(),
-                                            MaterialParamValue::Expr(
-                                                "$enemy_hps[@i] / $enemy_hp_maxs[@i]".into(),
-                                            ),
-                                        ),
+                                        ("hp_ratio".into(), enemy_hp_ratio_param()),
                                         ("lag_ratio".into(), MaterialParamValue::Static(1.0)),
                                     ])
                                     .into_iter()
@@ -279,14 +363,9 @@ pub fn asset() -> ViewLayoutAsset {
                     transform: Some(SerializableTransform {
                         translation: Some(
                             vector3_value(
-                                expression(
-                                    concat!(
-                                        "if($button_selection == 0, -272.0, if($button_selection == 1, -119.0, if",
-                                        "($button_selection == 2, 41.0, 196.0)))",
-                                    ),
-                                ),
-                                expression("-214.0"),
-                                expression("2.0"),
+                                menu_cursor_x(),
+                                expr::literal(-214.0).into_schema(),
+                                expr::literal(2.0).into_schema(),
                             ),
                         ),
                         ..Default::default()
@@ -310,11 +389,9 @@ pub fn asset() -> ViewLayoutAsset {
                     transform: Some(SerializableTransform {
                         translation: Some(
                             vector3_value(
-                                expression("-248.0"),
-                                expression(
-                                    "-45.5 - ($enemy_selection - $enemy_view_offset) * 32.0",
-                                ),
-                                expression("10.0"),
+                                expr::literal(-248.0).into_schema(),
+                                enemy_selection_cursor_y(),
+                                expr::literal(10.0).into_schema(),
                             ),
                         ),
                         ..Default::default()
@@ -334,9 +411,9 @@ pub fn asset() -> ViewLayoutAsset {
                     transform: Some(SerializableTransform {
                         translation: Some(
                             vector3_value(
-                                expression("if($act_selection % 2 == 0, -248.0, 11.5)"),
-                                expression("-45.5 - floor($act_selection / 2) * 32.0"),
-                                expression("10.0"),
+                                act_selection_cursor_x(),
+                                act_selection_cursor_y(),
+                                expr::literal(10.0).into_schema(),
                             ),
                         ),
                         ..Default::default()
@@ -356,9 +433,9 @@ pub fn asset() -> ViewLayoutAsset {
                     transform: Some(SerializableTransform {
                         translation: Some(
                             vector3_value(
-                                expression("-248.0"),
-                                expression("-45.5 - $mercy_selection * 32.0"),
-                                expression("10.0"),
+                                expr::literal(-248.0).into_schema(),
+                                mercy_selection_cursor_y(),
+                                expr::literal(10.0).into_schema(),
                             ),
                         ),
                         ..Default::default()
@@ -378,9 +455,9 @@ pub fn asset() -> ViewLayoutAsset {
                     transform: Some(SerializableTransform {
                         translation: Some(
                             vector3_value(
-                                expression("if($item_selection % 2 == 0, -248.0, 0.0)"),
-                                expression("-45.5 - floor($item_selection % 4 / 2) * 32.0"),
-                                expression("10.0"),
+                                item_selection_cursor_x(),
+                                item_selection_cursor_y(),
+                                expr::literal(10.0).into_schema(),
                             ),
                         ),
                         ..Default::default()
@@ -534,7 +611,7 @@ pub fn asset() -> ViewLayoutAsset {
                     height: 120.0,
                     border_width: 4.25,
                     offset: vector3_value(
-                        expression("$fight:bar_x"),
+                        attack_bar_x(),
                         static_float(-80.5),
                         static_float(11.0),
                     ),
@@ -587,7 +664,7 @@ pub fn asset() -> ViewLayoutAsset {
                         transform: SerializableTransform {
                             translation: Some(
                                 vector3_value(
-                                    expression("-5.5 + ($player:hp_max - 20) * 94.5 / 79"),
+                                    battle_hud_hp_x(-5.5),
                                     static_float(-156.5),
                                     static_float(1.0),
                                 ),
@@ -604,7 +681,7 @@ pub fn asset() -> ViewLayoutAsset {
                         transform: SerializableTransform {
                             translation: Some(
                                 vector3_value(
-                                    expression("33.5 + ($player:hp_max - 20) * 94.5 / 79"),
+                                    battle_hud_hp_x(33.5),
                                     static_float(-156.5),
                                     static_float(1.0),
                                 ),
@@ -621,7 +698,7 @@ pub fn asset() -> ViewLayoutAsset {
                         transform: SerializableTransform {
                             translation: Some(
                                 vector3_value(
-                                    expression("57.5 + ($player:hp_max - 20) * 94.5 / 79"),
+                                    battle_hud_hp_x(57.5),
                                     static_float(-156.5),
                                     static_float(1.0),
                                 ),
@@ -654,7 +731,7 @@ pub fn asset() -> ViewLayoutAsset {
                                 translation: Some(vector3(-45.0, -170.5, 1.0)),
                                 scale: Some(
                                     vector3_value(
-                                        expression("25.0 + ($player:hp_max - 20) * 95.0 / 79"),
+                                        battle_hp_bar_width(),
                                         static_float(20.5),
                                         static_float(1.0),
                                     ),
@@ -668,16 +745,9 @@ pub fn asset() -> ViewLayoutAsset {
                                         ("alpha".into(), MaterialParamValue::Static(1.0)),
                                         (
                                             "half_width".into(),
-                                            MaterialParamValue::Expr(
-                                                "40.0 + ($player:hp_max - 20) * 95.0 / 79 / 2".into(),
-                                            ),
+                                            battle_hp_bar_half_width(),
                                         ),
-                                        (
-                                            "hp_ratio".into(),
-                                            MaterialParamValue::Expr(
-                                                "$player:hp / $player:hp_max".into(),
-                                            ),
-                                        ),
+                                        ("hp_ratio".into(), player_hp_ratio_param()),
                                         ("lag_ratio".into(), MaterialParamValue::Static(1.0)),
                                     ])
                                     .into_iter()

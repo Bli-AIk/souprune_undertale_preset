@@ -11,6 +11,19 @@ pub fn emit(reg: &mut Registry) -> Result<()> {
     Ok(())
 }
 
+fn fact_value(name: &str) -> LocalFactValue {
+    LocalFactValue::Expr(expr::fact(name).into_string())
+}
+
+fn fact_shift(name: &str, amount: i64) -> LocalFactValue {
+    let value = if amount < 0 {
+        expr::fact(name) - amount.abs()
+    } else {
+        expr::fact(name) + amount
+    };
+    LocalFactValue::Expr(value.into_string())
+}
+
 pub fn asset() -> FreAsset {
     FreAsset {
         scope: RuleScopeDef::View,
@@ -44,7 +57,7 @@ pub fn asset() -> FreAsset {
                 actions: vec![
                     RuleActionDef::SetLocalFact(
                         "selection".into(),
-                        LocalFactValue::Expr("$selection - 1".into()),
+                        fact_shift("selection", -1),
                     ),
                     RuleActionDef::PlaySound("choice".into()),
                 ],
@@ -64,7 +77,7 @@ pub fn asset() -> FreAsset {
                 actions: vec![
                     RuleActionDef::SetLocalFact(
                         "selection".into(),
-                        LocalFactValue::Expr("$selection + 1".into()),
+                        fact_shift("selection", 1),
                     ),
                     RuleActionDef::PlaySound("choice".into()),
                 ],
@@ -87,7 +100,7 @@ pub fn asset() -> FreAsset {
                 actions: vec![
                     RuleActionDef::SetLocalFact(
                         "selection".into(),
-                        LocalFactValue::Expr("$selection + 1".into()),
+                        fact_shift("selection", 1),
                     ),
                     RuleActionDef::PlaySound("choice".into()),
                 ],
@@ -107,7 +120,7 @@ pub fn asset() -> FreAsset {
                 actions: vec![
                     RuleActionDef::SetLocalFact(
                         "selection".into(),
-                        LocalFactValue::Expr("$selection - 1".into()),
+                        fact_shift("selection", -1),
                     ),
                     RuleActionDef::PlaySound("choice".into()),
                 ],
@@ -127,7 +140,7 @@ pub fn asset() -> FreAsset {
                 actions: vec![
                     RuleActionDef::SetLocalFact(
                         "selection".into(),
-                        LocalFactValue::Expr("$selection + 1".into()),
+                        fact_shift("selection", 1),
                     ),
                     RuleActionDef::PlaySound("choice".into()),
                 ],
@@ -189,7 +202,7 @@ pub fn asset() -> FreAsset {
                 actions: vec![
                     RuleActionDef::SetLocalFact(
                         "item_list_selection".into(),
-                        LocalFactValue::Expr("$selection".into()),
+                        fact_value("selection"),
                     ),
                     RuleActionDef::SetLocalFact(
                         "depth".into(),
@@ -216,7 +229,10 @@ pub fn asset() -> FreAsset {
                         action_type: "UseItem".into(),
                         params: vec![
                             ("start_dialogue".into(), "true".into()),
-                            ("index_expr".into(), "$item_list_selection".into()),
+                            (
+                                "index_expr".into(),
+                                expr::fact("item_list_selection").into_string(),
+                            ),
                         ]
                         .into_iter()
                         .collect(),
@@ -240,9 +256,12 @@ pub fn asset() -> FreAsset {
                 actions: vec![
                     RuleActionDef::Custom {
                         action_type: "CheckItem".into(),
-                        params: vec![("index_expr".into(), "$item_list_selection".into())]
-                            .into_iter()
-                            .collect(),
+                        params: vec![(
+                            "index_expr".into(),
+                            expr::fact("item_list_selection").into_string(),
+                        )]
+                        .into_iter()
+                        .collect(),
                     },
                     RuleActionDef::SwitchState("Normal".into()),
                     RuleActionDef::PlaySound("confirm".into()),
@@ -263,9 +282,12 @@ pub fn asset() -> FreAsset {
                 actions: vec![
                     RuleActionDef::Custom {
                         action_type: "DropItem".into(),
-                        params: vec![("index_expr".into(), "$item_list_selection".into())]
-                            .into_iter()
-                            .collect(),
+                        params: vec![(
+                            "index_expr".into(),
+                            expr::fact("item_list_selection").into_string(),
+                        )]
+                        .into_iter()
+                        .collect(),
                     },
                     RuleActionDef::SwitchState("Normal".into()),
                     RuleActionDef::PlaySound("confirm".into()),

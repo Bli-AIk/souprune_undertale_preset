@@ -14,6 +14,25 @@ pub fn emit(reg: &mut Registry) -> Result<()> {
     Ok(())
 }
 
+fn menu_cursor_y() -> FloatOrExpr {
+    (expr::literal(18.5) + expr::group(expr::literal(-18.0) * expr::fact("selection")))
+        .into_schema()
+}
+
+fn item_cursor_y() -> FloatOrExpr {
+    (expr::literal(68) + expr::group(expr::literal(-16.0) * expr::fact("selection")))
+        .into_schema()
+}
+
+fn options_cursor_x() -> FloatOrExpr {
+    expr::if_else(
+        expr::fact("selection").equal_to(0),
+        -72.0,
+        expr::if_else(expr::fact("selection").equal_to(1), -24.25, 33.0),
+    )
+    .into_schema()
+}
+
 /// Build the typed asset value.
 ///
 /// 构建该资源的类型化值。
@@ -72,9 +91,9 @@ pub fn asset() -> ViewLayoutAsset {
                             transform: Some(SerializableTransform {
                                 translation: Some(
                                     vector3_value(
-                                        expression("-19.0"),
-                                        expression("18.5 + (-18.0 * $selection)"),
-                                        expression("6.0"),
+                                        expr::literal(-19.0).into_schema(),
+                                        menu_cursor_y(),
+                                        expr::literal(6.0).into_schema(),
                                     ),
                                 ),
                                 ..Default::default()
@@ -221,9 +240,9 @@ pub fn asset() -> ViewLayoutAsset {
                             transform: Some(SerializableTransform {
                                 translation: Some(
                                     vector3_value(
-                                        expression("-72.0"),
-                                        expression("68 + (-16.0 * $selection)"),
-                                        expression("6.0"),
+                                        expr::literal(-72.0).into_schema(),
+                                        item_cursor_y(),
+                                        expr::literal(6.0).into_schema(),
                                     ),
                                 ),
                                 ..Default::default()
@@ -241,11 +260,9 @@ pub fn asset() -> ViewLayoutAsset {
                             transform: Some(SerializableTransform {
                                 translation: Some(
                                     vector3_value(
-                                        expression(
-                                            "if($selection == 0, -72.0, if($selection == 1, -24.25, 33.0))",
-                                        ),
-                                        expression("-72.0"),
-                                        expression("6.0"),
+                                        options_cursor_x(),
+                                        expr::literal(-72.0).into_schema(),
+                                        expr::literal(6.0).into_schema(),
                                     ),
                                 ),
                                 ..Default::default()
