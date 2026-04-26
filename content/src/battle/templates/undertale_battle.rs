@@ -48,14 +48,8 @@ pub fn asset() -> SequenceAsset {
                         path: Some("battle/common/enemy_turn.sequence.ron".into()),
                         path_fact: None,
                         params: vec![
-                            (
-                                "turn_group".into(),
-                                FactValueMatch::Expr(expr::fact("_param_turn_group").into_string()),
-                            ),
-                            (
-                                "enemy_id".into(),
-                                FactValueMatch::Expr(expr::fact("_param_enemy_id").into_string()),
-                            ),
+                            ("turn_group".into(), expr::fact("_param_turn_group").into()),
+                            ("enemy_id".into(), expr::fact("_param_enemy_id").into()),
                         ]
                         .into_iter()
                         .collect(),

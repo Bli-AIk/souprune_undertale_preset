@@ -15,13 +15,11 @@ pub fn emit(reg: &mut Registry) -> Result<()> {
 }
 
 fn menu_cursor_y() -> FloatOrExpr {
-    (expr::literal(18.5) + expr::group(expr::literal(-18.0) * expr::fact("selection")))
-        .into_schema()
+    (18.5 + expr::group(-18.0 * expr::fact("selection"))).into()
 }
 
 fn item_cursor_y() -> FloatOrExpr {
-    (expr::literal(68) + expr::group(expr::literal(-16.0) * expr::fact("selection")))
-        .into_schema()
+    (68 + expr::group(-16.0 * expr::fact("selection"))).into()
 }
 
 fn options_cursor_x() -> FloatOrExpr {
@@ -30,7 +28,7 @@ fn options_cursor_x() -> FloatOrExpr {
         -72.0,
         expr::if_else(expr::fact("selection").equal_to(1), -24.25, 33.0),
     )
-    .into_schema()
+    .into()
 }
 
 /// Build the typed asset value.
@@ -90,10 +88,10 @@ pub fn asset() -> ViewLayoutAsset {
                             color: Some(red()),
                             transform: Some(SerializableTransform {
                                 translation: Some(
-                                    vector3_value(
-                                        expr::literal(-19.0).into_schema(),
+                                    vector3(
+                                        expr::literal(-19.0),
                                         menu_cursor_y(),
-                                        expr::literal(6.0).into_schema(),
+                                        expr::literal(6.0),
                                     ),
                                 ),
                                 ..Default::default()
@@ -239,10 +237,10 @@ pub fn asset() -> ViewLayoutAsset {
                             color: Some(red()),
                             transform: Some(SerializableTransform {
                                 translation: Some(
-                                    vector3_value(
-                                        expr::literal(-72.0).into_schema(),
+                                    vector3(
+                                        expr::literal(-72.0),
                                         item_cursor_y(),
-                                        expr::literal(6.0).into_schema(),
+                                        expr::literal(6.0),
                                     ),
                                 ),
                                 ..Default::default()
@@ -259,10 +257,10 @@ pub fn asset() -> ViewLayoutAsset {
                             color: Some(red()),
                             transform: Some(SerializableTransform {
                                 translation: Some(
-                                    vector3_value(
+                                    vector3(
                                         options_cursor_x(),
-                                        expr::literal(-72.0).into_schema(),
-                                        expr::literal(6.0).into_schema(),
+                                        expr::literal(-72.0),
+                                        expr::literal(6.0),
                                     ),
                                 ),
                                 ..Default::default()

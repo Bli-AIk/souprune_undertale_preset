@@ -17,7 +17,7 @@ fn fact_shift(name: &str, amount: i64) -> LocalFactValue {
     } else {
         expr::fact(name) + amount
     };
-    LocalFactValue::Expr(value.into_string())
+    value.into()
 }
 
 pub fn asset() -> FreAsset {

@@ -12,19 +12,19 @@ pub fn emit(reg: &mut Registry) -> Result<()> {
 }
 
 fn fact_value(name: &str) -> LocalFactValue {
-    LocalFactValue::Expr(expr::fact(name).into_string())
+    expr::fact(name).into()
 }
 
 fn fact_element(name: &str, index: expr::Expression) -> LocalFactValue {
-    LocalFactValue::Expr(expr::fact_at(name, index).into_string())
+    expr::fact_at(name, index).into()
 }
 
 fn current_enemy_field(field: &str) -> LocalFactValue {
-    LocalFactValue::Expr(expr::dynamic_fact("current_enemy_id", field).into_string())
+    expr::dynamic_fact("current_enemy_id", field).into()
 }
 
 fn current_enemy_field_at(field: &str, index: expr::Expression) -> LocalFactValue {
-    LocalFactValue::Expr(expr::dynamic_fact_at("current_enemy_id", field, index).into_string())
+    expr::dynamic_fact_at("current_enemy_id", field, index).into()
 }
 
 pub fn asset() -> FreAsset {
@@ -198,7 +198,7 @@ pub fn asset() -> FreAsset {
                 actions: vec![
                     RuleActionDef::Custom {
                         action_type: "UseItem".into(),
-                        params: vec![("index_expr".into(), expr::fact("item_selection").into_string())]
+                        params: vec![("index_expr".into(), expr::fact("item_selection").into())]
                             .into_iter()
                             .collect(),
                     },

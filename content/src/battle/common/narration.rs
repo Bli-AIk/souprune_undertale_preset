@@ -41,11 +41,11 @@ pub fn asset() -> SequenceAsset {
                 modifications: vec![
                     FactModificationDef::Set {
                         key: "dialogue:pending_mortar_path".into(),
-                        value: FactValueMatch::Expr(expr::fact("mortar_path").into_string()),
+                        value: expr::fact("mortar_path").into(),
                     },
                     FactModificationDef::Set {
                         key: "dialogue:pending_mortar_node".into(),
-                        value: FactValueMatch::Expr(expr::fact("action_param").into_string()),
+                        value: expr::fact("action_param").into(),
                     },
                     FactModificationDef::Set {
                         key: "dialogue:pending_start".into(),

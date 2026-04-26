@@ -4,7 +4,6 @@
 
 use anyhow::Result;
 use souprune_schema::sequence::*;
-use souprune_schema::val::*;
 use souprune_vessel::prelude::*;
 
 pub fn emit(reg: &mut Registry) -> Result<()> {
@@ -102,7 +101,7 @@ pub fn asset() -> SequenceAsset {
                 },
                 Chapter::SetViewElement {
                     selector: ElementSelector::local("DumbTarget"),
-                    target: TweenTarget::scale(Vec3Tuple::positional(0.0, 1.0, 1.0)),
+                    target: TweenTarget::scale((0.0, 1.0, 1.0)),
                     duration: Some(0.4),
                     easing: EaseKindRepr::Linear,
                     wait_for_completion: true,

@@ -12,7 +12,7 @@ pub fn emit(reg: &mut Registry) -> Result<()> {
 }
 
 fn fact_value(name: &str) -> LocalFactValue {
-    LocalFactValue::Expr(expr::fact(name).into_string())
+    expr::fact(name).into()
 }
 
 fn fact_shift(name: &str, amount: i64) -> LocalFactValue {
@@ -21,7 +21,7 @@ fn fact_shift(name: &str, amount: i64) -> LocalFactValue {
     } else {
         expr::fact(name) + amount
     };
-    LocalFactValue::Expr(value.into_string())
+    value.into()
 }
 
 pub fn asset() -> FreAsset {
@@ -231,7 +231,7 @@ pub fn asset() -> FreAsset {
                             ("start_dialogue".into(), "true".into()),
                             (
                                 "index_expr".into(),
-                                expr::fact("item_list_selection").into_string(),
+                                expr::fact("item_list_selection").into(),
                             ),
                         ]
                         .into_iter()
@@ -258,7 +258,7 @@ pub fn asset() -> FreAsset {
                         action_type: "CheckItem".into(),
                         params: vec![(
                             "index_expr".into(),
-                            expr::fact("item_list_selection").into_string(),
+                            expr::fact("item_list_selection").into(),
                         )]
                         .into_iter()
                         .collect(),
@@ -284,7 +284,7 @@ pub fn asset() -> FreAsset {
                         action_type: "DropItem".into(),
                         params: vec![(
                             "index_expr".into(),
-                            expr::fact("item_list_selection").into_string(),
+                            expr::fact("item_list_selection").into(),
                         )]
                         .into_iter()
                         .collect(),

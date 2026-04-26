@@ -19,19 +19,19 @@ fn player_hp_max_delta(width: f64) -> expr::Expression {
 }
 
 fn chase_hud_hp_x(base: f64) -> FloatOrExpr {
-    (expr::literal(base) + player_hp_max_delta(47.0)).into_schema()
+    (base + player_hp_max_delta(47.0)).into()
 }
 
 fn chase_hp_bar_width() -> FloatOrExpr {
-    (expr::literal(12.5) + player_hp_max_delta(47.5)).into_schema()
+    (12.5 + player_hp_max_delta(47.5)).into()
 }
 
 fn chase_hp_bar_half_width() -> MaterialParamValue {
-    (expr::literal(20.0) + player_hp_max_delta(47.5) / 2).into_material_param()
+    (20.0 + player_hp_max_delta(47.5) / 2).into()
 }
 
 fn player_hp_ratio_param() -> MaterialParamValue {
-    (expr::fact("player:hp") / expr::fact("player:hp_max")).into_material_param()
+    (expr::fact("player:hp") / expr::fact("player:hp_max")).into()
 }
 
 /// Build the typed asset value.
@@ -81,10 +81,10 @@ pub fn asset() -> ViewLayoutAsset {
                     content: Some("{$player:hp}".into()),
                     world_scale: vector2(24.0, 24.0),
                     transform: SerializableTransform {
-                        translation: Some(vector3_value(
+                        translation: Some(vector3(
                             chase_hud_hp_x(-3.0),
-                            static_float(-97.0),
-                            static_float(501.0),
+                            -97.0,
+                            501.0,
                         )),
                         ..Default::default()
                     },
@@ -96,10 +96,10 @@ pub fn asset() -> ViewLayoutAsset {
                     content: Some("/".into()),
                     world_scale: vector2(24.0, 24.0),
                     transform: SerializableTransform {
-                        translation: Some(vector3_value(
+                        translation: Some(vector3(
                             chase_hud_hp_x(17.0),
-                            static_float(-97.0),
-                            static_float(501.0),
+                            -97.0,
+                            501.0,
                         )),
                         ..Default::default()
                     },
@@ -111,10 +111,10 @@ pub fn asset() -> ViewLayoutAsset {
                     content: Some("{$player:hp_max}".into()),
                     world_scale: vector2(24.0, 24.0),
                     transform: SerializableTransform {
-                        translation: Some(vector3_value(
+                        translation: Some(vector3(
                             chase_hud_hp_x(29.0),
-                            static_float(-97.0),
-                            static_float(501.0),
+                            -97.0,
+                            501.0,
                         )),
                         ..Default::default()
                     },
@@ -140,10 +140,10 @@ pub fn asset() -> ViewLayoutAsset {
                         visual: Visual("procedural://white_pixel".into()),
                         transform: Some(SerializableTransform {
                             translation: Some(vector3(-22.0, -105.0, 501.0)),
-                            scale: Some(vector3_value(
+                            scale: Some(vector3(
                                 chase_hp_bar_width(),
-                                static_float(10.0),
-                                static_float(1.0),
+                                10.0,
+                                1.0,
                             )),
                             ..Default::default()
                         }),

@@ -19,34 +19,33 @@ fn player_hp_max_delta(width: f64) -> expr::Expression {
 }
 
 fn battle_hud_hp_x(base: f64) -> FloatOrExpr {
-    (expr::literal(base) + player_hp_max_delta(94.5)).into_schema()
+    (base + player_hp_max_delta(94.5)).into()
 }
 
 fn battle_hp_bar_width() -> FloatOrExpr {
-    (expr::literal(25.0) + player_hp_max_delta(95.0)).into_schema()
+    (25.0 + player_hp_max_delta(95.0)).into()
 }
 
 fn battle_hp_bar_half_width() -> MaterialParamValue {
-    (expr::literal(40.0) + player_hp_max_delta(95.0) / 2).into_material_param()
+    (40.0 + player_hp_max_delta(95.0) / 2).into()
 }
 
 fn player_hp_ratio_param() -> MaterialParamValue {
-    (expr::fact("player:hp") / expr::fact("player:hp_max")).into_material_param()
+    (expr::fact("player:hp") / expr::fact("player:hp_max")).into()
 }
 
 fn enemy_hp_bar_x() -> FloatOrExpr {
-    (expr::literal(15) * expr::max_strlen(expr::fact("enemy_names")) - 125).into_schema()
+    (15 * expr::max_strlen(expr::fact("enemy_names")) - 125).into()
 }
 
 fn enemy_hp_bar_y() -> FloatOrExpr {
-    (expr::literal(31.25) - (expr::repeat_index() - expr::fact("enemy_view_offset")) * 32.0)
-        .into_schema()
+    (31.25 - (expr::repeat_index() - expr::fact("enemy_view_offset")) * 32.0).into()
 }
 
 fn enemy_hp_ratio_param() -> MaterialParamValue {
     (expr::fact_at("enemy_hps", expr::repeat_index())
         / expr::fact_at("enemy_hp_maxs", expr::repeat_index()))
-    .into_material_param()
+    .into()
 }
 
 fn menu_cursor_x() -> FloatOrExpr {
@@ -58,14 +57,11 @@ fn menu_cursor_x() -> FloatOrExpr {
             -119.0,
             expr::if_else(expr::fact("button_selection").equal_to(2), 41.0, 196.0),
         ),
-    )
-    .into_schema()
+    ).into()
 }
 
 fn enemy_selection_cursor_y() -> FloatOrExpr {
-    (expr::literal(-45.5)
-        - (expr::fact("enemy_selection") - expr::fact("enemy_view_offset")) * 32.0)
-        .into_schema()
+    (-45.5 - (expr::fact("enemy_selection") - expr::fact("enemy_view_offset")) * 32.0).into()
 }
 
 fn act_selection_cursor_x() -> FloatOrExpr {
@@ -73,16 +69,15 @@ fn act_selection_cursor_x() -> FloatOrExpr {
         (expr::fact("act_selection") % 2).equal_to(0),
         -248.0,
         11.5,
-    )
-    .into_schema()
+    ).into()
 }
 
 fn act_selection_cursor_y() -> FloatOrExpr {
-    (expr::literal(-45.5) - expr::floor(expr::fact("act_selection") / 2) * 32.0).into_schema()
+    (-45.5 - expr::floor(expr::fact("act_selection") / 2) * 32.0).into()
 }
 
 fn mercy_selection_cursor_y() -> FloatOrExpr {
-    (expr::literal(-45.5) - expr::fact("mercy_selection") * 32.0).into_schema()
+    (-45.5 - expr::fact("mercy_selection") * 32.0).into()
 }
 
 fn item_selection_cursor_x() -> FloatOrExpr {
@@ -90,17 +85,15 @@ fn item_selection_cursor_x() -> FloatOrExpr {
         (expr::fact("item_selection") % 2).equal_to(0),
         -248.0,
         0.0,
-    )
-    .into_schema()
+    ).into()
 }
 
 fn item_selection_cursor_y() -> FloatOrExpr {
-    (expr::literal(-45.5) - expr::floor(expr::fact("item_selection") % 4 / 2) * 32.0)
-        .into_schema()
+    (-45.5 - expr::floor(expr::fact("item_selection") % 4 / 2) * 32.0).into()
 }
 
 fn attack_bar_x() -> FloatOrExpr {
-    expr::fact("fight:bar_x").into_schema()
+    expr::fact("fight:bar_x").into()
 }
 
 /// Build the typed asset value.
@@ -311,10 +304,10 @@ pub fn asset() -> ViewLayoutAsset {
                             visual: Visual("procedural://white_pixel".into()),
                             transform: Some(SerializableTransform {
                                 translation: Some(
-                                    vector3_value(
+                                    vector3(
                                         enemy_hp_bar_x(),
                                         enemy_hp_bar_y(),
-                                        static_float(10.0),
+                                        10.0,
                                     ),
                                 ),
                                 scale: Some(vector3(100.75, 17.0, 1.0)),
@@ -362,10 +355,10 @@ pub fn asset() -> ViewLayoutAsset {
                     color: Some(red()),
                     transform: Some(SerializableTransform {
                         translation: Some(
-                            vector3_value(
+                            vector3(
                                 menu_cursor_x(),
-                                expr::literal(-214.0).into_schema(),
-                                expr::literal(2.0).into_schema(),
+                                expr::literal(-214.0),
+                                expr::literal(2.0),
                             ),
                         ),
                         ..Default::default()
@@ -388,10 +381,10 @@ pub fn asset() -> ViewLayoutAsset {
                     color: Some(red()),
                     transform: Some(SerializableTransform {
                         translation: Some(
-                            vector3_value(
-                                expr::literal(-248.0).into_schema(),
+                            vector3(
+                                expr::literal(-248.0),
                                 enemy_selection_cursor_y(),
-                                expr::literal(10.0).into_schema(),
+                                expr::literal(10.0),
                             ),
                         ),
                         ..Default::default()
@@ -410,10 +403,10 @@ pub fn asset() -> ViewLayoutAsset {
                     color: Some(red()),
                     transform: Some(SerializableTransform {
                         translation: Some(
-                            vector3_value(
+                            vector3(
                                 act_selection_cursor_x(),
                                 act_selection_cursor_y(),
-                                expr::literal(10.0).into_schema(),
+                                expr::literal(10.0),
                             ),
                         ),
                         ..Default::default()
@@ -432,10 +425,10 @@ pub fn asset() -> ViewLayoutAsset {
                     color: Some(red()),
                     transform: Some(SerializableTransform {
                         translation: Some(
-                            vector3_value(
-                                expr::literal(-248.0).into_schema(),
+                            vector3(
+                                expr::literal(-248.0),
                                 mercy_selection_cursor_y(),
-                                expr::literal(10.0).into_schema(),
+                                expr::literal(10.0),
                             ),
                         ),
                         ..Default::default()
@@ -454,10 +447,10 @@ pub fn asset() -> ViewLayoutAsset {
                     color: Some(red()),
                     transform: Some(SerializableTransform {
                         translation: Some(
-                            vector3_value(
+                            vector3(
                                 item_selection_cursor_x(),
                                 item_selection_cursor_y(),
-                                expr::literal(10.0).into_schema(),
+                                expr::literal(10.0),
                             ),
                         ),
                         ..Default::default()
@@ -610,10 +603,10 @@ pub fn asset() -> ViewLayoutAsset {
                     width: 6.0,
                     height: 120.0,
                     border_width: 4.25,
-                    offset: vector3_value(
+                    offset: vector3(
                         attack_bar_x(),
-                        static_float(-80.5),
-                        static_float(11.0),
+                        -80.5,
+                        11.0,
                     ),
                     structure_file: Some("view/structures/attack_bar.sdf.ron".into()),
                     ..Default::default()
@@ -663,10 +656,10 @@ pub fn asset() -> ViewLayoutAsset {
                         world_scale: vector2(24.0, 24.0),
                         transform: SerializableTransform {
                             translation: Some(
-                                vector3_value(
+                                vector3(
                                     battle_hud_hp_x(-5.5),
-                                    static_float(-156.5),
-                                    static_float(1.0),
+                                    -156.5,
+                                    1.0,
                                 ),
                             ),
                             ..Default::default()
@@ -680,10 +673,10 @@ pub fn asset() -> ViewLayoutAsset {
                         world_scale: vector2(24.0, 24.0),
                         transform: SerializableTransform {
                             translation: Some(
-                                vector3_value(
+                                vector3(
                                     battle_hud_hp_x(33.5),
-                                    static_float(-156.5),
-                                    static_float(1.0),
+                                    -156.5,
+                                    1.0,
                                 ),
                             ),
                             ..Default::default()
@@ -697,10 +690,10 @@ pub fn asset() -> ViewLayoutAsset {
                         world_scale: vector2(24.0, 24.0),
                         transform: SerializableTransform {
                             translation: Some(
-                                vector3_value(
+                                vector3(
                                     battle_hud_hp_x(57.5),
-                                    static_float(-156.5),
-                                    static_float(1.0),
+                                    -156.5,
+                                    1.0,
                                 ),
                             ),
                             ..Default::default()
@@ -730,10 +723,10 @@ pub fn asset() -> ViewLayoutAsset {
                             transform: Some(SerializableTransform {
                                 translation: Some(vector3(-45.0, -170.5, 1.0)),
                                 scale: Some(
-                                    vector3_value(
+                                    vector3(
                                         battle_hp_bar_width(),
-                                        static_float(20.5),
-                                        static_float(1.0),
+                                        20.5,
+                                        1.0,
                                     ),
                                 ),
                                 ..Default::default()
