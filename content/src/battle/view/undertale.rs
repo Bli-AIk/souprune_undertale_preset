@@ -14,20 +14,16 @@ pub fn emit(reg: &mut Registry) -> Result<()> {
     Ok(())
 }
 
-fn player_hp_max_delta(width: f64) -> expr::Expression {
-    (expr::fact("player:hp_max") - 20) * width / 79
-}
-
 fn battle_hud_hp_x(base: f64) -> FloatOrExpr {
-    (base + player_hp_max_delta(94.5)).into()
+    (base + expr::fact("player:hp_max") * 1.2).into()
 }
 
 fn battle_hp_bar_width() -> FloatOrExpr {
-    (25.0 + player_hp_max_delta(95.0)).into()
+    (expr::fact("player:hp_max") * 1.2).into()
 }
 
 fn battle_hp_bar_half_width() -> MaterialParamValue {
-    (40.0 + player_hp_max_delta(95.0) / 2).into()
+    (expr::fact("player:hp_max") * 0.6).into()
 }
 
 fn player_hp_ratio_param() -> MaterialParamValue {
@@ -35,11 +31,11 @@ fn player_hp_ratio_param() -> MaterialParamValue {
 }
 
 fn enemy_hp_bar_x() -> FloatOrExpr {
-    (15 * expr::max_strlen(expr::fact("enemy_names")) - 125).into()
+    (-130 + expr::max_strlen(expr::fact("enemy_names")) * 16).into()
 }
 
 fn enemy_hp_bar_y() -> FloatOrExpr {
-    (31.25 - (expr::repeat_index() - expr::fact("enemy_view_offset")) * 32.0).into()
+    (-32.0 + (expr::repeat_index() - expr::fact("enemy_view_offset")) * 32.0).into()
 }
 
 fn enemy_hp_ratio_param() -> MaterialParamValue {
@@ -51,49 +47,78 @@ fn enemy_hp_ratio_param() -> MaterialParamValue {
 fn menu_cursor_x() -> FloatOrExpr {
     expr::if_else(
         expr::fact("button_selection").equal_to(0),
-        -272.0,
+        48.0,
         expr::if_else(
             expr::fact("button_selection").equal_to(1),
-            -119.0,
-            expr::if_else(expr::fact("button_selection").equal_to(2), 41.0, 196.0),
+            201.0,
+            expr::if_else(expr::fact("button_selection").equal_to(2), 361.0, 516.0),
         ),
     ).into()
 }
 
 fn enemy_selection_cursor_y() -> FloatOrExpr {
-    (-45.5 - (expr::fact("enemy_selection") - expr::fact("enemy_view_offset")) * 32.0).into()
+    (286.0 + (expr::fact("enemy_selection") - expr::fact("enemy_view_offset")) * 32.0).into()
 }
 
 fn act_selection_cursor_x() -> FloatOrExpr {
     expr::if_else(
         (expr::fact("act_selection") % 2).equal_to(0),
-        -248.0,
-        11.5,
+        72.0,
+        332.0,
     ).into()
 }
 
 fn act_selection_cursor_y() -> FloatOrExpr {
-    (-45.5 - expr::floor(expr::fact("act_selection") / 2) * 32.0).into()
+    (286.0 + expr::floor(expr::fact("act_selection") / 2) * 32.0).into()
+}
+
+fn mercy_selection_cursor_x() -> FloatOrExpr {
+    expr::if_else(
+        (expr::fact("mercy_selection") % 2).equal_to(0),
+        72.0,
+        320.0,
+    )
+    .into()
 }
 
 fn mercy_selection_cursor_y() -> FloatOrExpr {
-    (-45.5 - expr::fact("mercy_selection") * 32.0).into()
+    (286.0 + expr::floor(expr::fact("mercy_selection") / 2) * 32.0).into()
 }
 
 fn item_selection_cursor_x() -> FloatOrExpr {
     expr::if_else(
         (expr::fact("item_selection") % 2).equal_to(0),
-        -248.0,
-        0.0,
+        72.0,
+        320.0,
     ).into()
 }
 
 fn item_selection_cursor_y() -> FloatOrExpr {
-    (-45.5 - expr::floor(expr::fact("item_selection") % 4 / 2) * 32.0).into()
+    (286.0 + expr::floor(expr::fact("item_selection") % 4 / 2) * 32.0).into()
 }
 
 fn attack_bar_x() -> FloatOrExpr {
-    expr::fact("fight:bar_x").into()
+    (320.0 + expr::fact("fight:bar_x")).into()
+}
+
+fn gms_coordinate_space() -> CoordinateSpaceDef {
+    CoordinateSpaceDef {
+        axis_origin: vector2(0.0, 0.0),
+        y_axis: YAxisDirectionDef::Down,
+        rotation: RotationDirectionDef::CounterClockwise,
+        extent: CoordinateExtentDef::Explicit((640.0, 480.0)),
+    }
+}
+
+fn gms_origin_transform() -> SerializableTransform {
+    gms_transform(0.0, 0.0, 0.0)
+}
+
+fn gms_transform(x: f32, y: f32, z: f32) -> SerializableTransform {
+    SerializableTransform {
+        translation: Some(vector3(x, y, z)),
+        ..Default::default()
+    }
 }
 
 /// Build the typed asset value.
@@ -101,10 +126,12 @@ fn attack_bar_x() -> FloatOrExpr {
 /// 构建该资源的类型化值。
 pub fn asset() -> ViewLayoutAsset {
     ViewLayout {
+        coordinate_space: Some(gms_coordinate_space()),
         roots: Vec::from([
             ViewNodeDef {
                 name: "BattleBox".into(),
                 tags: Vec::from(["BattleBox".into()]),
+                transform: Some(gms_transform(320.0, 320.0, 0.0)),
                 texts: Vec::from([
                     TextDef {
                         id: "BattleDialogue".into(),
@@ -112,7 +139,7 @@ pub fn asset() -> ViewLayoutAsset {
                         content: Some("{{dialogue_text}}".into()),
                         world_scale: vector2(26.0, 26.0),
                         transform: SerializableTransform {
-                            translation: Some(vector3(-267.5, 50.0, 1.0)),
+                            translation: Some(vector3(-267.5, -50.0, 1.0)),
                             ..Default::default()
                         },
                         line_height: Some(1.025),
@@ -136,7 +163,7 @@ pub fn asset() -> ViewLayoutAsset {
                         ),
                         world_scale: vector2(26.0, 26.0),
                         transform: SerializableTransform {
-                            translation: Some(vector3(-220.0, 50.0, 1.0)),
+                            translation: Some(vector3(-220.0, -50.0, 1.0)),
                             ..Default::default()
                         },
                         line_height: Some(1.025),
@@ -160,7 +187,7 @@ pub fn asset() -> ViewLayoutAsset {
                         ),
                         world_scale: vector2(26.0, 26.0),
                         transform: SerializableTransform {
-                            translation: Some(vector3(-220.0, 50.0, 1.0)),
+                            translation: Some(vector3(-220.0, -50.0, 1.0)),
                             ..Default::default()
                         },
                         line_height: Some(1.025),
@@ -178,7 +205,7 @@ pub fn asset() -> ViewLayoutAsset {
                         ),
                         world_scale: vector2(26.0, 26.0),
                         transform: SerializableTransform {
-                            translation: Some(vector3(35.75, 50.0, 1.0)),
+                            translation: Some(vector3(35.75, -50.0, 1.0)),
                             ..Default::default()
                         },
                         line_height: Some(1.025),
@@ -196,7 +223,7 @@ pub fn asset() -> ViewLayoutAsset {
                         ),
                         world_scale: vector2(26.0, 26.0),
                         transform: SerializableTransform {
-                            translation: Some(vector3(-220.0, 50.0, 1.0)),
+                            translation: Some(vector3(-220.0, -50.0, 1.0)),
                             ..Default::default()
                         },
                         line_height: Some(1.025),
@@ -217,7 +244,7 @@ pub fn asset() -> ViewLayoutAsset {
                         ),
                         world_scale: vector2(26.0, 26.0),
                         transform: SerializableTransform {
-                            translation: Some(vector3(-220.0, 50.0, 1.0)),
+                            translation: Some(vector3(-220.0, -50.0, 1.0)),
                             ..Default::default()
                         },
                         line_height: Some(1.025),
@@ -238,7 +265,7 @@ pub fn asset() -> ViewLayoutAsset {
                         ),
                         world_scale: vector2(26.0, 26.0),
                         transform: SerializableTransform {
-                            translation: Some(vector3(35.75, 50.0, 1.0)),
+                            translation: Some(vector3(35.75, -50.0, 1.0)),
                             ..Default::default()
                         },
                         line_height: Some(1.025),
@@ -253,7 +280,7 @@ pub fn asset() -> ViewLayoutAsset {
                         content: Some("PAGE {{item_page}}".into()),
                         world_scale: vector2(26.0, 26.0),
                         transform: SerializableTransform {
-                            translation: Some(vector3(66.0, -14.5, 1.0)),
+                            translation: Some(vector3(66.0, 14.5, 1.0)),
                             ..Default::default()
                         },
                         char_spacing: Some(3.0),
@@ -270,7 +297,7 @@ pub fn asset() -> ViewLayoutAsset {
                         content: Some("{{dialogue_text}}".into()),
                         world_scale: vector2(26.0, 26.0),
                         transform: SerializableTransform {
-                            translation: Some(vector3(-267.5, 50.0, 1.0)),
+                            translation: Some(vector3(-267.5, -50.0, 1.0)),
                             ..Default::default()
                         },
                         line_height: Some(1.025),
@@ -286,7 +313,7 @@ pub fn asset() -> ViewLayoutAsset {
                     width: 566.0,
                     height: 130.0,
                     border_width: 5.0,
-                    offset: vector3(0.0, -80.0, 0.0),
+                    offset: vector3(0.0, 0.0, 0.0),
                     structure_file: Some("view/structures/view_box.sdf.ron".into()),
                     ..Default::default()
                 }),
@@ -310,7 +337,7 @@ pub fn asset() -> ViewLayoutAsset {
                                         10.0,
                                     ),
                                 ),
-                                scale: Some(vector3(100.75, 17.0, 1.0)),
+                                scale: Some(vector3(100.0, 16.0, 1.0)),
                                 ..Default::default()
                             }),
                             pivot: Some(vector2(0.0, 0.5)),
@@ -330,8 +357,7 @@ pub fn asset() -> ViewLayoutAsset {
                                         target: "lag_ratio".into(),
                                         easing: EasingDef::OutCirc,
                                         ..Default::default()
-                                    }),
-                                    ..Default::default()
+                                    })
                                 }),
                                 ..Default::default()
                             }),
@@ -357,7 +383,7 @@ pub fn asset() -> ViewLayoutAsset {
                         translation: Some(
                             vector3(
                                 menu_cursor_x(),
-                                expr::literal(-214.0),
+                                expr::literal(454.0),
                                 expr::literal(2.0),
                             ),
                         ),
@@ -382,7 +408,7 @@ pub fn asset() -> ViewLayoutAsset {
                     transform: Some(SerializableTransform {
                         translation: Some(
                             vector3(
-                                expr::literal(-248.0),
+                                expr::literal(72.0),
                                 enemy_selection_cursor_y(),
                                 expr::literal(10.0),
                             ),
@@ -426,7 +452,7 @@ pub fn asset() -> ViewLayoutAsset {
                     transform: Some(SerializableTransform {
                         translation: Some(
                             vector3(
-                                expr::literal(-248.0),
+                                mercy_selection_cursor_x(),
                                 mercy_selection_cursor_y(),
                                 expr::literal(10.0),
                             ),
@@ -464,7 +490,7 @@ pub fn asset() -> ViewLayoutAsset {
                 sprite: Some(SpriteDef {
                     visual: Visual("assets/textures/battle/view/fight/false.png".into()),
                     transform: Some(SerializableTransform {
-                        translation: Some(vector3(-233.0, -213.0, 1.0)),
+                        translation: Some(vector3(87.0, 453.0, 1.0)),
                         ..Default::default()
                     }),
                     ..Default::default()
@@ -483,7 +509,7 @@ pub fn asset() -> ViewLayoutAsset {
                 sprite: Some(SpriteDef {
                     visual: Visual("assets/textures/battle/view/fight/true.png".into()),
                     transform: Some(SerializableTransform {
-                        translation: Some(vector3(-233.0, -213.0, 1.5)),
+                        translation: Some(vector3(87.0, 453.0, 1.5)),
                         ..Default::default()
                     }),
                     ..Default::default()
@@ -495,7 +521,7 @@ pub fn asset() -> ViewLayoutAsset {
                 sprite: Some(SpriteDef {
                     visual: Visual("assets/textures/battle/view/act/false.png".into()),
                     transform: Some(SerializableTransform {
-                        translation: Some(vector3(-80.0, -213.0, 1.0)),
+                        translation: Some(vector3(240.0, 453.0, 1.0)),
                         ..Default::default()
                     }),
                     ..Default::default()
@@ -514,7 +540,7 @@ pub fn asset() -> ViewLayoutAsset {
                 sprite: Some(SpriteDef {
                     visual: Visual("assets/textures/battle/view/act/true.png".into()),
                     transform: Some(SerializableTransform {
-                        translation: Some(vector3(-80.0, -213.0, 1.5)),
+                        translation: Some(vector3(240.0, 453.0, 1.5)),
                         ..Default::default()
                     }),
                     ..Default::default()
@@ -526,7 +552,7 @@ pub fn asset() -> ViewLayoutAsset {
                 sprite: Some(SpriteDef {
                     visual: Visual("assets/textures/battle/view/item/false.png".into()),
                     transform: Some(SerializableTransform {
-                        translation: Some(vector3(80.0, -213.0, 1.0)),
+                        translation: Some(vector3(400.0, 453.0, 1.0)),
                         ..Default::default()
                     }),
                     ..Default::default()
@@ -545,7 +571,7 @@ pub fn asset() -> ViewLayoutAsset {
                 sprite: Some(SpriteDef {
                     visual: Visual("assets/textures/battle/view/item/true.png".into()),
                     transform: Some(SerializableTransform {
-                        translation: Some(vector3(80.0, -213.0, 1.5)),
+                        translation: Some(vector3(400.0, 453.0, 1.5)),
                         ..Default::default()
                     }),
                     ..Default::default()
@@ -557,7 +583,7 @@ pub fn asset() -> ViewLayoutAsset {
                 sprite: Some(SpriteDef {
                     visual: Visual("assets/textures/battle/view/mercy/false.png".into()),
                     transform: Some(SerializableTransform {
-                        translation: Some(vector3(235.0, -213.0, 1.0)),
+                        translation: Some(vector3(555.0, 453.0, 1.0)),
                         ..Default::default()
                     }),
                     ..Default::default()
@@ -576,7 +602,7 @@ pub fn asset() -> ViewLayoutAsset {
                 sprite: Some(SpriteDef {
                     visual: Visual("assets/textures/battle/view/mercy/true.png".into()),
                     transform: Some(SerializableTransform {
-                        translation: Some(vector3(235.0, -213.0, 1.5)),
+                        translation: Some(vector3(555.0, 453.0, 1.5)),
                         ..Default::default()
                     }),
                     ..Default::default()
@@ -589,7 +615,7 @@ pub fn asset() -> ViewLayoutAsset {
                 sprite: Some(SpriteDef {
                     visual: Visual("assets/textures/battle/view/dumb_target.png".into()),
                     transform: Some(SerializableTransform {
-                        translation: Some(vector3(-1.0, -80.5, 10.5)),
+                        translation: Some(vector3(319.0, 320.5, 10.5)),
                         ..Default::default()
                     }),
                     ..Default::default()
@@ -605,7 +631,7 @@ pub fn asset() -> ViewLayoutAsset {
                     border_width: 4.25,
                     offset: vector3(
                         attack_bar_x(),
-                        -80.5,
+                        320.5,
                         11.0,
                     ),
                     structure_file: Some("view/structures/attack_bar.sdf.ron".into()),
@@ -615,6 +641,7 @@ pub fn asset() -> ViewLayoutAsset {
             },
             ViewNodeDef {
                 name: "BattleHUD".into(),
+                transform: Some(gms_origin_transform()),
                 texts: Vec::from([
                     TextDef {
                         id: "PlayerName".into(),
@@ -622,7 +649,7 @@ pub fn asset() -> ViewLayoutAsset {
                         content: Some("{$player:name}".into()),
                         world_scale: vector2(24.0, 24.0),
                         transform: SerializableTransform {
-                            translation: Some(vector3(-290.0, -156.5, 1.0)),
+                            translation: Some(vector3(30.0, 400.0, 1.0)),
                             ..Default::default()
                         },
                         ..Default::default()
@@ -633,7 +660,7 @@ pub fn asset() -> ViewLayoutAsset {
                         content: Some("{{battle/ui:LV}}".into()),
                         world_scale: vector2(24.0, 24.0),
                         transform: SerializableTransform {
-                            translation: Some(vector3(-187.5, -156.5, 1.0)),
+                            translation: Some(vector3(132.5, 400.0, 1.0)),
                             ..Default::default()
                         },
                         ..Default::default()
@@ -644,7 +671,7 @@ pub fn asset() -> ViewLayoutAsset {
                         content: Some("{$player:lv}".into()),
                         world_scale: vector2(24.0, 24.0),
                         transform: SerializableTransform {
-                            translation: Some(vector3(-148.5, -156.5, 1.0)),
+                            translation: Some(vector3(171.5, 400.0, 1.0)),
                             ..Default::default()
                         },
                         ..Default::default()
@@ -657,8 +684,8 @@ pub fn asset() -> ViewLayoutAsset {
                         transform: SerializableTransform {
                             translation: Some(
                                 vector3(
-                                    battle_hud_hp_x(-5.5),
-                                    -156.5,
+                                    battle_hud_hp_x(290.0),
+                                    400.0,
                                     1.0,
                                 ),
                             ),
@@ -674,8 +701,8 @@ pub fn asset() -> ViewLayoutAsset {
                         transform: SerializableTransform {
                             translation: Some(
                                 vector3(
-                                    battle_hud_hp_x(33.5),
-                                    -156.5,
+                                    battle_hud_hp_x(329.0),
+                                    400.0,
                                     1.0,
                                 ),
                             ),
@@ -691,8 +718,8 @@ pub fn asset() -> ViewLayoutAsset {
                         transform: SerializableTransform {
                             translation: Some(
                                 vector3(
-                                    battle_hud_hp_x(57.5),
-                                    -156.5,
+                                    battle_hud_hp_x(353.0),
+                                    400.0,
                                     1.0,
                                 ),
                             ),
@@ -709,7 +736,7 @@ pub fn asset() -> ViewLayoutAsset {
                                 "assets/textures/battle/view/hpname.png".into(),
                             ),
                             transform: Some(SerializableTransform {
-                                translation: Some(vector3(-64.5, -170.0, 1.0)),
+                                translation: Some(vector3(255.5, 410.0, 1.0)),
                                 ..Default::default()
                             }),
                             ..Default::default()
@@ -721,11 +748,11 @@ pub fn asset() -> ViewLayoutAsset {
                         sprite: Some(SpriteDef {
                             visual: Visual("procedural://white_pixel".into()),
                             transform: Some(SerializableTransform {
-                                translation: Some(vector3(-45.0, -170.5, 1.0)),
+                                translation: Some(vector3(275.0, 410.0, 1.0)),
                                 scale: Some(
                                     vector3(
                                         battle_hp_bar_width(),
-                                        20.5,
+                                        20.0,
                                         1.0,
                                     ),
                                 ),
@@ -751,8 +778,7 @@ pub fn asset() -> ViewLayoutAsset {
                                         target: "lag_ratio".into(),
                                         easing: EasingDef::OutCirc,
                                         ..Default::default()
-                                    }),
-                                    ..Default::default()
+                                    })
                                 }),
                                 ..Default::default()
                             }),

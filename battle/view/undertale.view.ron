@@ -15,7 +15,7 @@
 //    structure globally, please edit the Vessel source schema/configuration
 //    instead of modifying this file directly.
 // =============================================================================
-// Generated at: 2026-04-26 20:23:16 +08:00
+// Generated at: 2026-04-27 07:09:57 +08:00
 
 (
     roots: [
@@ -36,6 +36,11 @@
                 justify_content: None,
                 align_items: None,
             ),
+            transform: Some((
+                translation: Some((320.0, 320.0, 0.0)),
+                rotation: None,
+                scale: None,
+            )),
             visible_when: None,
             background_color: None,
             border_color: None,
@@ -52,7 +57,7 @@
                     world_scale: (26.0, 26.0),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
-                        translation: Some((-267.5, 50.0, 1.0)),
+                        translation: Some((-267.5, -50.0, 1.0)),
                         rotation: None,
                         scale: None,
                     ),
@@ -71,7 +76,7 @@
                     world_scale: (26.0, 26.0),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
-                        translation: Some((-220.0, 50.0, 1.0)),
+                        translation: Some((-220.0, -50.0, 1.0)),
                         rotation: None,
                         scale: None,
                     ),
@@ -90,7 +95,7 @@
                     world_scale: (26.0, 26.0),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
-                        translation: Some((-220.0, 50.0, 1.0)),
+                        translation: Some((-220.0, -50.0, 1.0)),
                         rotation: None,
                         scale: None,
                     ),
@@ -109,7 +114,7 @@
                     world_scale: (26.0, 26.0),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
-                        translation: Some((35.75, 50.0, 1.0)),
+                        translation: Some((35.75, -50.0, 1.0)),
                         rotation: None,
                         scale: None,
                     ),
@@ -128,7 +133,7 @@
                     world_scale: (26.0, 26.0),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
-                        translation: Some((-220.0, 50.0, 1.0)),
+                        translation: Some((-220.0, -50.0, 1.0)),
                         rotation: None,
                         scale: None,
                     ),
@@ -147,7 +152,7 @@
                     world_scale: (26.0, 26.0),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
-                        translation: Some((-220.0, 50.0, 1.0)),
+                        translation: Some((-220.0, -50.0, 1.0)),
                         rotation: None,
                         scale: None,
                     ),
@@ -166,7 +171,7 @@
                     world_scale: (26.0, 26.0),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
-                        translation: Some((35.75, 50.0, 1.0)),
+                        translation: Some((35.75, -50.0, 1.0)),
                         rotation: None,
                         scale: None,
                     ),
@@ -185,7 +190,7 @@
                     world_scale: (26.0, 26.0),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
-                        translation: Some((66.0, -14.5, 1.0)),
+                        translation: Some((66.0, 14.5, 1.0)),
                         rotation: None,
                         scale: None,
                     ),
@@ -204,7 +209,7 @@
                     world_scale: (26.0, 26.0),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
-                        translation: Some((-267.5, 50.0, 1.0)),
+                        translation: Some((-267.5, -50.0, 1.0)),
                         rotation: None,
                         scale: None,
                     ),
@@ -219,7 +224,7 @@
                 width: 566.0,
                 height: 130.0,
                 border_width: 5.0,
-                offset: (0.0, -80.0, 0.0),
+                offset: (0.0, 0.0, 0.0),
                 fill_shader: None,
                 structure_file: Some("view/structures/view_box.sdf.ron"),
                 fill_color: None,
@@ -251,9 +256,9 @@
                         flip_x: false,
                         flip_y: false,
                         transform: Some((
-                            translation: Some(("15 * max_strlen($enemy_names) - 125", "31.25 - (@i - $enemy_view_offset) * 32.0", 10.0)),
+                            translation: Some(("-130 + max_strlen($enemy_names) * 16", "-32.0 + (@i - $enemy_view_offset) * 32.0", 10.0)),
                             rotation: None,
-                            scale: Some((100.75, 17.0, 1.0)),
+                            scale: Some((100.0, 16.0, 1.0)),
                         )),
                         pivot: Some((0.0, 0.5)),
                         frame_duration: None,
@@ -318,7 +323,7 @@
                 flip_x: false,
                 flip_y: false,
                 transform: Some((
-                    translation: Some(("if($button_selection == 0, -272.0, if($button_selection == 1, -119.0, if($button_selection == 2, 41.0, 196.0)))", "-214.0", "2.0")),
+                    translation: Some(("if($button_selection == 0, 48.0, if($button_selection == 1, 201.0, if($button_selection == 2, 361.0, 516.0)))", "454.0", "2.0")),
                     rotation: None,
                     scale: None,
                 )),
@@ -359,7 +364,7 @@
                 flip_x: false,
                 flip_y: false,
                 transform: Some((
-                    translation: Some(("-248.0", "-45.5 - ($enemy_selection - $enemy_view_offset) * 32.0", "10.0")),
+                    translation: Some(("72.0", "286.0 + ($enemy_selection - $enemy_view_offset) * 32.0", "10.0")),
                     rotation: None,
                     scale: None,
                 )),
@@ -400,7 +405,7 @@
                 flip_x: false,
                 flip_y: false,
                 transform: Some((
-                    translation: Some(("if($act_selection % 2 == 0, -248.0, 11.5)", "-45.5 - floor($act_selection / 2) * 32.0", "10.0")),
+                    translation: Some(("if($act_selection % 2 == 0, 72.0, 332.0)", "286.0 + floor($act_selection / 2) * 32.0", "10.0")),
                     rotation: None,
                     scale: None,
                 )),
@@ -441,7 +446,7 @@
                 flip_x: false,
                 flip_y: false,
                 transform: Some((
-                    translation: Some(("-248.0", "-45.5 - $mercy_selection * 32.0", "10.0")),
+                    translation: Some(("if($mercy_selection % 2 == 0, 72.0, 320.0)", "286.0 + floor($mercy_selection / 2) * 32.0", "10.0")),
                     rotation: None,
                     scale: None,
                 )),
@@ -482,7 +487,7 @@
                 flip_x: false,
                 flip_y: false,
                 transform: Some((
-                    translation: Some(("if($item_selection % 2 == 0, -248.0, 0.0)", "-45.5 - floor($item_selection % 4 / 2) * 32.0", "10.0")),
+                    translation: Some(("if($item_selection % 2 == 0, 72.0, 320.0)", "286.0 + floor($item_selection % 4 / 2) * 32.0", "10.0")),
                     rotation: None,
                     scale: None,
                 )),
@@ -523,7 +528,7 @@
                 flip_x: false,
                 flip_y: false,
                 transform: Some((
-                    translation: Some((-233.0, -213.0, 1.0)),
+                    translation: Some((87.0, 453.0, 1.0)),
                     rotation: None,
                     scale: None,
                 )),
@@ -564,7 +569,7 @@
                 flip_x: false,
                 flip_y: false,
                 transform: Some((
-                    translation: Some((-233.0, -213.0, 1.5)),
+                    translation: Some((87.0, 453.0, 1.5)),
                     rotation: None,
                     scale: None,
                 )),
@@ -605,7 +610,7 @@
                 flip_x: false,
                 flip_y: false,
                 transform: Some((
-                    translation: Some((-80.0, -213.0, 1.0)),
+                    translation: Some((240.0, 453.0, 1.0)),
                     rotation: None,
                     scale: None,
                 )),
@@ -646,7 +651,7 @@
                 flip_x: false,
                 flip_y: false,
                 transform: Some((
-                    translation: Some((-80.0, -213.0, 1.5)),
+                    translation: Some((240.0, 453.0, 1.5)),
                     rotation: None,
                     scale: None,
                 )),
@@ -687,7 +692,7 @@
                 flip_x: false,
                 flip_y: false,
                 transform: Some((
-                    translation: Some((80.0, -213.0, 1.0)),
+                    translation: Some((400.0, 453.0, 1.0)),
                     rotation: None,
                     scale: None,
                 )),
@@ -728,7 +733,7 @@
                 flip_x: false,
                 flip_y: false,
                 transform: Some((
-                    translation: Some((80.0, -213.0, 1.5)),
+                    translation: Some((400.0, 453.0, 1.5)),
                     rotation: None,
                     scale: None,
                 )),
@@ -769,7 +774,7 @@
                 flip_x: false,
                 flip_y: false,
                 transform: Some((
-                    translation: Some((235.0, -213.0, 1.0)),
+                    translation: Some((555.0, 453.0, 1.0)),
                     rotation: None,
                     scale: None,
                 )),
@@ -810,7 +815,7 @@
                 flip_x: false,
                 flip_y: false,
                 transform: Some((
-                    translation: Some((235.0, -213.0, 1.5)),
+                    translation: Some((555.0, 453.0, 1.5)),
                     rotation: None,
                     scale: None,
                 )),
@@ -851,7 +856,7 @@
                 flip_x: false,
                 flip_y: false,
                 transform: Some((
-                    translation: Some((-1.0, -80.5, 10.5)),
+                    translation: Some((319.0, 320.5, 10.5)),
                     rotation: None,
                     scale: None,
                 )),
@@ -892,7 +897,7 @@
                 width: 6.0,
                 height: 120.0,
                 border_width: 4.25,
-                offset: ("$fight:bar_x", -80.5, 11.0),
+                offset: ("320.0 + $fight:bar_x", 320.5, 11.0),
                 fill_shader: None,
                 structure_file: Some("view/structures/attack_bar.sdf.ron"),
                 fill_color: None,
@@ -915,6 +920,11 @@
                 justify_content: None,
                 align_items: None,
             ),
+            transform: Some((
+                translation: Some((0.0, 0.0, 0.0)),
+                rotation: None,
+                scale: None,
+            )),
             visible_when: None,
             background_color: None,
             border_color: None,
@@ -931,7 +941,7 @@
                     world_scale: (24.0, 24.0),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
-                        translation: Some((-290.0, -156.5, 1.0)),
+                        translation: Some((30.0, 400.0, 1.0)),
                         rotation: None,
                         scale: None,
                     ),
@@ -950,7 +960,7 @@
                     world_scale: (24.0, 24.0),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
-                        translation: Some((-187.5, -156.5, 1.0)),
+                        translation: Some((132.5, 400.0, 1.0)),
                         rotation: None,
                         scale: None,
                     ),
@@ -969,7 +979,7 @@
                     world_scale: (24.0, 24.0),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
-                        translation: Some((-148.5, -156.5, 1.0)),
+                        translation: Some((171.5, 400.0, 1.0)),
                         rotation: None,
                         scale: None,
                     ),
@@ -988,7 +998,7 @@
                     world_scale: (24.0, 24.0),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
-                        translation: Some(("-5.5 + ($player:hp_max - 20) * 94.5 / 79", -156.5, 1.0)),
+                        translation: Some(("290.0 + $player:hp_max * 1.2", 400.0, 1.0)),
                         rotation: None,
                         scale: None,
                     ),
@@ -1007,7 +1017,7 @@
                     world_scale: (24.0, 24.0),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
-                        translation: Some(("33.5 + ($player:hp_max - 20) * 94.5 / 79", -156.5, 1.0)),
+                        translation: Some(("329.0 + $player:hp_max * 1.2", 400.0, 1.0)),
                         rotation: None,
                         scale: None,
                     ),
@@ -1026,7 +1036,7 @@
                     world_scale: (24.0, 24.0),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
-                        translation: Some(("57.5 + ($player:hp_max - 20) * 94.5 / 79", -156.5, 1.0)),
+                        translation: Some(("353.0 + $player:hp_max * 1.2", 400.0, 1.0)),
                         rotation: None,
                         scale: None,
                     ),
@@ -1065,7 +1075,7 @@
                         flip_x: false,
                         flip_y: false,
                         transform: Some((
-                            translation: Some((-64.5, -170.0, 1.0)),
+                            translation: Some((255.5, 410.0, 1.0)),
                             rotation: None,
                             scale: None,
                         )),
@@ -1106,9 +1116,9 @@
                         flip_x: false,
                         flip_y: false,
                         transform: Some((
-                            translation: Some((-45.0, -170.5, 1.0)),
+                            translation: Some((275.0, 410.0, 1.0)),
                             rotation: None,
-                            scale: Some(("25.0 + ($player:hp_max - 20) * 95.0 / 79", 20.5, 1.0)),
+                            scale: Some(("$player:hp_max * 1.2", 20.0, 1.0)),
                         )),
                         pivot: Some((0.0, 0.5)),
                         frame_duration: None,
@@ -1117,7 +1127,7 @@
                             shader: "assets/shaders/hp_bar_sprite.wgsl",
                             params: {
                                 "alpha": Static(1.0),
-                                "half_width": Expr("40.0 + ($player:hp_max - 20) * 95.0 / 79 / 2"),
+                                "half_width": Expr("$player:hp_max * 0.6"),
                                 "hp_ratio": Expr("$player:hp / $player:hp_max"),
                                 "lag_ratio": Static(1.0),
                             },
@@ -1195,4 +1205,10 @@
     }),
     world_space: true,
     coordinate_system: Standard,
+    coordinate_space: Some((
+        axis_origin: (0.0, 0.0),
+        y_axis: Down,
+        rotation: CounterClockwise,
+        extent: Explicit((640.0, 480.0)),
+    )),
 )

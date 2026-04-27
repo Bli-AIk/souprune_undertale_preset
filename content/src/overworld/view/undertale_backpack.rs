@@ -15,20 +15,36 @@ pub fn emit(reg: &mut Registry) -> Result<()> {
 }
 
 fn menu_cursor_y() -> FloatOrExpr {
-    (18.5 + expr::group(-18.0 * expr::fact("selection"))).into()
+    (-22.5 + 18.0 * expr::fact("selection")).into()
 }
 
 fn item_cursor_y() -> FloatOrExpr {
-    (68 + expr::group(-16.0 * expr::fact("selection"))).into()
+    (-72.0 + 16.0 * expr::fact("selection")).into()
 }
 
 fn options_cursor_x() -> FloatOrExpr {
     expr::if_else(
         expr::fact("selection").equal_to(0),
-        -72.0,
-        expr::if_else(expr::fact("selection").equal_to(1), -24.25, 33.0),
+        -76.0,
+        expr::if_else(expr::fact("selection").equal_to(1), -28.0, 29.0),
     )
     .into()
+}
+
+fn gms_coordinate_space() -> CoordinateSpaceDef {
+    CoordinateSpaceDef {
+        axis_origin: vector2(0.0, 0.0),
+        y_axis: YAxisDirectionDef::Down,
+        rotation: RotationDirectionDef::CounterClockwise,
+        extent: CoordinateExtentDef::Explicit((640.0, 480.0)),
+    }
+}
+
+fn gms_transform(x: f32, y: f32, z: f32) -> SerializableTransform {
+    SerializableTransform {
+        translation: Some(vector3(x, y, z)),
+        ..Default::default()
+    }
 }
 
 /// Build the typed asset value.
@@ -36,9 +52,11 @@ fn options_cursor_x() -> FloatOrExpr {
 /// 构建该资源的类型化值。
 pub fn asset() -> ViewLayoutAsset {
     ViewLayout {
+        coordinate_space: Some(gms_coordinate_space()),
         roots: Vec::from([
             ViewNodeDef {
                 name: "MenuBox".into(),
+                transform: Some(gms_transform(51.0, 120.5, 0.0)),
                 visible_when: Some("true".into()),
                 texts: Vec::from([
                     TextDef {
@@ -47,14 +65,13 @@ pub fn asset() -> ViewLayoutAsset {
                         content: Some("{{overworld/ui:ITEM}}".into()),
                         world_scale: vector2(13.25, 13.25),
                         transform: SerializableTransform {
-                            translation: Some(vector3(-9.5, 27.075, 1.0)),
+                            translation: Some(vector3(-9.0, -26.5, 1.0)),
                             ..Default::default()
                         },
                         line_height: Some(1.125),
                         conditional_style: Some(ConditionalStyleDef {
                             condition: "player.inventory.is_empty".into(),
                             color: color(0.5, 0.5, 0.5, 1.0),
-                            ..Default::default()
                         }),
                         ..Default::default()
                     },
@@ -64,7 +81,7 @@ pub fn asset() -> ViewLayoutAsset {
                         content: Some("{{overworld/ui:STAT}}".into()),
                         world_scale: vector2(13.25, 13.25),
                         transform: SerializableTransform {
-                            translation: Some(vector3(-9.5, 9.25, 1.0)),
+                            translation: Some(vector3(-9.0, -8.5, 1.0)),
                             ..Default::default()
                         },
                         line_height: Some(0.0),
@@ -75,7 +92,7 @@ pub fn asset() -> ViewLayoutAsset {
                     width: 65.0,
                     height: 68.0,
                     border_width: 3.0,
-                    offset: vector3(-108.5, -1.0, 0.0),
+                    offset: vector3(0.0, 0.0, 0.0),
                     structure_file: Some("view/structures/view_box.sdf.ron".into()),
                     ..Default::default()
                 }),
@@ -89,13 +106,14 @@ pub fn asset() -> ViewLayoutAsset {
                             transform: Some(SerializableTransform {
                                 translation: Some(
                                     vector3(
-                                        expr::literal(-19.0),
+                                        expr::literal(-23.0),
                                         menu_cursor_y(),
                                         expr::literal(6.0),
                                     ),
                                 ),
                                 ..Default::default()
                             }),
+                            pivot: Some(vector2(0.0, 0.0)),
                             ..Default::default()
                         }),
                         ..Default::default()
@@ -105,6 +123,7 @@ pub fn asset() -> ViewLayoutAsset {
             },
             ViewNodeDef {
                 name: "InfoBox".into(),
+                transform: Some(gms_transform(51.0, 53.0, 0.0)),
                 visible_when: Some("true".into()),
                 texts: Vec::from([
                     TextDef {
@@ -113,7 +132,7 @@ pub fn asset() -> ViewLayoutAsset {
                         content: Some("{$player:name}".into()),
                         world_scale: vector2(13.0, 13.0),
                         transform: SerializableTransform {
-                            translation: Some(vector3(-28.5, 23.25, 1.0)),
+                            translation: Some(vector3(-28.0, -23.0, 1.0)),
                             ..Default::default()
                         },
                         line_height: Some(1.0),
@@ -133,7 +152,7 @@ pub fn asset() -> ViewLayoutAsset {
                         ),
                         world_scale: vector2(8.0, 8.0),
                         transform: SerializableTransform {
-                            translation: Some(vector3(-28.5, 3.5, 1.0)),
+                            translation: Some(vector3(-28.0, -3.0, 1.0)),
                             ..Default::default()
                         },
                         line_height: Some(2.925),
@@ -147,7 +166,7 @@ pub fn asset() -> ViewLayoutAsset {
                         content: Some("g   {$player:gold}".into()),
                         world_scale: vector2(8.0, 8.0),
                         transform: SerializableTransform {
-                            translation: Some(vector3(-28.75, -14.55, 1.0)),
+                            translation: Some(vector3(-28.0, 15.0, 1.0)),
                             ..Default::default()
                         },
                         line_height: Some(0.0),
@@ -158,7 +177,7 @@ pub fn asset() -> ViewLayoutAsset {
                     width: 65.0,
                     height: 49.0,
                     border_width: 3.0,
-                    offset: vector3(-108.5, -68.5, 0.0),
+                    offset: vector3(0.0, 0.0, 0.0),
                     structure_file: Some("view/structures/view_box.sdf.ron".into()),
                     ..Default::default()
                 }),
@@ -166,6 +185,7 @@ pub fn asset() -> ViewLayoutAsset {
             },
             ViewNodeDef {
                 name: "ItemBox".into(),
+                transform: Some(gms_transform(180.0, 116.0, 0.0)),
                 visible_when: Some("$depth == 1 || $depth == 2".into()),
                 texts: Vec::from([
                     TextDef {
@@ -174,7 +194,7 @@ pub fn asset() -> ViewLayoutAsset {
                         content: Some("{{data:player.inventory}}".into()),
                         world_scale: vector2(13.25, 13.25),
                         transform: SerializableTransform {
-                            translation: Some(vector3(-64.25, 76.5, 1.0)),
+                            translation: Some(vector3(-64.0, -76.0, 1.0)),
                             ..Default::default()
                         },
                         line_height: Some(1.0),
@@ -186,7 +206,7 @@ pub fn asset() -> ViewLayoutAsset {
                         content: Some("{{overworld/ui:USE}}".into()),
                         world_scale: vector2(13.25, 13.25),
                         transform: SerializableTransform {
-                            translation: Some(vector3(-64.25, -63.5, 1.0)),
+                            translation: Some(vector3(-64.0, 64.0, 1.0)),
                             ..Default::default()
                         },
                         line_height: Some(1.2),
@@ -199,7 +219,7 @@ pub fn asset() -> ViewLayoutAsset {
                         content: Some("{{overworld/ui:INFO}}".into()),
                         world_scale: vector2(13.25, 13.25),
                         transform: SerializableTransform {
-                            translation: Some(vector3(-16.25, -63.5, 1.0)),
+                            translation: Some(vector3(-16.0, 64.0, 1.0)),
                             ..Default::default()
                         },
                         line_height: Some(1.2),
@@ -212,7 +232,7 @@ pub fn asset() -> ViewLayoutAsset {
                         content: Some("{{overworld/ui:DROP}}".into()),
                         world_scale: vector2(13.25, 13.25),
                         transform: SerializableTransform {
-                            translation: Some(vector3(40.75, -63.5, 1.0)),
+                            translation: Some(vector3(41.0, 64.0, 1.0)),
                             ..Default::default()
                         },
                         line_height: Some(1.2),
@@ -224,7 +244,7 @@ pub fn asset() -> ViewLayoutAsset {
                     width: 167.0,
                     height: 175.0,
                     border_width: 3.0,
-                    offset: vector3(20.5, 3.5, 0.0),
+                    offset: vector3(0.0, 0.0, 0.0),
                     structure_file: Some("view/structures/view_box.sdf.ron".into()),
                     ..Default::default()
                 }),
@@ -238,13 +258,14 @@ pub fn asset() -> ViewLayoutAsset {
                             transform: Some(SerializableTransform {
                                 translation: Some(
                                     vector3(
-                                        expr::literal(-72.0),
+                                        expr::literal(-76.0),
                                         item_cursor_y(),
                                         expr::literal(6.0),
                                     ),
                                 ),
                                 ..Default::default()
                             }),
+                            pivot: Some(vector2(0.0, 0.0)),
                             ..Default::default()
                         }),
                         ..Default::default()
@@ -259,12 +280,13 @@ pub fn asset() -> ViewLayoutAsset {
                                 translation: Some(
                                     vector3(
                                         options_cursor_x(),
-                                        expr::literal(-72.0),
+                                        expr::literal(68.0),
                                         expr::literal(6.0),
                                     ),
                                 ),
                                 ..Default::default()
                             }),
+                            pivot: Some(vector2(0.0, 0.0)),
                             ..Default::default()
                         }),
                         ..Default::default()
@@ -274,6 +296,7 @@ pub fn asset() -> ViewLayoutAsset {
             },
             ViewNodeDef {
                 name: "StatusBox".into(),
+                transform: Some(gms_transform(180.0, 130.0, 0.0)),
                 visible_when: Some("$depth == 3".into()),
                 texts: Vec::from([
                     TextDef {
@@ -282,7 +305,7 @@ pub fn asset() -> ViewLayoutAsset {
                         content: Some("\"{$player:name}\"".into()),
                         world_scale: vector2(13.5, 13.5),
                         transform: SerializableTransform {
-                            translation: Some(vector3(-72.5, 88.4, 1.0)),
+                            translation: Some(vector3(-72.0, -88.0, 1.0)),
                             ..Default::default()
                         },
                         line_height: Some(1.15),
@@ -296,7 +319,7 @@ pub fn asset() -> ViewLayoutAsset {
                         content: Some("{{overworld/ui:LV}}   {$player:lv}".into()),
                         world_scale: vector2(13.5, 13.5),
                         transform: SerializableTransform {
-                            translation: Some(vector3(-72.5, 58.5, 1.0)),
+                            translation: Some(vector3(-72.0, -58.0, 1.0)),
                             ..Default::default()
                         },
                         line_height: Some(0.975),
@@ -312,7 +335,7 @@ pub fn asset() -> ViewLayoutAsset {
                         ),
                         world_scale: vector2(13.5, 13.5),
                         transform: SerializableTransform {
-                            translation: Some(vector3(-72.5, 42.5, 1.0)),
+                            translation: Some(vector3(-72.0, -42.0, 1.0)),
                             ..Default::default()
                         },
                         line_height: Some(0.975),
@@ -333,7 +356,7 @@ pub fn asset() -> ViewLayoutAsset {
                         ),
                         world_scale: vector2(13.5, 13.5),
                         transform: SerializableTransform {
-                            translation: Some(vector3(-72.626, 10.42, 1.0)),
+                            translation: Some(vector3(-72.0, -10.0, 1.0)),
                             ..Default::default()
                         },
                         line_height: Some(0.98),
@@ -353,7 +376,7 @@ pub fn asset() -> ViewLayoutAsset {
                         ),
                         world_scale: vector2(13.5, 13.5),
                         transform: SerializableTransform {
-                            translation: Some(vector3(11.485, 10.66, 1.0)),
+                            translation: Some(vector3(12.0, -10.0, 1.0)),
                             ..Default::default()
                         },
                         line_height: Some(0.975),
@@ -373,7 +396,7 @@ pub fn asset() -> ViewLayoutAsset {
                         ),
                         world_scale: vector2(13.5, 13.5),
                         transform: SerializableTransform {
-                            translation: Some(vector3(-72.387, -35.895, 1.0)),
+                            translation: Some(vector3(-72.0, 36.0, 1.0)),
                             ..Default::default()
                         },
                         line_height: Some(0.945),
@@ -387,7 +410,7 @@ pub fn asset() -> ViewLayoutAsset {
                         content: Some("{{overworld/ui:GOLD}}: {$player:gold}".into()),
                         world_scale: vector2(13.5, 13.5),
                         transform: SerializableTransform {
-                            translation: Some(vector3(-72.377, -71.352, 1.0)),
+                            translation: Some(vector3(-72.0, 72.0, 1.0)),
                             ..Default::default()
                         },
                         line_height: Some(1.15),
@@ -400,7 +423,7 @@ pub fn asset() -> ViewLayoutAsset {
                     width: 167.0,
                     height: 202.5,
                     border_width: 3.0,
-                    offset: vector3(20.5, -10.5, 0.0),
+                    offset: vector3(0.0, 0.0, 0.0),
                     structure_file: Some("view/structures/view_box.sdf.ron".into()),
                     ..Default::default()
                 }),

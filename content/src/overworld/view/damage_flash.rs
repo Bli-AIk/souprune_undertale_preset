@@ -167,8 +167,7 @@ pub fn asset() -> ViewLayoutAsset {
                                     target: "lag_ratio".into(),
                                     easing: EasingDef::OutCirc,
                                     ..Default::default()
-                                }),
-                                ..Default::default()
+                                })
                             }),
                             ..Default::default()
                         }),
