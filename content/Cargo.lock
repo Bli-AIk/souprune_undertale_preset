@@ -1619,6 +1619,7 @@ dependencies = [
  "ron",
  "serde",
  "souprune_schema",
+ "toml 1.1.1+spec-1.1.0",
  "vessel",
  "wit-bindgen 0.55.0",
 ]
