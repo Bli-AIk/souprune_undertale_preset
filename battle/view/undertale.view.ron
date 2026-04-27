@@ -15,7 +15,7 @@
 //    structure globally, please edit the Vessel source schema/configuration
 //    instead of modifying this file directly.
 // =============================================================================
-// Generated at: 2026-04-27 07:09:57 +08:00
+// Generated at: 2026-04-27 21:26:45 +08:00
 
 (
     roots: [
@@ -37,7 +37,7 @@
                 align_items: None,
             ),
             transform: Some((
-                translation: Some((320.0, 320.0, 0.0)),
+                translation: Some((319.5, 320.0, 0.0)),
                 rotation: None,
                 scale: None,
             )),
@@ -76,7 +76,7 @@
                     world_scale: (26.0, 26.0),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
-                        translation: Some((-220.0, -50.0, 1.0)),
+                        translation: Some((-219.5, -50.0, 1.0)),
                         rotation: None,
                         scale: None,
                     ),
@@ -95,7 +95,7 @@
                     world_scale: (26.0, 26.0),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
-                        translation: Some((-220.0, -50.0, 1.0)),
+                        translation: Some((-219.5, -50.0, 1.0)),
                         rotation: None,
                         scale: None,
                     ),
@@ -114,7 +114,7 @@
                     world_scale: (26.0, 26.0),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
-                        translation: Some((35.75, -50.0, 1.0)),
+                        translation: Some((36.25, -50.0, 1.0)),
                         rotation: None,
                         scale: None,
                     ),
@@ -133,7 +133,7 @@
                     world_scale: (26.0, 26.0),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
-                        translation: Some((-220.0, -50.0, 1.0)),
+                        translation: Some((-219.5, -50.0, 1.0)),
                         rotation: None,
                         scale: None,
                     ),
@@ -152,7 +152,7 @@
                     world_scale: (26.0, 26.0),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
-                        translation: Some((-220.0, -50.0, 1.0)),
+                        translation: Some((-219.5, -50.0, 1.0)),
                         rotation: None,
                         scale: None,
                     ),
@@ -171,7 +171,7 @@
                     world_scale: (26.0, 26.0),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
-                        translation: Some((35.75, -50.0, 1.0)),
+                        translation: Some((36.25, -50.0, 1.0)),
                         rotation: None,
                         scale: None,
                     ),
@@ -190,7 +190,7 @@
                     world_scale: (26.0, 26.0),
                     color: (1.0, 1.0, 1.0, 1.0),
                     transform: (
-                        translation: Some((66.0, 14.5, 1.0)),
+                        translation: Some((66.5, 14.5, 1.0)),
                         rotation: None,
                         scale: None,
                     ),
@@ -221,7 +221,7 @@
                 ),
             ],
             view_box: Some((
-                width: 566.0,
+                width: 565.0,
                 height: 130.0,
                 border_width: 5.0,
                 offset: (0.0, 0.0, 0.0),
@@ -256,7 +256,7 @@
                         flip_x: false,
                         flip_y: false,
                         transform: Some((
-                            translation: Some(("-130 + max_strlen($enemy_names) * 16", "-32.0 + (@i - $enemy_view_offset) * 32.0", 10.0)),
+                            translation: Some(("-129.5 + max_strlen($enemy_names) * 16", "-32.0 + (@i - $enemy_view_offset) * 32.0", 10.0)),
                             rotation: None,
                             scale: Some((100.0, 16.0, 1.0)),
                         )),
@@ -1118,7 +1118,7 @@
                         transform: Some((
                             translation: Some((275.0, 410.0, 1.0)),
                             rotation: None,
-                            scale: Some(("$player:hp_max * 1.2", 20.0, 1.0)),
+                            scale: Some(("$player:hp_max * 1.2", 22.0, 1.0)),
                         )),
                         pivot: Some((0.0, 0.5)),
                         frame_duration: None,

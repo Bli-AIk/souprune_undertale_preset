@@ -31,7 +31,7 @@ fn player_hp_ratio_param() -> MaterialParamValue {
 }
 
 fn enemy_hp_bar_x() -> FloatOrExpr {
-    (-130 + expr::max_strlen(expr::fact("enemy_names")) * 16).into()
+    (-129.5 + expr::max_strlen(expr::fact("enemy_names")) * 16).into()
 }
 
 fn enemy_hp_bar_y() -> FloatOrExpr {
@@ -131,7 +131,7 @@ pub fn asset() -> ViewLayoutAsset {
             ViewNodeDef {
                 name: "BattleBox".into(),
                 tags: Vec::from(["BattleBox".into()]),
-                transform: Some(gms_transform(320.0, 320.0, 0.0)),
+                transform: Some(gms_transform(319.5, 320.0, 0.0)),
                 texts: Vec::from([
                     TextDef {
                         id: "BattleDialogue".into(),
@@ -163,7 +163,7 @@ pub fn asset() -> ViewLayoutAsset {
                         ),
                         world_scale: vector2(26.0, 26.0),
                         transform: SerializableTransform {
-                            translation: Some(vector3(-220.0, -50.0, 1.0)),
+                            translation: Some(vector3(-219.5, -50.0, 1.0)),
                             ..Default::default()
                         },
                         line_height: Some(1.025),
@@ -187,7 +187,7 @@ pub fn asset() -> ViewLayoutAsset {
                         ),
                         world_scale: vector2(26.0, 26.0),
                         transform: SerializableTransform {
-                            translation: Some(vector3(-220.0, -50.0, 1.0)),
+                            translation: Some(vector3(-219.5, -50.0, 1.0)),
                             ..Default::default()
                         },
                         line_height: Some(1.025),
@@ -205,7 +205,7 @@ pub fn asset() -> ViewLayoutAsset {
                         ),
                         world_scale: vector2(26.0, 26.0),
                         transform: SerializableTransform {
-                            translation: Some(vector3(35.75, -50.0, 1.0)),
+                            translation: Some(vector3(36.25, -50.0, 1.0)),
                             ..Default::default()
                         },
                         line_height: Some(1.025),
@@ -223,7 +223,7 @@ pub fn asset() -> ViewLayoutAsset {
                         ),
                         world_scale: vector2(26.0, 26.0),
                         transform: SerializableTransform {
-                            translation: Some(vector3(-220.0, -50.0, 1.0)),
+                            translation: Some(vector3(-219.5, -50.0, 1.0)),
                             ..Default::default()
                         },
                         line_height: Some(1.025),
@@ -244,7 +244,7 @@ pub fn asset() -> ViewLayoutAsset {
                         ),
                         world_scale: vector2(26.0, 26.0),
                         transform: SerializableTransform {
-                            translation: Some(vector3(-220.0, -50.0, 1.0)),
+                            translation: Some(vector3(-219.5, -50.0, 1.0)),
                             ..Default::default()
                         },
                         line_height: Some(1.025),
@@ -265,7 +265,7 @@ pub fn asset() -> ViewLayoutAsset {
                         ),
                         world_scale: vector2(26.0, 26.0),
                         transform: SerializableTransform {
-                            translation: Some(vector3(35.75, -50.0, 1.0)),
+                            translation: Some(vector3(36.25, -50.0, 1.0)),
                             ..Default::default()
                         },
                         line_height: Some(1.025),
@@ -280,7 +280,7 @@ pub fn asset() -> ViewLayoutAsset {
                         content: Some("PAGE {{item_page}}".into()),
                         world_scale: vector2(26.0, 26.0),
                         transform: SerializableTransform {
-                            translation: Some(vector3(66.0, 14.5, 1.0)),
+                            translation: Some(vector3(66.5, 14.5, 1.0)),
                             ..Default::default()
                         },
                         char_spacing: Some(3.0),
@@ -310,7 +310,7 @@ pub fn asset() -> ViewLayoutAsset {
                     },
                 ]),
                 view_box: Some(ViewBoxLogicDef {
-                    width: 566.0,
+                    width: 565.0,
                     height: 130.0,
                     border_width: 5.0,
                     offset: vector3(0.0, 0.0, 0.0),

@@ -14,6 +14,9 @@ textures = "assets/textures"
 audios = "assets/audios"
 fonts = "assets/fonts"
 
+[font_layout.battlehud]
+offset_y_factor = 0.125
+
 [dependencies]
 # No dependencies — this is the base library.
 
