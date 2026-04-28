@@ -31,6 +31,10 @@ fn options_cursor_x() -> FloatOrExpr {
     .into()
 }
 
+fn info_box_y() -> FloatOrExpr {
+    (53.0 + expr::fact("info_box_y_offset")).into()
+}
+
 fn gms_coordinate_space() -> CoordinateSpaceDef {
     CoordinateSpaceDef {
         axis_origin: vector2(0.0, 0.0),
@@ -123,7 +127,10 @@ pub fn asset() -> ViewLayoutAsset {
             },
             ViewNodeDef {
                 name: "InfoBox".into(),
-                transform: Some(gms_transform(51.0, 53.0, 0.0)),
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(51.0, info_box_y(), 0.0)),
+                    ..Default::default()
+                }),
                 visible_when: Some("true".into()),
                 texts: Vec::from([
                     TextDef {
@@ -436,6 +443,7 @@ pub fn asset() -> ViewLayoutAsset {
         facts: Some(
             Vec::from([
                     ("depth".into(), InitialFactValue::Int(0)),
+                    ("info_box_y_offset".into(), InitialFactValue::Int(0)),
                     ("interactable".into(), InitialFactValue::Bool(true)),
                     ("selection".into(), InitialFactValue::Int(0)),
                 ])

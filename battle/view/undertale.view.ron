@@ -15,7 +15,7 @@
 //    structure globally, please edit the Vessel source schema/configuration
 //    instead of modifying this file directly.
 // =============================================================================
-// Generated at: 2026-04-27 21:26:45 +08:00
+// Generated at: 2026-04-27 22:00:21 +08:00
 
 (
     roots: [
@@ -1118,7 +1118,7 @@
                         transform: Some((
                             translation: Some((275.0, 410.0, 1.0)),
                             rotation: None,
-                            scale: Some(("$player:hp_max * 1.2", 22.0, 1.0)),
+                            scale: Some(("$player:hp_max * 1.2", 20.0, 1.0)),
                         )),
                         pivot: Some((0.0, 0.5)),
                         frame_duration: None,

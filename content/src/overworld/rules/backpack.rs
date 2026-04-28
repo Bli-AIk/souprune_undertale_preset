@@ -6,6 +6,12 @@ use anyhow::Result;
 use souprune_schema::fre::*;
 use souprune_vessel::prelude::*;
 
+const SCREEN_FACTS_UPDATED_EVENT: &str = "overworld:screen_facts_updated";
+const PLAYER_SCREEN_Y_FACT: &str = "$overworld:player_screen_y";
+const INFO_BOX_Y_OFFSET_FACT: &str = "info_box_y_offset";
+const INFO_BOX_MOVE_THRESHOLD_Y: f64 = 130.0;
+const INFO_BOX_MOVE_OFFSET_Y: i64 = 135;
+
 pub fn emit(reg: &mut Registry) -> Result<()> {
     reg.emit_auto(file!(), &asset())?;
     Ok(())
@@ -40,6 +46,10 @@ pub fn asset() -> FreAsset {
         .collect(),
         facts: vec![
             ("depth".into(), FactValueDef::Enum("menu".into())),
+            (
+                INFO_BOX_Y_OFFSET_FACT.into(),
+                FactValueDef::Int(0),
+            ),
             ("selection".into(), FactValueDef::Int(0)),
             ("item_list_selection".into(), FactValueDef::Int(0)),
             ("interactable".into(), FactValueDef::Bool(true)),
@@ -47,6 +57,40 @@ pub fn asset() -> FreAsset {
         .into_iter()
         .collect(),
         rules: vec![
+            RuleDef {
+                id: "move_info_box_down_when_player_is_low".into(),
+                event: RuleEventDef::Event(SCREEN_FACTS_UPDATED_EVENT.into()),
+                conditions: vec![
+                    format!("{PLAYER_SCREEN_Y_FACT} > {INFO_BOX_MOVE_THRESHOLD_Y}"),
+                    format!("${INFO_BOX_Y_OFFSET_FACT} != {INFO_BOX_MOVE_OFFSET_Y}"),
+                ],
+                actions: vec![RuleActionDef::SetLocalFact(
+                    INFO_BOX_Y_OFFSET_FACT.into(),
+                    LocalFactValue::Int(INFO_BOX_MOVE_OFFSET_Y),
+                )],
+                modifications: vec![],
+                outputs: vec![],
+                enabled: true,
+                priority: 100,
+                consume_event: true,
+            },
+            RuleDef {
+                id: "restore_info_box_when_player_is_high".into(),
+                event: RuleEventDef::Event(SCREEN_FACTS_UPDATED_EVENT.into()),
+                conditions: vec![
+                    format!("{PLAYER_SCREEN_Y_FACT} <= {INFO_BOX_MOVE_THRESHOLD_Y}"),
+                    format!("${INFO_BOX_Y_OFFSET_FACT} != 0"),
+                ],
+                actions: vec![RuleActionDef::SetLocalFact(
+                    INFO_BOX_Y_OFFSET_FACT.into(),
+                    LocalFactValue::Int(0),
+                )],
+                modifications: vec![],
+                outputs: vec![],
+                enabled: true,
+                priority: 100,
+                consume_event: true,
+            },
             RuleDef {
                 id: "".into(),
                 event: RuleEventDef::ActionEvent {

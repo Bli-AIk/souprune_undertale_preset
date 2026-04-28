@@ -15,7 +15,7 @@
 //    structure globally, please edit the Vessel source schema/configuration
 //    instead of modifying this file directly.
 // =============================================================================
-// Generated at: 2026-04-26 20:23:16 +08:00
+// Generated at: 2026-04-27 22:00:21 +08:00
 
 (
     scope: View,
@@ -29,11 +29,44 @@
     },
     facts: {
         "depth": Enum("menu"),
+        "info_box_y_offset": Int(0),
         "interactable": Bool(true),
         "item_list_selection": Int(0),
         "selection": Int(0),
     },
     rules: [
+        (
+            id: "move_info_box_down_when_player_is_low",
+            event: Event("overworld:screen_facts_updated"),
+            conditions: [
+                "$overworld:player_screen_y > 130",
+                "$info_box_y_offset != 135",
+            ],
+            actions: [
+                SetLocalFact("info_box_y_offset", Int(135)),
+            ],
+            modifications: [],
+            outputs: [],
+            enabled: true,
+            priority: 100,
+            consume_event: true,
+        ),
+        (
+            id: "restore_info_box_when_player_is_high",
+            event: Event("overworld:screen_facts_updated"),
+            conditions: [
+                "$overworld:player_screen_y <= 130",
+                "$info_box_y_offset != 0",
+            ],
+            actions: [
+                SetLocalFact("info_box_y_offset", Int(0)),
+            ],
+            modifications: [],
+            outputs: [],
+            enabled: true,
+            priority: 100,
+            consume_event: true,
+        ),
         (
             id: "",
             event: ActionEvent(
