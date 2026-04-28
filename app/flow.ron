@@ -15,7 +15,7 @@
 //    structure globally, please edit the Vessel source schema/configuration
 //    instead of modifying this file directly.
 // =============================================================================
-// Generated at: 2026-04-26 20:23:16 +08:00
+// Generated at: 2026-04-28 11:55:59 +08:00
 
 (
     states: {
@@ -25,6 +25,9 @@
             player_can_interact: None,
             camera_follow_player: true,
             view_layout: Some("overworld/view/undertale_backpack.view.ron"),
+            pre_spawn_events: [
+                "overworld:screen_facts_updated",
+            ],
             initial_layer: None,
             on_enter_sound: Some("assets/audios/sfx/confirm.wav"),
             on_exit_sound: None,
@@ -36,6 +39,7 @@
             player_can_interact: Some(false),
             camera_follow_player: true,
             view_layout: None,
+            pre_spawn_events: [],
             initial_layer: None,
             on_enter_sound: None,
             on_exit_sound: None,
@@ -47,6 +51,7 @@
             player_can_interact: None,
             camera_follow_player: true,
             view_layout: None,
+            pre_spawn_events: [],
             initial_layer: None,
             on_enter_sound: None,
             on_exit_sound: None,
@@ -58,6 +63,7 @@
             player_can_interact: None,
             camera_follow_player: true,
             view_layout: None,
+            pre_spawn_events: [],
             initial_layer: None,
             on_enter_sound: None,
             on_exit_sound: None,
@@ -69,6 +75,7 @@
             player_can_interact: None,
             camera_follow_player: true,
             view_layout: None,
+            pre_spawn_events: [],
             initial_layer: None,
             on_enter_sound: None,
             on_exit_sound: None,
