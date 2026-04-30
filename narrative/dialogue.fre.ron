@@ -15,7 +15,7 @@
 //    structure globally, please edit the Vessel source schema/configuration
 //    instead of modifying this file directly.
 // =============================================================================
-// Generated at: 2026-04-30 17:14:33 +08:00
+// Generated at: 2026-04-30 21:05:12 +08:00
 
 (
     scope: Local,
@@ -24,6 +24,63 @@
         "dialogue:typewriter_speed": Float(0.03),
     },
     rules: [
+        (
+            id: "dialogue_advance_on_confirm",
+            event: ActionEvent(
+                action: "Confirm",
+                kind: JustPressed,
+            ),
+            conditions: [
+                "$dialogue:has_focus == true",
+                "$dialogue:typewriter_playing == false",
+            ],
+            actions: [],
+            modifications: [],
+            outputs: [
+                "dialogue_advance",
+            ],
+            enabled: true,
+            priority: 0,
+            consume_event: true,
+        ),
+        (
+            id: "dialogue_skip_on_confirm",
+            event: ActionEvent(
+                action: "Confirm",
+                kind: JustPressed,
+            ),
+            conditions: [
+                "$dialogue:has_focus == true",
+                "$dialogue:typewriter_playing == true",
+            ],
+            actions: [],
+            modifications: [],
+            outputs: [
+                "dialogue_skip_typewriter",
+            ],
+            enabled: true,
+            priority: 0,
+            consume_event: true,
+        ),
+        (
+            id: "dialogue_skip_on_cancel",
+            event: ActionEvent(
+                action: "Cancel",
+                kind: JustPressed,
+            ),
+            conditions: [
+                "$dialogue:has_focus == true",
+                "$dialogue:typewriter_playing == true",
+            ],
+            actions: [],
+            modifications: [],
+            outputs: [
+                "dialogue_skip_typewriter",
+            ],
+            enabled: true,
+            priority: 0,
+            consume_event: true,
+        ),
         (
             id: "battle_narration_advance_on_confirm",
             event: ActionEvent(

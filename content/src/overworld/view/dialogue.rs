@@ -21,11 +21,11 @@ pub fn asset() -> ViewLayoutAsset {
     ViewLayout {
         roots: Vec::from([ViewNodeDef {
             name: "DialogueBox".into(),
-            visible_when: Some("$dialogue_active".into()),
+            visible_when: Some("$dialogue:active == true".into()),
             texts: Vec::from([TextDef {
                 id: "DialogueText".into(),
                 font: "DTM-Mono".into(),
-                content: Some("{{dialogue_text}}".into()),
+                content: Some("{{dialogue:main:text}}".into()),
                 world_scale: vector2(13.25, 13.25),
                 transform: SerializableTransform {
                     translation: Some(vector3(-130.5, 27.85, 1.0)),
@@ -48,13 +48,9 @@ pub fn asset() -> ViewLayoutAsset {
         }]),
         requires: Vec::from([DataRequirement::File("narrative/dialogue.fre.ron".into())]),
         facts: Some(
-            Vec::from([
-                ("depth".into(), InitialFactValue::Int(0)),
-                ("dialogue_active".into(), InitialFactValue::Bool(true)),
-                ("dialogue_text".into(), InitialFactValue::String("".into())),
-            ])
-            .into_iter()
-            .collect(),
+            Vec::from([("depth".into(), InitialFactValue::Int(0))])
+                .into_iter()
+                .collect(),
         ),
         ..Default::default()
     }

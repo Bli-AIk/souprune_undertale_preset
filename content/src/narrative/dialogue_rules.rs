@@ -27,6 +27,57 @@ pub fn asset() -> FreAsset {
         .collect(),
         rules: vec![
             RuleDef {
+                id: "dialogue_advance_on_confirm".into(),
+                event: RuleEventDef::ActionEvent {
+                    action: "Confirm".into(),
+                    kind: ActionEventKind::JustPressed,
+                },
+                conditions: vec![
+                    "$dialogue:has_focus == true".into(),
+                    "$dialogue:typewriter_playing == false".into(),
+                ],
+                actions: vec![],
+                modifications: vec![],
+                outputs: vec!["dialogue_advance".into()],
+                enabled: true,
+                priority: 0,
+                consume_event: true,
+            },
+            RuleDef {
+                id: "dialogue_skip_on_confirm".into(),
+                event: RuleEventDef::ActionEvent {
+                    action: "Confirm".into(),
+                    kind: ActionEventKind::JustPressed,
+                },
+                conditions: vec![
+                    "$dialogue:has_focus == true".into(),
+                    "$dialogue:typewriter_playing == true".into(),
+                ],
+                actions: vec![],
+                modifications: vec![],
+                outputs: vec!["dialogue_skip_typewriter".into()],
+                enabled: true,
+                priority: 0,
+                consume_event: true,
+            },
+            RuleDef {
+                id: "dialogue_skip_on_cancel".into(),
+                event: RuleEventDef::ActionEvent {
+                    action: "Cancel".into(),
+                    kind: ActionEventKind::JustPressed,
+                },
+                conditions: vec![
+                    "$dialogue:has_focus == true".into(),
+                    "$dialogue:typewriter_playing == true".into(),
+                ],
+                actions: vec![],
+                modifications: vec![],
+                outputs: vec!["dialogue_skip_typewriter".into()],
+                enabled: true,
+                priority: 0,
+                consume_event: true,
+            },
+            RuleDef {
                 id: "battle_narration_advance_on_confirm".into(),
                 event: RuleEventDef::ActionEvent {
                     action: "Confirm".into(),

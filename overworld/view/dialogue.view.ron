@@ -15,7 +15,7 @@
 //    structure globally, please edit the Vessel source schema/configuration
 //    instead of modifying this file directly.
 // =============================================================================
-// Generated at: 2026-04-26 20:23:16 +08:00
+// Generated at: 2026-04-30 21:22:23 +08:00
 
 (
     roots: [
@@ -34,7 +34,7 @@
                 justify_content: None,
                 align_items: None,
             ),
-            visible_when: Some("$dialogue_active"),
+            visible_when: Some("$dialogue:active == true"),
             background_color: None,
             border_color: None,
             image: None,
@@ -43,7 +43,7 @@
             texts: [
                 (
                     id: "DialogueText",
-                    content: Some("{{dialogue_text}}"),
+                    content: Some("{{dialogue:main:text}}"),
                     font: "DTM-Mono",
                     align: None,
                     anchor: None,
@@ -79,8 +79,6 @@
     ],
     facts: Some({
         "depth": 0,
-        "dialogue_active": true,
-        "dialogue_text": "",
     }),
     world_space: false,
     coordinate_system: Standard,
