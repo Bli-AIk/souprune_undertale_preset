@@ -30,14 +30,6 @@ pub fn asset() -> SequenceAsset {
                 value: FactValueMatch::Bool(false),
             },
             Chapter::SetViewFact {
-                key: "dialogue_text".into(),
-                value: FactValueMatch::String("".into()),
-            },
-            Chapter::SetViewFact {
-                key: "dialogue_visible".into(),
-                value: FactValueMatch::Bool(false),
-            },
-            Chapter::SetViewFact {
                 key: "depth".into(),
                 value: FactValueMatch::Int(-1),
             },

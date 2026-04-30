@@ -23,7 +23,7 @@
     exits: {},
     chapters: [
         EmitFactEvent(
-            event_id: "dialogue:stop",
+            event_id: "dialogue:battle_narration:stop",
             data: {},
         ),
         SetViewFact(
@@ -45,6 +45,10 @@
         ModifyFact(
             modifications: [
                 Set(
+                    key: "dialogue:pending_channel",
+                    value: String("battle_narration"),
+                ),
+                Set(
                     key: "dialogue:pending_mortar_path",
                     value: Expr("$mortar_path"),
                 ),
@@ -57,25 +61,25 @@
                     value: Bool(true),
                 ),
                 Set(
-                    key: "dialogue:has_typewriter",
+                    key: "dialogue:battle_narration:has_typewriter",
                     value: Bool(true),
                 ),
                 Set(
-                    key: "dialogue:has_focus",
+                    key: "dialogue:battle_narration:has_focus",
                     value: Bool(true),
                 ),
                 Set(
-                    key: "dialogue:voice",
+                    key: "dialogue:battle_narration:voice",
                     value: String("assets/audios/voice/voice_typewriter_default.wav"),
                 ),
             ],
         ),
         AwaitFact(
-            condition: "$dialogue:active == true",
+            condition: "$dialogue:battle_narration:active == true",
             local: false,
         ),
         AwaitFact(
-            condition: "$dialogue:active == false",
+            condition: "$dialogue:battle_narration:active == false",
             local: false,
         ),
         SetViewFact(
@@ -85,10 +89,6 @@
         SetViewFact(
             key: "buttons_visible",
             value: Bool(true),
-        ),
-        SetViewFact(
-            key: "dialogue_text",
-            value: String(""),
         ),
         SetViewFact(
             key: "dialogue:replay_on_resume",

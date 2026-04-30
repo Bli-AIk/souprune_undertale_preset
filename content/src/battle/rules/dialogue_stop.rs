@@ -20,15 +20,9 @@ pub fn asset() -> FreAsset {
             id: "".into(),
             event: RuleEventDef::Event("dialogue:stop".into()),
             conditions: vec![],
-            actions: vec![
-                RuleActionDef::SetLocalFact(
-                    "dialogue_text".into(),
-                    LocalFactValue::String("".into()),
-                ),
-                RuleActionDef::SetLocalFact("dialogue_visible".into(), LocalFactValue::Bool(false)),
-            ],
+            actions: vec![],
             modifications: vec![],
-            outputs: vec![],
+            outputs: vec!["dialogue:battle_narration:stop".into()],
             enabled: true,
             priority: 0,
             consume_event: true,

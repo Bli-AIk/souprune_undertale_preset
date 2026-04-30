@@ -35,14 +35,6 @@
             value: Bool(false),
         ),
         SetViewFact(
-            key: "dialogue_text",
-            value: String(""),
-        ),
-        SetViewFact(
-            key: "dialogue_visible",
-            value: Bool(false),
-        ),
-        SetViewFact(
             key: "depth",
             value: Int(-1),
         ),

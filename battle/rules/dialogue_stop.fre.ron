@@ -26,12 +26,11 @@
             id: "",
             event: Event("dialogue:stop"),
             conditions: [],
-            actions: [
-                SetLocalFact("dialogue_text", String("")),
-                SetLocalFact("dialogue_visible", Bool(false)),
-            ],
+            actions: [],
             modifications: [],
-            outputs: [],
+            outputs: [
+                "dialogue:battle_narration:stop",
+            ],
             enabled: true,
             priority: 0,
             consume_event: true,

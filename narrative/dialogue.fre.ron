@@ -15,7 +15,7 @@
 //    structure globally, please edit the Vessel source schema/configuration
 //    instead of modifying this file directly.
 // =============================================================================
-// Generated at: 2026-04-26 20:23:16 +08:00
+// Generated at: 2026-04-30 17:14:33 +08:00
 
 (
     scope: Local,
@@ -25,14 +25,14 @@
     },
     rules: [
         (
-            id: "dialogue_advance_on_confirm",
+            id: "battle_narration_advance_on_confirm",
             event: ActionEvent(
                 action: "Confirm",
                 kind: JustPressed,
             ),
             conditions: [
-                "$dialogue:has_focus == true",
-                "$dialogue:typewriter_playing == false",
+                "$dialogue:battle_narration:has_focus == true",
+                "$dialogue:battle_narration:typewriter_playing == false",
             ],
             actions: [],
             modifications: [],
@@ -44,14 +44,73 @@
             consume_event: true,
         ),
         (
-            id: "dialogue_skip_on_cancel",
+            id: "battle_narration_skip_on_cancel",
             event: ActionEvent(
                 action: "Cancel",
                 kind: JustPressed,
             ),
             conditions: [
                 "$depth == 0",
-                "$dialogue:typewriter_playing == true",
+                "$dialogue:battle_narration:has_focus == true",
+                "$dialogue:battle_narration:typewriter_playing == true",
+            ],
+            actions: [],
+            modifications: [],
+            outputs: [
+                "dialogue_skip_typewriter",
+            ],
+            enabled: true,
+            priority: 10,
+            consume_event: true,
+        ),
+        (
+            id: "battle_enemy_speech_advance_on_confirm",
+            event: ActionEvent(
+                action: "Confirm",
+                kind: JustPressed,
+            ),
+            conditions: [
+                "$dialogue:battle_enemy_speech:has_focus == true",
+                "$dialogue:battle_enemy_speech:typewriter_playing == false",
+            ],
+            actions: [],
+            modifications: [],
+            outputs: [
+                "dialogue_advance",
+            ],
+            enabled: true,
+            priority: 10,
+            consume_event: true,
+        ),
+        (
+            id: "battle_enemy_speech_skip_on_confirm",
+            event: ActionEvent(
+                action: "Confirm",
+                kind: JustPressed,
+            ),
+            conditions: [
+                "$dialogue:battle_enemy_speech:has_focus == true",
+                "$dialogue:battle_enemy_speech:typewriter_playing == true",
+            ],
+            actions: [],
+            modifications: [],
+            outputs: [
+                "dialogue_skip_typewriter",
+            ],
+            enabled: true,
+            priority: 10,
+            consume_event: true,
+        ),
+        (
+            id: "battle_enemy_speech_skip_on_cancel",
+            event: ActionEvent(
+                action: "Cancel",
+                kind: JustPressed,
+            ),
+            conditions: [
+                "$depth == 0",
+                "$dialogue:battle_enemy_speech:has_focus == true",
+                "$dialogue:battle_enemy_speech:typewriter_playing == true",
             ],
             actions: [],
             modifications: [],

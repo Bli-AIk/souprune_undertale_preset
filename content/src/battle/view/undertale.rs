@@ -136,7 +136,7 @@ pub fn asset() -> ViewLayoutAsset {
                     TextDef {
                         id: "BattleDialogue".into(),
                         font: "DTM-Mono".into(),
-                        content: Some("{{dialogue_text}}".into()),
+                        content: Some("{{dialogue:battle_narration:text}}".into()),
                         world_scale: vector2(26.0, 26.0),
                         transform: SerializableTransform {
                             translation: Some(vector3(-267.5, -50.0, 1.0)),
@@ -146,7 +146,7 @@ pub fn asset() -> ViewLayoutAsset {
                         char_spacing: Some(3.0),
                         word_spacing: Some(-9.0),
                         visible_when: Some(
-                            "$depth == 0 && $dialogue_visible == true && $narration_visible == false"
+                            "$depth == 0 && $dialogue:battle_narration:visible == true && $narration_visible == false"
                                 .into(),
                         ),
                         ..Default::default()
@@ -294,7 +294,7 @@ pub fn asset() -> ViewLayoutAsset {
                     TextDef {
                         id: "NarrationText".into(),
                         font: "DTM-Mono".into(),
-                        content: Some("{{dialogue_text}}".into()),
+                        content: Some("{{dialogue:battle_narration:text}}".into()),
                         world_scale: vector2(26.0, 26.0),
                         transform: SerializableTransform {
                             translation: Some(vector3(-267.5, -50.0, 1.0)),
@@ -304,7 +304,7 @@ pub fn asset() -> ViewLayoutAsset {
                         char_spacing: Some(3.0),
                         word_spacing: Some(-9.0),
                         visible_when: Some(
-                            "$narration_visible == true && $depth == 0".into(),
+                            "$narration_visible == true && $depth == 0 && $dialogue:battle_narration:visible == true".into(),
                         ),
                         ..Default::default()
                     },
@@ -366,6 +366,66 @@ pub fn asset() -> ViewLayoutAsset {
                         repeat: Some(RepeatDef {
                             source: "enemy_names".into(),
                             index_var: Some("i".into()),
+                            ..Default::default()
+                        }),
+                        ..Default::default()
+                    },
+                ]),
+                ..Default::default()
+            },
+            ViewNodeDef {
+                name: "EnemySpeechBubble".into(),
+                tags: Vec::from(["EnemySpeechBubble".into()]),
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(
+                        expr::fact("enemy_speech_bubble_x"),
+                        expr::fact("enemy_speech_bubble_y"),
+                        30.0,
+                    )),
+                    ..Default::default()
+                }),
+                visible_when: Some(
+                    "$enemy_speech_visible == true && $dialogue:battle_enemy_speech:visible == true"
+                        .into(),
+                ),
+                texts: Vec::from([
+                    TextDef {
+                        id: "EnemySpeechText".into(),
+                        font: "speechbubble".into(),
+                        content: Some("{{dialogue:battle_enemy_speech:text}}".into()),
+                        world_scale: vector2(13.0, 13.0),
+                        color: color(0.0, 0.0, 0.0, 1.0),
+                        transform: SerializableTransform {
+                            translation: Some(vector3(
+                                expr::fact("enemy_speech_text_x")
+                                    - expr::fact("enemy_speech_bubble_x"),
+                                expr::fact("enemy_speech_text_y")
+                                    - expr::fact("enemy_speech_bubble_y"),
+                                31.0,
+                            )),
+                            ..Default::default()
+                        },
+                        line_height: Some(1.54),
+                        char_spacing: Some(0.0),
+                        word_spacing: Some(0.0),
+                        visible_when: Some(
+                            "$enemy_speech_visible == true && $dialogue:battle_enemy_speech:visible == true"
+                                .into(),
+                        ),
+                        ..Default::default()
+                    },
+                ]),
+                children: Vec::from([
+                    ViewNodeDef {
+                        name: "EnemySpeechBubbleSprite".into(),
+                        sprite: Some(SpriteDef {
+                            visual: Visual("battle/speech_bubble/mad_dummy_wide.png".into()),
+                            transform: Some(SerializableTransform {
+                                translation: Some(vector3(0.0, 0.0, 0.0)),
+                                scale: Some(vector3(0.5, 0.5, 1.0)),
+                                ..Default::default()
+                            }),
+                            pivot: Some(vector2(0.0, 0.0)),
                             ..Default::default()
                         }),
                         ..Default::default()
@@ -826,10 +886,38 @@ pub fn asset() -> ViewLayoutAsset {
                     ("confirm_pressed".into(), InitialFactValue::Bool(false)),
                     ("depth".into(), InitialFactValue::Int(0)),
                     ("dialogue:replay_on_resume".into(), InitialFactValue::Bool(true)),
-                    ("dialogue_text".into(), InitialFactValue::String("".into())),
-                    ("dialogue_visible".into(), InitialFactValue::Bool(false)),
                     ("enemy_display_limit".into(), InitialFactValue::Int(3)),
                     ("enemy_selection".into(), InitialFactValue::Int(0)),
+                    (
+                        "enemy_speech_bubble_visual".into(),
+                        InitialFactValue::String(
+                            "battle/speech_bubble/mad_dummy_wide.png".into(),
+                        ),
+                    ),
+                    (
+                        "enemy_speech_bubble_x".into(),
+                        InitialFactValue::Float(370.0),
+                    ),
+                    (
+                        "enemy_speech_bubble_y".into(),
+                        InitialFactValue::Float(80.0),
+                    ),
+                    (
+                        "enemy_speech_text_width".into(),
+                        InitialFactValue::Float(190.0),
+                    ),
+                    (
+                        "enemy_speech_text_x".into(),
+                        InitialFactValue::Float(395.0),
+                    ),
+                    (
+                        "enemy_speech_text_y".into(),
+                        InitialFactValue::Float(90.0),
+                    ),
+                    (
+                        "enemy_speech_visible".into(),
+                        InitialFactValue::Bool(false),
+                    ),
                     ("enemy_view_offset".into(), InitialFactValue::Int(0)),
                     ("fight_target_visible".into(), InitialFactValue::Bool(false)),
                     ("interactable".into(), InitialFactValue::Bool(false)),
