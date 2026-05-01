@@ -4,7 +4,7 @@
 
 use anyhow::Result;
 use souprune_schema::overworld::*;
-use souprune_vessel::prelude::*;
+use souprune_cauld_ron::prelude::*;
 
 pub fn emit(reg: &mut Registry) -> Result<()> {
     reg.emit_auto(file!(), &asset())?;

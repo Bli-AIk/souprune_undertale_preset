@@ -11,7 +11,7 @@ crate-type = ["cdylib"]
 [dependencies]
 anyhow = "1"
 souprune_schema = { path = "../../../crates/souprune_schema" }
-souprune_vessel = { path = "../../../crates/souprune_vessel" }
+souprune_cauld_ron = { path = "../../../crates/souprune_cauld_ron" }
 
 [build-dependencies]
-souprune_vessel = { path = "../../../crates/souprune_vessel" }
+souprune_cauld_ron = { path = "../../../crates/souprune_cauld_ron" }

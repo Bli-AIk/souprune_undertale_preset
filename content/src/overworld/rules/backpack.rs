@@ -4,7 +4,7 @@
 
 use anyhow::Result;
 use souprune_schema::fre::*;
-use souprune_vessel::prelude::*;
+use souprune_cauld_ron::prelude::*;
 
 const SCREEN_FACTS_UPDATED_EVENT: &str = "overworld:screen_facts_updated";
 const PLAYER_SCREEN_Y_FACT: &str = "$overworld:player_screen_y";

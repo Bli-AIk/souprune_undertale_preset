@@ -5,7 +5,7 @@
 use anyhow::Result;
 use souprune_schema::battle::*;
 use souprune_schema::bevy_types::*;
-use souprune_vessel::prelude::*;
+use souprune_cauld_ron::prelude::*;
 
 pub fn emit(reg: &mut Registry) -> Result<()> {
     reg.emit_auto(file!(), &asset())?;

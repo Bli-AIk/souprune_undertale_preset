@@ -4,7 +4,7 @@
 
 use anyhow::Result;
 use souprune_schema::view::*;
-use souprune_vessel::prelude::*;
+use souprune_cauld_ron::prelude::*;
 
 /// Emit this asset.
 ///
