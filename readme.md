@@ -54,3 +54,16 @@ undertale_preset/
 ├── view/
 └── assets/
 ```
+
+## License and Asset Notice
+
+The original code, configuration, and scripts in this repository are licensed under either of:
+
+* Apache License, Version 2.0 ([LICENSE-APACHE](LICENSE-APACHE) or [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0))
+* MIT license ([LICENSE-MIT](LICENSE-MIT) or [http://opensource.org/licenses/MIT](http://opensource.org/licenses/MIT))
+
+at your option.
+
+This license applies only to original repository code, configuration, scripts, and other original contributions.
+Undertale/Deltarune-related characters, names, visual assets, audio assets, and other original-game materials remain the property of their respective rights holders.
+This repository is a fangame-development preset and does not grant any rights to Undertale or Deltarune assets.

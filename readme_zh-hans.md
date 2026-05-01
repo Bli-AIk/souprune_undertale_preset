@@ -54,3 +54,16 @@ undertale_preset/
 ├── view/
 └── assets/
 ```
+
+## 许可证与素材说明
+
+本仓库中的原创代码、配置和脚本采用以下任一许可证：
+
+* Apache License, Version 2.0 ([LICENSE-APACHE](LICENSE-APACHE) 或 [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0))
+* MIT license ([LICENSE-MIT](LICENSE-MIT) 或 [http://opensource.org/licenses/MIT](http://opensource.org/licenses/MIT))
+
+任选其一。
+
+上述许可证仅适用于本仓库中的原创代码、配置、脚本和其他原创贡献。
+与 Undertale/Deltarune 相关的角色、名称、视觉素材、音频素材和其他原作材料，其权利仍归各自权利方所有。
+本仓库是同人游戏开发预设，不授予任何 Undertale 或 Deltarune 素材权利。
