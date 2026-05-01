@@ -10,6 +10,7 @@ crate-type = ["cdylib"]
 
 [dependencies]
 anyhow = "1"
+cauld-ron = { path = "../../../crates/cauld-ron", default-features = false, features = ["guest"] }
 souprune_schema = { path = "../../../crates/souprune_schema" }
 souprune_cauld_ron = { path = "../../../crates/souprune_cauld_ron" }
 
