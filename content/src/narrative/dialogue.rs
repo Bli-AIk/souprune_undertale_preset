@@ -126,5 +126,56 @@ pub fn asset() -> DialogueConfig {
             .into_iter()
             .collect(),
         },
+        text_animation: TextAnimationConfigDef {
+            default_preset: "default".into(),
+            presets: vec![
+                ("default".into(), TextAnimationPresetDef {
+                    display: TextDisplayDef::Normal,
+                    shake: None,
+                    wave: None,
+                }),
+                ("battle_narration".into(), TextAnimationPresetDef {
+                    display: TextDisplayDef::Normal,
+                    shake: Some(TextShakeDef { intensity: 1.0 }),
+                    wave: None,
+                }),
+                ("flowey_evil".into(), TextAnimationPresetDef {
+                    display: TextDisplayDef::Normal,
+                    shake: Some(TextShakeDef { intensity: 3.0 }),
+                    wave: None,
+                }),
+                ("napstablook".into(), TextAnimationPresetDef {
+                    display: TextDisplayDef::Ghost {
+                        spawn_area: RectDef { x: 0.0, y: 0.0, w: 280.0, h: 200.0 },
+                        linger_seconds: 1.5,
+                    },
+                    shake: None,
+                    wave: None,
+                }),
+                ("mad_dummy".into(), TextAnimationPresetDef {
+                    display: TextDisplayDef::Ghost {
+                        spawn_area: RectDef { x: 0.0, y: 0.0, w: 280.0, h: 200.0 },
+                        linger_seconds: 0.8,
+                    },
+                    shake: None,
+                    wave: Some(TextWaveDef {
+                        amplitude: 1.4,
+                        frequency: 10.0,
+                        orbit_angle_per_char_deg: Some(30.0),
+                    }),
+                }),
+                ("heat_waver".into(), TextAnimationPresetDef {
+                    display: TextDisplayDef::Normal,
+                    shake: None,
+                    wave: Some(TextWaveDef {
+                        amplitude: 2.0,
+                        frequency: 6.0,
+                        ..Default::default()
+                    }),
+                }),
+            ]
+            .into_iter()
+            .collect(),
+        },
     }
 }

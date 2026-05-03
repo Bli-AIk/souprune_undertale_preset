@@ -69,6 +69,10 @@ pub fn asset() -> SequenceAsset {
                             "assets/audios/voice/voice_typewriter_default.wav".into(),
                         ),
                     },
+                    FactModificationDef::Set {
+                        key: "dialogue:battle_narration:text_style".into(),
+                        value: FactValueMatch::String("battle_narration".into()),
+                    },
                 ],
             },
             Chapter::AwaitFact {

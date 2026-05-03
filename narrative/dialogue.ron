@@ -15,7 +15,7 @@
 //    structure globally, please edit the Cauld-ron source schema/configuration
 //    instead of modifying this file directly.
 // =============================================================================
-// Generated at: 2026-04-26 20:23:16 +08:00
+// Generated at: 2026-05-03 13:37:19 +08:00
 
 (
     auto_pause: (
@@ -99,6 +99,69 @@
                 " ": false,
                 "\u{3000}": false,
             },
+        },
+    ),
+    text_animation: (
+        default_preset: "default",
+        presets: {
+            "battle_narration": (
+                display: Normal,
+                shake: Some((
+                    intensity: 1.0,
+                )),
+                wave: None,
+            ),
+            "default": (
+                display: Normal,
+                shake: None,
+                wave: None,
+            ),
+            "flowey_evil": (
+                display: Normal,
+                shake: Some((
+                    intensity: 3.0,
+                )),
+                wave: None,
+            ),
+            "heat_waver": (
+                display: Normal,
+                shake: None,
+                wave: Some((
+                    amplitude: 2.0,
+                    frequency: 6.0,
+                    orbit_angle_per_char_deg: None,
+                )),
+            ),
+            "mad_dummy": (
+                display: Ghost(
+                    spawn_area: (
+                        x: 0.0,
+                        y: 0.0,
+                        w: 280.0,
+                        h: 200.0,
+                    ),
+                    linger_seconds: 0.8,
+                ),
+                shake: None,
+                wave: Some((
+                    amplitude: 1.4,
+                    frequency: 10.0,
+                    orbit_angle_per_char_deg: Some(30.0),
+                )),
+            ),
+            "napstablook": (
+                display: Ghost(
+                    spawn_area: (
+                        x: 0.0,
+                        y: 0.0,
+                        w: 280.0,
+                        h: 200.0,
+                    ),
+                    linger_seconds: 1.5,
+                ),
+                shake: None,
+                wave: None,
+            ),
         },
     ),
 )
