@@ -136,12 +136,22 @@ pub fn asset() -> DialogueConfig {
                 }),
                 ("battle_narration".into(), TextAnimationPresetDef {
                     display: TextDisplayDef::Normal,
-                    shake: Some(TextShakeDef { intensity: 1.0 }),
+                    shake: Some(TextShakeDef {
+                        intensity: 1.0,
+                        mode: TextShakeModeDef::RandomSingle {
+                            interval_seconds: 0.08,
+                            chance: 0.45,
+                            duration_seconds: 0.035,
+                        },
+                    }),
                     wave: None,
                 }),
                 ("flowey_evil".into(), TextAnimationPresetDef {
                     display: TextDisplayDef::Normal,
-                    shake: Some(TextShakeDef { intensity: 3.0 }),
+                    shake: Some(TextShakeDef {
+                        intensity: 3.0,
+                        mode: TextShakeModeDef::Continuous,
+                    }),
                     wave: None,
                 }),
                 ("napstablook".into(), TextAnimationPresetDef {

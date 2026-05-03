@@ -145,6 +145,7 @@ pub fn asset() -> ViewLayoutAsset {
                         line_height: Some(1.025),
                         char_spacing: Some(3.0),
                         word_spacing: Some(-9.0),
+                        text_style: Some("battle_narration".into()),
                         visible_when: Some(
                             "$depth == 0 && $dialogue:battle_narration:visible == true && $narration_visible == false"
                                 .into(),
@@ -169,6 +170,7 @@ pub fn asset() -> ViewLayoutAsset {
                         line_height: Some(1.025),
                         char_spacing: Some(3.0),
                         word_spacing: Some(-9.0),
+                        text_style: Some("battle_narration".into()),
                         visible_when: Some(
                             concat!(
                                 "$depth == 1 && ($menu_context == 0 || $menu_context == 1 || $menu_contex",
@@ -193,6 +195,7 @@ pub fn asset() -> ViewLayoutAsset {
                         line_height: Some(1.025),
                         char_spacing: Some(3.0),
                         word_spacing: Some(-9.0),
+                        text_style: Some("battle_narration".into()),
                         visible_when: Some("$depth == 2 && $menu_context == 1".into()),
                         ..Default::default()
                     },
@@ -211,6 +214,7 @@ pub fn asset() -> ViewLayoutAsset {
                         line_height: Some(1.025),
                         char_spacing: Some(3.0),
                         word_spacing: Some(-9.0),
+                        text_style: Some("battle_narration".into()),
                         visible_when: Some("$depth == 2 && $menu_context == 1".into()),
                         ..Default::default()
                     },
@@ -229,6 +233,7 @@ pub fn asset() -> ViewLayoutAsset {
                         line_height: Some(1.025),
                         char_spacing: Some(3.0),
                         word_spacing: Some(-9.0),
+                        text_style: Some("battle_narration".into()),
                         visible_when: Some("$depth == 2 && $menu_context == 3".into()),
                         ..Default::default()
                     },
@@ -250,6 +255,7 @@ pub fn asset() -> ViewLayoutAsset {
                         line_height: Some(1.025),
                         char_spacing: Some(3.0),
                         word_spacing: Some(-9.0),
+                        text_style: Some("battle_narration".into()),
                         visible_when: Some("$depth == 1 && $menu_context == 2".into()),
                         ..Default::default()
                     },
@@ -271,6 +277,7 @@ pub fn asset() -> ViewLayoutAsset {
                         line_height: Some(1.025),
                         char_spacing: Some(3.0),
                         word_spacing: Some(-9.0),
+                        text_style: Some("battle_narration".into()),
                         visible_when: Some("$depth == 1 && $menu_context == 2".into()),
                         ..Default::default()
                     },
@@ -285,6 +292,7 @@ pub fn asset() -> ViewLayoutAsset {
                         },
                         char_spacing: Some(3.0),
                         word_spacing: Some(-9.0),
+                        text_style: Some("battle_narration".into()),
                         visible_when: Some(
                             "$depth == 1 && $menu_context == 2 && $item_page_count > 1"
                                 .into(),
@@ -303,6 +311,7 @@ pub fn asset() -> ViewLayoutAsset {
                         line_height: Some(1.025),
                         char_spacing: Some(3.0),
                         word_spacing: Some(-9.0),
+                        text_style: Some("battle_narration".into()),
                         visible_when: Some(
                             "$narration_visible == true && $depth == 0 && $dialogue:battle_narration:visible == true".into(),
                         ),
