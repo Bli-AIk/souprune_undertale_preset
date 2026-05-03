@@ -137,11 +137,10 @@ pub fn asset() -> DialogueConfig {
                 ("battle_narration".into(), TextAnimationPresetDef {
                     display: TextDisplayDef::Normal,
                     shake: Some(TextShakeDef {
-                        intensity: 1.0,
-                        mode: TextShakeModeDef::RandomSingle {
-                            interval_seconds: 0.08,
-                            chance: 0.45,
-                            duration_seconds: 0.035,
+                        intensity: 2.0,
+                        mode: TextShakeModeDef::Twitch {
+                            average_frames: 48,
+                            frame_variation: 16,
                         },
                     }),
                     wave: None,
@@ -187,5 +186,30 @@ pub fn asset() -> DialogueConfig {
             .into_iter()
             .collect(),
         },
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn mad_dummy_text_style_is_floating_with_wave_without_shake() {
+        let config = asset();
+        let preset = config
+            .text_animation
+            .presets
+            .get("mad_dummy")
+            .expect("mad_dummy text style should exist");
+
+        assert!(matches!(preset.display, TextDisplayDef::Floating { .. }));
+        assert!(preset.shake.is_none());
+        let wave = preset
+            .wave
+            .as_ref()
+            .expect("mad_dummy should keep ghost wave motion");
+        assert_eq!(wave.amplitude, 1.4);
+        assert_eq!(wave.frequency, 10.0);
+        assert_eq!(wave.orbit_angle_per_char_deg, Some(30.0));
     }
 }
