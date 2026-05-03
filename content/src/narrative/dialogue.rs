@@ -145,16 +145,16 @@ pub fn asset() -> DialogueConfig {
                     wave: None,
                 }),
                 ("napstablook".into(), TextAnimationPresetDef {
-                    display: TextDisplayDef::Ghost {
-                        spawn_area: RectDef { x: 0.0, y: 0.0, w: 280.0, h: 200.0 },
+                    display: TextDisplayDef::Floating {
+                        spawn_area: RectDef { x: 0.0, y: 0.0, width: 280.0, height: 200.0 },
                         linger_seconds: 1.5,
                     },
                     shake: None,
                     wave: None,
                 }),
                 ("mad_dummy".into(), TextAnimationPresetDef {
-                    display: TextDisplayDef::Ghost {
-                        spawn_area: RectDef { x: 0.0, y: 0.0, w: 280.0, h: 200.0 },
+                    display: TextDisplayDef::Floating {
+                        spawn_area: RectDef { x: 0.0, y: 0.0, width: 280.0, height: 200.0 },
                         linger_seconds: 0.8,
                     },
                     shake: None,
