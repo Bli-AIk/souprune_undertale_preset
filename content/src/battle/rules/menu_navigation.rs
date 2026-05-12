@@ -39,10 +39,7 @@ pub fn asset() -> FreAsset {
         rules: vec![
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Left".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Left"),
                 conditions: vec![
                     "$interactable == true".into(),
                     "$depth == 'main'".into(),
@@ -63,10 +60,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Left".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Left"),
                 conditions: vec![
                     "$interactable == true".into(),
                     "$depth == 'main'".into(),
@@ -84,10 +78,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Right".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Right"),
                 conditions: vec![
                     "$interactable == true".into(),
                     "$depth == 'main'".into(),
@@ -108,10 +99,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Right".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Right"),
                 conditions: vec![
                     "$interactable == true".into(),
                     "$depth == 'main'".into(),
@@ -129,10 +117,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Up".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Up"),
                 conditions: vec![
                     "$interactable == true".into(),
                     "$depth == 'submenu'".into(),
@@ -155,10 +140,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Up".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Up"),
                 conditions: vec![
                     "$interactable == true".into(),
                     "$depth == 'submenu'".into(),
@@ -185,10 +167,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Down".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Down"),
                 conditions: vec![
                     "$interactable == true".into(),
                     "$depth == 'submenu'".into(),
@@ -211,10 +190,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Down".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Down"),
                 conditions: vec![
                     "$interactable == true".into(),
                     "$depth == 'submenu'".into(),
@@ -241,10 +217,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Left".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Left"),
                 conditions: vec![
                     "$interactable == true".into(),
                     "$depth == 'submenu'".into(),
@@ -266,10 +239,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Left".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Left"),
                 conditions: vec![
                     "$interactable == true".into(),
                     "$depth == 'submenu'".into(),
@@ -292,10 +262,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Left".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Left"),
                 conditions: vec![
                     "$interactable == true".into(),
                     "$depth == 'submenu'".into(),
@@ -319,10 +286,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Left".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Left"),
                 conditions: vec![
                     "$interactable == true".into(),
                     "$depth == 'submenu'".into(),
@@ -347,10 +311,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Right".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Right"),
                 conditions: vec![
                     "$interactable == true".into(),
                     "$depth == 'submenu'".into(),
@@ -373,10 +334,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Right".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Right"),
                 conditions: vec![
                     "$interactable == true".into(),
                     "$depth == 'submenu'".into(),
@@ -400,10 +358,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Right".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Right"),
                 conditions: vec![
                     "$interactable == true".into(),
                     "$depth == 'submenu'".into(),
@@ -426,10 +381,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Right".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Right"),
                 conditions: vec![
                     "$interactable == true".into(),
                     "$depth == 'submenu'".into(),
@@ -453,10 +405,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Up".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Up"),
                 conditions: vec![
                     "$interactable == true".into(),
                     "$depth == 'submenu'".into(),
@@ -478,10 +427,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Down".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Down"),
                 conditions: vec![
                     "$interactable == true".into(),
                     "$depth == 'submenu'".into(),
@@ -504,10 +450,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Left".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Left"),
                 conditions: vec![
                     "$interactable == true".into(),
                     "$depth == 'options'".into(),
@@ -529,10 +472,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Right".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Right"),
                 conditions: vec![
                     "$interactable == true".into(),
                     "$depth == 'options'".into(),
@@ -555,10 +495,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Up".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Up"),
                 conditions: vec![
                     "$interactable == true".into(),
                     "$depth == 'options'".into(),
@@ -580,10 +517,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Down".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Down"),
                 conditions: vec![
                     "$interactable == true".into(),
                     "$depth == 'options'".into(),
@@ -605,10 +539,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Up".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Up"),
                 conditions: vec![
                     "$interactable == true".into(),
                     "$depth == 'options'".into(),
@@ -630,10 +561,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Down".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Down"),
                 conditions: vec![
                     "$interactable == true".into(),
                     "$depth == 'options'".into(),

@@ -15,7 +15,7 @@
 //    structure globally, please edit the Cauld-ron source schema/configuration
 //    instead of modifying this file directly.
 // =============================================================================
-// Generated at: 2026-04-26 20:23:16 +08:00
+// Generated at: 2026-05-12 13:43:27 +00:00
 
 (
     scope: Local,
@@ -24,10 +24,7 @@
     rules: [
         (
             id: "overworld_open_backpack",
-            event: ActionEvent(
-                action: "Menu",
-                kind: JustPressed,
-            ),
+            event: Event("input:menu"),
             conditions: [
                 "$state:sequence_sub_state == \'Normal\'",
                 "$dialogue:active != true",

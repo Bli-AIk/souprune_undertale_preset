@@ -46,10 +46,7 @@ pub fn asset() -> FreAsset {
         rules: vec![
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Confirm".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Confirm"),
                 conditions: vec!["$interactable == true".into(), "$depth == 'main'".into()],
                 actions: vec![
                     RuleActionDef::SetLocalFact(
@@ -72,10 +69,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Confirm".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Confirm"),
                 conditions: vec![
                     "$interactable == true".into(),
                     "$depth == 'submenu'".into(),
@@ -114,10 +108,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Confirm".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Confirm"),
                 conditions: vec![
                     "$interactable == true".into(),
                     "$depth == 'submenu'".into(),
@@ -156,10 +147,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Confirm".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Confirm"),
                 conditions: vec![
                     "$interactable == true".into(),
                     "$depth == 'submenu'".into(),
@@ -186,10 +174,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Confirm".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Confirm"),
                 conditions: vec![
                     "$interactable == true".into(),
                     "$depth == 'submenu'".into(),
@@ -222,10 +207,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Confirm".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Confirm"),
                 conditions: vec![
                     "$interactable == true".into(),
                     "$depth == 'options'".into(),
@@ -260,10 +242,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Confirm".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Confirm"),
                 conditions: vec![
                     "$interactable == true".into(),
                     "$depth == 'options'".into(),
@@ -298,10 +277,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Confirm".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Confirm"),
                 conditions: vec![
                     "$narration_visible == true".into(),
                     "$interactable == false".into(),

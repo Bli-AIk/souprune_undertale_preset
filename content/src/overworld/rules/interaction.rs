@@ -19,10 +19,7 @@ pub fn asset() -> FreAsset {
         rules: vec![
             RuleDef {
                 id: "overworld_open_backpack".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Menu".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Menu"),
                 conditions: vec![
                     "$state:sequence_sub_state == 'Normal'".into(),
                     "$dialogue:active != true".into(),

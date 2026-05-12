@@ -28,10 +28,7 @@ pub fn asset() -> FreAsset {
         rules: vec![
             RuleDef {
                 id: "dialogue_advance_on_confirm".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Confirm".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Confirm"),
                 conditions: vec![
                     "$dialogue:has_focus == true".into(),
                     "$dialogue:typewriter_playing == false".into(),
@@ -45,10 +42,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "dialogue_skip_on_confirm".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Confirm".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Confirm"),
                 conditions: vec![
                     "$dialogue:has_focus == true".into(),
                     "$dialogue:typewriter_playing == true".into(),
@@ -62,10 +56,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "dialogue_skip_on_cancel".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Cancel".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Cancel"),
                 conditions: vec![
                     "$dialogue:has_focus == true".into(),
                     "$dialogue:typewriter_playing == true".into(),
@@ -79,10 +70,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "battle_narration_advance_on_confirm".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Confirm".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Confirm"),
                 conditions: vec![
                     "$dialogue:battle_narration:has_focus == true".into(),
                     "$dialogue:battle_narration:typewriter_playing == false".into(),
@@ -96,10 +84,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "battle_narration_skip_on_cancel".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Cancel".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Cancel"),
                 conditions: vec![
                     "$depth == 0".into(),
                     "$dialogue:battle_narration:has_focus == true".into(),
@@ -114,10 +99,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "battle_enemy_speech_advance_on_confirm".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Confirm".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Confirm"),
                 conditions: vec![
                     "$dialogue:battle_enemy_speech:has_focus == true".into(),
                     "$dialogue:battle_enemy_speech:typewriter_playing == false".into(),
@@ -131,10 +113,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "battle_enemy_speech_skip_on_confirm".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Confirm".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Confirm"),
                 conditions: vec![
                     "$dialogue:battle_enemy_speech:has_focus == true".into(),
                     "$dialogue:battle_enemy_speech:typewriter_playing == true".into(),
@@ -148,10 +127,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "battle_enemy_speech_skip_on_cancel".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Cancel".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Cancel"),
                 conditions: vec![
                     "$depth == 0".into(),
                     "$dialogue:battle_enemy_speech:has_focus == true".into(),
