@@ -17,58 +17,58 @@ pub fn asset() -> InputConfig {
             (
                 "Down".into(),
                 vec![
-                    InputBinding::Key("ArrowDown".into()),
-                    InputBinding::Key("KeyS".into()),
+                    InputBinding::Key(KeyboardKey::ArrowDown),
+                    InputBinding::Key(KeyboardKey::KeyS),
                     InputBinding::Gamepad("DPadDown".into()),
                 ],
             ),
             (
                 "Left".into(),
                 vec![
-                    InputBinding::Key("ArrowLeft".into()),
-                    InputBinding::Key("KeyA".into()),
+                    InputBinding::Key(KeyboardKey::ArrowLeft),
+                    InputBinding::Key(KeyboardKey::KeyA),
                     InputBinding::Gamepad("DPadLeft".into()),
                 ],
             ),
             (
                 "Cancel".into(),
                 vec![
-                    InputBinding::Key("KeyX".into()),
-                    InputBinding::Key("ShiftLeft".into()),
-                    InputBinding::Key("ShiftRight".into()),
+                    InputBinding::Key(KeyboardKey::KeyX),
+                    InputBinding::Key(KeyboardKey::ShiftLeft),
+                    InputBinding::Key(KeyboardKey::ShiftRight),
                     InputBinding::Gamepad("East".into()),
                 ],
             ),
             (
                 "Up".into(),
                 vec![
-                    InputBinding::Key("ArrowUp".into()),
-                    InputBinding::Key("KeyW".into()),
+                    InputBinding::Key(KeyboardKey::ArrowUp),
+                    InputBinding::Key(KeyboardKey::KeyW),
                     InputBinding::Gamepad("DPadUp".into()),
                 ],
             ),
             (
                 "Confirm".into(),
                 vec![
-                    InputBinding::Key("KeyZ".into()),
-                    InputBinding::Key("Enter".into()),
+                    InputBinding::Key(KeyboardKey::KeyZ),
+                    InputBinding::Key(KeyboardKey::Enter),
                     InputBinding::Gamepad("South".into()),
                 ],
             ),
             (
                 "Menu".into(),
                 vec![
-                    InputBinding::Key("KeyC".into()),
-                    InputBinding::Key("ControlLeft".into()),
-                    InputBinding::Key("ControlRight".into()),
+                    InputBinding::Key(KeyboardKey::KeyC),
+                    InputBinding::Key(KeyboardKey::ControlLeft),
+                    InputBinding::Key(KeyboardKey::ControlRight),
                     InputBinding::Gamepad("North".into()),
                 ],
             ),
             (
                 "Right".into(),
                 vec![
-                    InputBinding::Key("ArrowRight".into()),
-                    InputBinding::Key("KeyD".into()),
+                    InputBinding::Key(KeyboardKey::ArrowRight),
+                    InputBinding::Key(KeyboardKey::KeyD),
                     InputBinding::Gamepad("DPadRight".into()),
                 ],
             ),

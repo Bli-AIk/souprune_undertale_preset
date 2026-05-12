@@ -15,45 +15,45 @@
 //    structure globally, please edit the Cauld-ron source schema/configuration
 //    instead of modifying this file directly.
 // =============================================================================
-// Generated at: 2026-04-26 20:23:16 +08:00
+// Generated at: 2026-05-12 03:16:07 +00:00
 
 (
     actions: {
         "Cancel": [
-            Key("KeyX"),
-            Key("ShiftLeft"),
-            Key("ShiftRight"),
+            Key(KeyX),
+            Key(ShiftLeft),
+            Key(ShiftRight),
             Gamepad("East"),
         ],
         "Confirm": [
-            Key("KeyZ"),
-            Key("Enter"),
+            Key(KeyZ),
+            Key(Enter),
             Gamepad("South"),
         ],
         "Down": [
-            Key("ArrowDown"),
-            Key("KeyS"),
+            Key(ArrowDown),
+            Key(KeyS),
             Gamepad("DPadDown"),
         ],
         "Left": [
-            Key("ArrowLeft"),
-            Key("KeyA"),
+            Key(ArrowLeft),
+            Key(KeyA),
             Gamepad("DPadLeft"),
         ],
         "Menu": [
-            Key("KeyC"),
-            Key("ControlLeft"),
-            Key("ControlRight"),
+            Key(KeyC),
+            Key(ControlLeft),
+            Key(ControlRight),
             Gamepad("North"),
         ],
         "Right": [
-            Key("ArrowRight"),
-            Key("KeyD"),
+            Key(ArrowRight),
+            Key(KeyD),
             Gamepad("DPadRight"),
         ],
         "Up": [
-            Key("ArrowUp"),
-            Key("KeyW"),
+            Key(ArrowUp),
+            Key(KeyW),
             Gamepad("DPadUp"),
         ],
     },
