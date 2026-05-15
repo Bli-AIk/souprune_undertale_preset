@@ -13,6 +13,7 @@
 mod battle_box;
 mod battle_player;
 mod behaviors;
+mod enemy_turn;
 
 use battle_box::{BattleArea, BattleBoxActionHandler};
 use behaviors::{
@@ -28,12 +29,14 @@ impl CustomActionHandler for UndertaleActionHandler {
     fn handled_actions() -> Vec<String> {
         let mut actions = BattleBoxActionHandler::handled_actions();
         actions.extend(battle_player::handled_actions());
+        actions.extend(enemy_turn::handled_actions());
         actions
     }
 
     fn handle_action(&self, ctx: &Context, action_type: &str, params: &[ActionParam]) -> bool {
         BattleBoxActionHandler.handle_action(ctx, action_type, params)
             || battle_player::handle_action(ctx, action_type, params)
+            || enemy_turn::handle_action(ctx, action_type, params)
     }
 }
 
