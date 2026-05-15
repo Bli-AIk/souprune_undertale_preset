@@ -168,7 +168,8 @@ fn display_group(group: &str) -> &str {
 }
 
 fn read_string_list(ctx: &Context, key: &str) -> Vec<String> {
-    split_list(&ctx.get_fact_string(key).unwrap_or_default())
+    ctx.get_fact_string_list(key)
+        .unwrap_or_else(|| split_list(&ctx.get_fact_string(key).unwrap_or_default()))
 }
 
 fn split_list(value: &str) -> Vec<String> {
@@ -261,5 +262,17 @@ mod tests {
         assert_eq!(selection.path, "c.sequence.ron");
         assert_eq!(selection.next_pool, Some(vec![1]));
         assert_eq!(selection.next_counter, 3);
+    }
+
+    #[test]
+    fn split_list_reads_comma_or_newline_encoded_fallbacks() {
+        assert_eq!(
+            split_list("a.sequence.ron,b.sequence.ron\nc.sequence.ron"),
+            vec![
+                "a.sequence.ron".to_string(),
+                "b.sequence.ron".to_string(),
+                "c.sequence.ron".to_string()
+            ]
+        );
     }
 }
