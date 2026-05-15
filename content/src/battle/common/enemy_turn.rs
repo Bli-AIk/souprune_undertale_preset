@@ -28,11 +28,18 @@ pub fn asset() -> SequenceAsset {
                 params: HashMap::from([("id".into(), "main".into())]),
             },
             spawn_battle_player(),
-            Chapter::PickEnemyTurn {
-                enemy_id: None,
-                enemy_id_fact: Some("_param_enemy_id".into()),
-                group: None,
-                group_fact: Some("_param_turn_group".into()),
+            Chapter::Custom {
+                action_type: "SelectEnemyTurn".into(),
+                params: HashMap::from([
+                    ("enemy_id".into(), "$_param_enemy_id".into()),
+                    ("group".into(), "$_param_turn_group".into()),
+                    ("output".into(), "_selected_enemy_turn".into()),
+                ]),
+            },
+            Chapter::RunSequence {
+                path: None,
+                path_fact: Some("_selected_enemy_turn".into()),
+                params: HashMap::new(),
             },
             Chapter::Sequence(vec![
                 Chapter::Wait(0.5),
