@@ -2,7 +2,7 @@
 
 [![license](https://img.shields.io/badge/license-MIT%2FApache--2.0-blue)](LICENSE-APACHE) <img src="https://img.shields.io/github/repo-size/Bli-AIk/souprune_undertale_preset.svg"/> <img src="https://img.shields.io/github/last-commit/Bli-AIk/souprune_undertale_preset.svg"/>
 
-**souprune_undertale_preset** is the maintained Undertale-style reusable preset project for SoupRune.
+**souprune_undertale_preset** is the maintained Undertale-style reusable library mod for SoupRune.
 
 | English | Simplified Chinese |
 |---------|--------------------|
@@ -13,7 +13,7 @@
 This project provides reusable SoupRune content for Undertale-style games.
 It includes battle and overworld views, FRE rules, input and flow configuration, dialogue infrastructure, items, player behavior, and WASM runtime/content guests.
 
-This is a library mod, not a standalone game. Use `souprune_mad_dummy_example` when you want to study a complete runnable example project that depends on this preset.
+This is a project-level library mod, not a compiled framework layer and not a standalone game. Use `souprune_mad_dummy_example` when you want to study a complete runnable example project that depends on it.
 
 ## How to Use
 
