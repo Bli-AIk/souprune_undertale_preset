@@ -15,22 +15,77 @@
 //    structure globally, please edit the Cauld-ron source schema/configuration
 //    instead of modifying this file directly.
 // =============================================================================
-// Generated at: 2026-04-26 20:23:16 +08:00
+// Generated at: 2026-05-15 03:51:46 +00:00
 
 (
     mode: None,
     rules_file: None,
     exits: {},
     chapters: [
-        SetPlayer(Spawn(
-            config_path: "battle/players/player.battle_player.ron",
-            position: Some((0.0, -80.0)),
-        )),
-        PickEnemyTurn(
-            enemy_id: None,
-            enemy_id_fact: Some("_param_enemy_id"),
-            group: None,
-            group_fact: Some("_param_turn_group"),
+        SpawnBehavior(
+            behavior_id: "undertale_battle_area",
+            context: Some("battle"),
+        ),
+        Custom(
+            action_type: "SetBattleBoxBounds",
+            params: {
+                "center_x": "-0.5",
+                "center_y": "-80",
+                "duration": "0",
+                "height": "130",
+                "id": "main",
+                "width": "565",
+            },
+        ),
+        Custom(
+            action_type: "BindPlayerToBox",
+            params: {
+                "id": "main",
+            },
+        ),
+        Custom(
+            action_type: "SpawnBattlePlayer",
+            params: {
+                "behavior_context": "battle",
+                "behavior_id": "soul_red",
+                "box_id": "main",
+                "color_alpha": "1.0",
+                "color_blue": "0.0",
+                "color_green": "0.0",
+                "color_red": "1.0",
+                "damage_sound": "assets/audios/sfx/hurtsound.wav",
+                "flash_color_alpha": "1.0",
+                "flash_color_blue": "0.0",
+                "flash_color_green": "0.0",
+                "flash_color_red": "0.5",
+                "flash_interval": "0.1",
+                "invincibility_duration": "1.0",
+                "mode_scope": "battle",
+                "normal_color_alpha": "1.0",
+                "normal_color_blue": "0.0",
+                "normal_color_green": "0.0",
+                "normal_color_red": "1.0",
+                "physics_radius": "8.0",
+                "texture": "assets/textures/common/view/heart.png",
+                "trigger_half_height": "2.0",
+                "trigger_half_width": "2.0",
+                "x": "0.0",
+                "y": "-80.0",
+                "z": "10.0",
+            },
+        ),
+        Custom(
+            action_type: "SelectEnemyTurn",
+            params: {
+                "enemy_id": "$_param_enemy_id",
+                "group": "$_param_turn_group",
+                "output": "_selected_enemy_turn",
+            },
+        ),
+        RunSequence(
+            path: None,
+            path_fact: Some("_selected_enemy_turn"),
+            params: {},
         ),
         Sequence([
             Wait(0.5),

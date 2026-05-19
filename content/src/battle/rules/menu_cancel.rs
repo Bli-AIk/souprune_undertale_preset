@@ -24,10 +24,7 @@ pub fn asset() -> FreAsset {
         rules: vec![
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Cancel".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Cancel"),
                 conditions: vec!["$interactable == true".into(), "$depth == 'options'".into()],
                 actions: vec![
                     RuleActionDef::SetLocalFact(
@@ -45,10 +42,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Cancel".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Cancel"),
                 conditions: vec!["$interactable == true".into(), "$depth == 'submenu'".into()],
                 actions: vec![
                     RuleActionDef::SetLocalFact(

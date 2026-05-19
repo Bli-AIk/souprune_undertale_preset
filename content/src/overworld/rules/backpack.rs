@@ -93,10 +93,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Up".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Up"),
                 conditions: vec!["$selection > 0".into()],
                 actions: vec![
                     RuleActionDef::SetLocalFact(
@@ -113,10 +110,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Down".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Down"),
                 conditions: vec!["$depth == 'menu'".into(), "$selection < 1".into()],
                 actions: vec![
                     RuleActionDef::SetLocalFact(
@@ -133,10 +127,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Down".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Down"),
                 conditions: vec![
                     "$depth == 'item_list'".into(),
                     "$selection < $player:inventory.len() - 1".into(),
@@ -156,10 +147,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Left".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Left"),
                 conditions: vec!["$depth == 'item_options'".into(), "$selection > 0".into()],
                 actions: vec![
                     RuleActionDef::SetLocalFact(
@@ -176,10 +164,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Right".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Right"),
                 conditions: vec!["$depth == 'item_options'".into(), "$selection < 2".into()],
                 actions: vec![
                     RuleActionDef::SetLocalFact(
@@ -196,10 +181,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Confirm".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Confirm"),
                 conditions: vec!["$depth == 'menu'".into(), "$selection == 0".into()],
                 actions: vec![
                     RuleActionDef::SetLocalFact(
@@ -217,10 +199,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Confirm".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Confirm"),
                 conditions: vec!["$depth == 'menu'".into(), "$selection == 1".into()],
                 actions: vec![
                     RuleActionDef::SetLocalFact(
@@ -238,10 +217,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Confirm".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Confirm"),
                 conditions: vec!["$depth == 'item_list'".into()],
                 actions: vec![
                     RuleActionDef::SetLocalFact(
@@ -263,10 +239,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Confirm".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Confirm"),
                 conditions: vec!["$depth == 'item_options'".into(), "$selection == 0".into()],
                 actions: vec![
                     RuleActionDef::Custom {
@@ -292,10 +265,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Confirm".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Confirm"),
                 conditions: vec!["$depth == 'item_options'".into(), "$selection == 1".into()],
                 actions: vec![
                     RuleActionDef::Custom {
@@ -318,10 +288,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Confirm".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Confirm"),
                 conditions: vec!["$depth == 'item_options'".into(), "$selection == 2".into()],
                 actions: vec![
                     RuleActionDef::Custom {
@@ -344,10 +311,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Cancel".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Cancel"),
                 conditions: vec!["$depth == 'menu'".into()],
                 actions: vec![RuleActionDef::SwitchState("Normal".into())],
                 modifications: vec![],
@@ -358,10 +322,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Menu".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Menu"),
                 conditions: vec!["$depth == 'menu'".into()],
                 actions: vec![RuleActionDef::SwitchState("Normal".into())],
                 modifications: vec![],
@@ -372,10 +333,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Cancel".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Cancel"),
                 conditions: vec!["$depth == 'item_list'".into()],
                 actions: vec![
                     RuleActionDef::SetLocalFact(
@@ -392,10 +350,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Cancel".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Cancel"),
                 conditions: vec!["$depth == 'item_options'".into()],
                 actions: vec![RuleActionDef::SetLocalFact(
                     "depth".into(),
@@ -409,10 +364,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Cancel".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Cancel"),
                 conditions: vec!["$depth == 'status'".into()],
                 actions: vec![
                     RuleActionDef::SetLocalFact(

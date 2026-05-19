@@ -15,7 +15,7 @@
 //    structure globally, please edit the Cauld-ron source schema/configuration
 //    instead of modifying this file directly.
 // =============================================================================
-// Generated at: 2026-04-28 11:55:59 +08:00
+// Generated at: 2026-05-13 11:38:14 +00:00
 
 (
     states: {
@@ -28,6 +28,11 @@
             pre_spawn_events: [
                 "overworld:screen_facts_updated",
             ],
+            screen_fact_projection: Some((
+                player_x_fact: Some("overworld:player_screen_x"),
+                player_y_fact: Some("overworld:player_screen_y"),
+                updated_event: Some("overworld:screen_facts_updated"),
+            )),
             initial_layer: None,
             on_enter_sound: Some("assets/audios/sfx/confirm.wav"),
             on_exit_sound: None,
@@ -40,6 +45,7 @@
             camera_follow_player: true,
             view_layout: None,
             pre_spawn_events: [],
+            screen_fact_projection: None,
             initial_layer: None,
             on_enter_sound: None,
             on_exit_sound: None,
@@ -52,6 +58,7 @@
             camera_follow_player: true,
             view_layout: None,
             pre_spawn_events: [],
+            screen_fact_projection: None,
             initial_layer: None,
             on_enter_sound: None,
             on_exit_sound: None,
@@ -64,6 +71,7 @@
             camera_follow_player: true,
             view_layout: None,
             pre_spawn_events: [],
+            screen_fact_projection: None,
             initial_layer: None,
             on_enter_sound: None,
             on_exit_sound: None,
@@ -76,6 +84,7 @@
             camera_follow_player: true,
             view_layout: None,
             pre_spawn_events: [],
+            screen_fact_projection: None,
             initial_layer: None,
             on_enter_sound: None,
             on_exit_sound: None,

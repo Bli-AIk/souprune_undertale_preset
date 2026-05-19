@@ -15,7 +15,7 @@
 //    structure globally, please edit the Cauld-ron source schema/configuration
 //    instead of modifying this file directly.
 // =============================================================================
-// Generated at: 2026-04-26 20:23:16 +08:00
+// Generated at: 2026-05-12 13:43:27 +00:00
 
 (
     scope: View,
@@ -36,10 +36,7 @@
     rules: [
         (
             id: "",
-            event: ActionEvent(
-                action: "Confirm",
-                kind: JustPressed,
-            ),
+            event: Event("input:confirm"),
             conditions: [
                 "$interactable == true",
                 "$depth == \'main\'",
@@ -59,10 +56,7 @@
         ),
         (
             id: "",
-            event: ActionEvent(
-                action: "Confirm",
-                kind: JustPressed,
-            ),
+            event: Event("input:confirm"),
             conditions: [
                 "$interactable == true",
                 "$depth == \'submenu\'",
@@ -86,10 +80,7 @@
         ),
         (
             id: "",
-            event: ActionEvent(
-                action: "Confirm",
-                kind: JustPressed,
-            ),
+            event: Event("input:confirm"),
             conditions: [
                 "$interactable == true",
                 "$depth == \'submenu\'",
@@ -113,10 +104,7 @@
         ),
         (
             id: "",
-            event: ActionEvent(
-                action: "Confirm",
-                kind: JustPressed,
-            ),
+            event: Event("input:confirm"),
             conditions: [
                 "$interactable == true",
                 "$depth == \'submenu\'",
@@ -137,10 +125,7 @@
         ),
         (
             id: "",
-            event: ActionEvent(
-                action: "Confirm",
-                kind: JustPressed,
-            ),
+            event: Event("input:confirm"),
             conditions: [
                 "$interactable == true",
                 "$depth == \'submenu\'",
@@ -167,10 +152,7 @@
         ),
         (
             id: "",
-            event: ActionEvent(
-                action: "Confirm",
-                kind: JustPressed,
-            ),
+            event: Event("input:confirm"),
             conditions: [
                 "$interactable == true",
                 "$depth == \'options\'",
@@ -193,10 +175,7 @@
         ),
         (
             id: "",
-            event: ActionEvent(
-                action: "Confirm",
-                kind: JustPressed,
-            ),
+            event: Event("input:confirm"),
             conditions: [
                 "$interactable == true",
                 "$depth == \'options\'",
@@ -219,10 +198,7 @@
         ),
         (
             id: "",
-            event: ActionEvent(
-                action: "Confirm",
-                kind: JustPressed,
-            ),
+            event: Event("input:confirm"),
             conditions: [
                 "$narration_visible == true",
                 "$interactable == false",

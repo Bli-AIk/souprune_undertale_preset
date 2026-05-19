@@ -2,7 +2,7 @@
 
 [![license](https://img.shields.io/badge/license-MIT%2FApache--2.0-blue)](LICENSE-APACHE) <img src="https://img.shields.io/github/repo-size/Bli-AIk/souprune_undertale_preset.svg"/> <img src="https://img.shields.io/github/last-commit/Bli-AIk/souprune_undertale_preset.svg"/>
 
-**souprune_undertale_preset** 是 SoupRune 维护中的 Undertale 风格可复用预设项目。
+**souprune_undertale_preset** 是 SoupRune 维护中的 Undertale 风格可复用库 mod。
 
 | 英语 | 简体中文 |
 |------|----------|
@@ -13,7 +13,7 @@
 本项目为 Undertale 风格游戏提供可复用的 SoupRune 内容。
 它包含战斗和大地图视图、FRE 规则、输入和流程配置、对话基础设施、物品、玩家行为，以及 WASM runtime/content guest。
 
-这是一个库 mod，不是独立游戏。如果你想学习一个完整可运行、依赖此预设的示例项目，请使用 `souprune_mad_dummy_example`。
+这是一个项目级库 mod，不是编译进本体的框架层，也不是独立游戏。如果你想学习一个完整可运行、依赖它的示例项目，请使用 `souprune_mad_dummy_example`。
 
 ## 使用方法
 

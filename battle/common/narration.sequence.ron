@@ -15,7 +15,7 @@
 //    structure globally, please edit the Cauld-ron source schema/configuration
 //    instead of modifying this file directly.
 // =============================================================================
-// Generated at: 2026-04-26 20:23:16 +08:00
+// Generated at: 2026-05-03 12:19:52 +08:00
 
 (
     mode: None,
@@ -71,6 +71,10 @@
                 Set(
                     key: "dialogue:battle_narration:voice",
                     value: String("assets/audios/voice/voice_typewriter_default.wav"),
+                ),
+                Set(
+                    key: "dialogue:battle_narration:text_style",
+                    value: String("battle_narration"),
                 ),
             ],
         ),

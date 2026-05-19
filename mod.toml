@@ -36,4 +36,16 @@ flow_config_path = "app/flow.ron"
 dialogue_config_path = "narrative/dialogue.ron"
 item_directory = "actors/items"
 locales_directory = "assets/locales"
-overworld_rules = ["overworld/rules/interaction.fre.ron"]
+
+[game.modes.overworld]
+primitives = [
+    "top_down_map",
+    "top_down_player",
+    "interaction_zones",
+    "view_runtime",
+    "fre_rules",
+    "sequencer",
+    "danmaku",
+    "chase",
+]
+rules = ["overworld/rules/interaction.fre.ron"]

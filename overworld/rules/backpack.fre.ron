@@ -15,7 +15,7 @@
 //    structure globally, please edit the Cauld-ron source schema/configuration
 //    instead of modifying this file directly.
 // =============================================================================
-// Generated at: 2026-04-27 22:00:21 +08:00
+// Generated at: 2026-05-12 13:43:27 +00:00
 
 (
     scope: View,
@@ -69,10 +69,7 @@
         ),
         (
             id: "",
-            event: ActionEvent(
-                action: "Up",
-                kind: JustPressed,
-            ),
+            event: Event("input:navigate_up"),
             conditions: [
                 "$selection > 0",
             ],
@@ -88,10 +85,7 @@
         ),
         (
             id: "",
-            event: ActionEvent(
-                action: "Down",
-                kind: JustPressed,
-            ),
+            event: Event("input:navigate_down"),
             conditions: [
                 "$depth == \'menu\'",
                 "$selection < 1",
@@ -108,10 +102,7 @@
         ),
         (
             id: "",
-            event: ActionEvent(
-                action: "Down",
-                kind: JustPressed,
-            ),
+            event: Event("input:navigate_down"),
             conditions: [
                 "$depth == \'item_list\'",
                 "$selection < $player:inventory.len() - 1",
@@ -128,10 +119,7 @@
         ),
         (
             id: "",
-            event: ActionEvent(
-                action: "Left",
-                kind: JustPressed,
-            ),
+            event: Event("input:navigate_left"),
             conditions: [
                 "$depth == \'item_options\'",
                 "$selection > 0",
@@ -148,10 +136,7 @@
         ),
         (
             id: "",
-            event: ActionEvent(
-                action: "Right",
-                kind: JustPressed,
-            ),
+            event: Event("input:navigate_right"),
             conditions: [
                 "$depth == \'item_options\'",
                 "$selection < 2",
@@ -168,10 +153,7 @@
         ),
         (
             id: "",
-            event: ActionEvent(
-                action: "Confirm",
-                kind: JustPressed,
-            ),
+            event: Event("input:confirm"),
             conditions: [
                 "$depth == \'menu\'",
                 "$selection == 0",
@@ -189,10 +171,7 @@
         ),
         (
             id: "",
-            event: ActionEvent(
-                action: "Confirm",
-                kind: JustPressed,
-            ),
+            event: Event("input:confirm"),
             conditions: [
                 "$depth == \'menu\'",
                 "$selection == 1",
@@ -210,10 +189,7 @@
         ),
         (
             id: "",
-            event: ActionEvent(
-                action: "Confirm",
-                kind: JustPressed,
-            ),
+            event: Event("input:confirm"),
             conditions: [
                 "$depth == \'item_list\'",
             ],
@@ -231,10 +207,7 @@
         ),
         (
             id: "",
-            event: ActionEvent(
-                action: "Confirm",
-                kind: JustPressed,
-            ),
+            event: Event("input:confirm"),
             conditions: [
                 "$depth == \'item_options\'",
                 "$selection == 0",
@@ -258,10 +231,7 @@
         ),
         (
             id: "",
-            event: ActionEvent(
-                action: "Confirm",
-                kind: JustPressed,
-            ),
+            event: Event("input:confirm"),
             conditions: [
                 "$depth == \'item_options\'",
                 "$selection == 1",
@@ -284,10 +254,7 @@
         ),
         (
             id: "",
-            event: ActionEvent(
-                action: "Confirm",
-                kind: JustPressed,
-            ),
+            event: Event("input:confirm"),
             conditions: [
                 "$depth == \'item_options\'",
                 "$selection == 2",
@@ -310,10 +277,7 @@
         ),
         (
             id: "",
-            event: ActionEvent(
-                action: "Cancel",
-                kind: JustPressed,
-            ),
+            event: Event("input:cancel"),
             conditions: [
                 "$depth == \'menu\'",
             ],
@@ -328,10 +292,7 @@
         ),
         (
             id: "",
-            event: ActionEvent(
-                action: "Menu",
-                kind: JustPressed,
-            ),
+            event: Event("input:menu"),
             conditions: [
                 "$depth == \'menu\'",
             ],
@@ -346,10 +307,7 @@
         ),
         (
             id: "",
-            event: ActionEvent(
-                action: "Cancel",
-                kind: JustPressed,
-            ),
+            event: Event("input:cancel"),
             conditions: [
                 "$depth == \'item_list\'",
             ],
@@ -365,10 +323,7 @@
         ),
         (
             id: "",
-            event: ActionEvent(
-                action: "Cancel",
-                kind: JustPressed,
-            ),
+            event: Event("input:cancel"),
             conditions: [
                 "$depth == \'item_options\'",
             ],
@@ -383,10 +338,7 @@
         ),
         (
             id: "",
-            event: ActionEvent(
-                action: "Cancel",
-                kind: JustPressed,
-            ),
+            event: Event("input:cancel"),
             conditions: [
                 "$depth == \'status\'",
             ],

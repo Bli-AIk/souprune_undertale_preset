@@ -126,5 +126,90 @@ pub fn asset() -> DialogueConfig {
             .into_iter()
             .collect(),
         },
+        text_animation: TextAnimationConfigDef {
+            default_preset: "default".into(),
+            presets: vec![
+                ("default".into(), TextAnimationPresetDef {
+                    display: TextDisplayDef::Normal,
+                    shake: None,
+                    wave: None,
+                }),
+                ("battle_narration".into(), TextAnimationPresetDef {
+                    display: TextDisplayDef::Normal,
+                    shake: Some(TextShakeDef {
+                        intensity: 2.0,
+                        mode: TextShakeModeDef::Twitch {
+                            average_frames: 48,
+                            frame_variation: 16,
+                        },
+                    }),
+                    wave: None,
+                }),
+                ("flowey_evil".into(), TextAnimationPresetDef {
+                    display: TextDisplayDef::Normal,
+                    shake: Some(TextShakeDef {
+                        intensity: 3.0,
+                        mode: TextShakeModeDef::Continuous,
+                    }),
+                    wave: None,
+                }),
+                ("napstablook".into(), TextAnimationPresetDef {
+                    display: TextDisplayDef::Floating {
+                        spawn_area: RectDef { x: 0.0, y: 0.0, width: 280.0, height: 200.0 },
+                        linger_seconds: 1.5,
+                    },
+                    shake: None,
+                    wave: None,
+                }),
+                ("mad_dummy".into(), TextAnimationPresetDef {
+                    display: TextDisplayDef::Floating {
+                        spawn_area: RectDef { x: 0.0, y: 0.0, width: 280.0, height: 200.0 },
+                        linger_seconds: 0.8,
+                    },
+                    shake: None,
+                    wave: Some(TextWaveDef {
+                        amplitude: 1.4,
+                        frequency: 10.0,
+                        orbit_angle_per_char_deg: Some(30.0),
+                    }),
+                }),
+                ("heat_waver".into(), TextAnimationPresetDef {
+                    display: TextDisplayDef::Normal,
+                    shake: None,
+                    wave: Some(TextWaveDef {
+                        amplitude: 2.0,
+                        frequency: 6.0,
+                        ..Default::default()
+                    }),
+                }),
+            ]
+            .into_iter()
+            .collect(),
+        },
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn mad_dummy_text_style_is_floating_with_wave_without_shake() {
+        let config = asset();
+        let preset = config
+            .text_animation
+            .presets
+            .get("mad_dummy")
+            .expect("mad_dummy text style should exist");
+
+        assert!(matches!(preset.display, TextDisplayDef::Floating { .. }));
+        assert!(preset.shake.is_none());
+        let wave = preset
+            .wave
+            .as_ref()
+            .expect("mad_dummy should keep ghost wave motion");
+        assert_eq!(wave.amplitude, 1.4);
+        assert_eq!(wave.frequency, 10.0);
+        assert_eq!(wave.orbit_angle_per_char_deg, Some(30.0));
     }
 }
