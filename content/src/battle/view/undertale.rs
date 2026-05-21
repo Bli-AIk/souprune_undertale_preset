@@ -941,7 +941,7 @@ pub fn asset() -> ViewLayoutAsset {
                 .into_iter()
                 .collect(),
         ),
-        world_space: true,
+        space: Some(ViewSpaceDef::World2d),
         ..Default::default()
     }
 }

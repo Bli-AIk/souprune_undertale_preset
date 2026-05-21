@@ -15,7 +15,7 @@
 //    structure globally, please edit the Cauld-ron source schema/configuration
 //    instead of modifying this file directly.
 // =============================================================================
-// Generated at: 2026-05-03 19:17:22 +08:00
+// Generated at: 2026-05-19 00:28:08 +00:00
 
 (
     roots: [
@@ -33,6 +33,14 @@
                 flex_direction: None,
                 justify_content: None,
                 align_items: None,
+                align_self: None,
+                margin: None,
+                padding: None,
+                border: None,
+                gap: None,
+                display: None,
+                overflow: None,
+                sizing: None,
             ),
             visible_when: None,
             background_color: None,
@@ -172,6 +180,14 @@
                         flex_direction: None,
                         justify_content: None,
                         align_items: None,
+                        align_self: None,
+                        margin: None,
+                        padding: None,
+                        border: None,
+                        gap: None,
+                        display: None,
+                        overflow: None,
+                        sizing: None,
                     ),
                     visible_when: None,
                     background_color: None,
@@ -213,6 +229,14 @@
                         flex_direction: None,
                         justify_content: None,
                         align_items: None,
+                        align_self: None,
+                        margin: None,
+                        padding: None,
+                        border: None,
+                        gap: None,
+                        display: None,
+                        overflow: None,
+                        sizing: None,
                     ),
                     visible_when: None,
                     background_color: None,
@@ -264,6 +288,5 @@
     ],
     requires: [],
     facts: None,
-    world_space: false,
     coordinate_system: Standard,
 )
